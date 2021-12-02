@@ -20,7 +20,8 @@ mongo = PyMongo(app)
 
 @app.route("/")
 def home():
-    return render_template("home.html")
+    car_sale_items = mongo.db.cars_for_sale.find()
+    return render_template("home.html", car_sale_items=car_sale_items)
 
 
 if __name__ == "__main__":

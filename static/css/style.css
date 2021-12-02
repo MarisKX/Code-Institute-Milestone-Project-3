@@ -23,6 +23,10 @@ a:hover {
 
 /* Navbar styles */
 
+header {
+    width: 100%;
+}
+
 #main-navbar {
     background-color:rgba(46, 125, 50, 1);
     height: 74px;
@@ -101,7 +105,7 @@ a:hover {
 
 /* Home page styles */
 
-main.container {
+div.container {
     width: 90%;
     max-width: 1450px;
 }
@@ -130,3 +134,14 @@ main.container {
 .title-wrapper:hover {
     background: linear-gradient(to right, rgb(46, 125, 50) 10%, rgb(230, 230, 230) 70%);
 }
+
+.col.s12.m6.l4 {
+    height: 192px;
+    margin: 2px;
+}
+.description > li{
+    font-size: 1.5em;
+    font-weight: bold;
+    text-align: center;
+}
+

@@ -4,6 +4,31 @@
     <div class="title-wrapper">
         <a href="cars-for-sale.html"><h2 class="title">Cars for sale</h2></a>
     </div>
+    <div class="row">
+        {% for car in car_sale_items %}
+            <div class="col s12 m6 l4">
+                <div class="row">
+                    <div class="col s8">
+                        <img src="{{ car.Picture1 }}" alt="{{ car.Make + car.Model }}" width="256" height="192">
+                    </div>
+                    <ul class="col s4 description">
+                        <li>{{ car.Make }}</li>
+                        <li>{{ car.Model }}</li>
+                        <li>{{ car.Year }}</li>
+                        <li>{{ car.Fuel }}</li>
+                        <li>{{ car.Price }}</li>
+                    </ul>
+                </div>
+            </div>
+        {% endfor %}
+        <div class="col s12 m6 l4">
+            
+        </div>
+
+        <div class="col s12 m6 l4">
+            
+        </div>
+    </div>
     <div class="title-wrapper">
         <a href="cars-for-sale.html"><h2 class="title">Cars for rent</h2></a>
     </div>
