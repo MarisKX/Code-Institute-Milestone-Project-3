@@ -55,7 +55,7 @@ body {
     background-color:rgb(66, 66, 66)
 }
 
-ul {
-    list-style-type: none;
+#mobile-demo {
+    height: fit-content;
+    margin-top: 150px;
 }
-
