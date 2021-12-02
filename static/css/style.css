@@ -1,18 +1,33 @@
+/* Main styles and colors */
+
+
 body {
     background-color: rgb(230, 230, 230);
     color: rgb(90, 90, 90);
     font-family: 'Josefin Sans', sans-serif;
 }
 
-.main-navbar {
-    background-color:rgba(46, 125, 50, 1);
-    height: inherit;
-}
+/* OVERWRITE MATERIALIZE AND MDB INCOMPACTIBILITIES */
 
-#burger-icon {
+nav .sidenav-trigger {
     float: right;
 }
 
+a:hover {
+    color:rgb(230, 230, 230);
+}
+
+.nav-link:hover {
+    color:rgb(230, 230, 230);
+}
+
+/* Navbar styles */
+
+#main-navbar {
+    background-color:rgba(46, 125, 50, 1);
+    height: 74px;
+    overflow: hidden;
+}
 
 .menu-upper {
     height: 70px;
@@ -55,7 +70,63 @@ body {
     background-color:rgb(66, 66, 66)
 }
 
+.sticky {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 1
+}
+
+.content-sticky {
+    padding-top: 75px;
+  }
+
+/* Navbar styles for mobile */
+
+#burger-icon {
+    float: right;
+    margin-right: 10px;
+}
+
+
 #mobile-demo {
-    height: fit-content;
-    margin-top: 150px;
+    height: 150px;
+    margin-top: 140px;
+}
+
+.nav-link-mobile {
+    font-weight: bold;
+}
+
+
+/* Home page styles */
+
+main.container {
+    width: 90%;
+    max-width: 1450px;
+}
+
+.title-wrapper {
+    margin: 40px 0px 20px 50px;
+    height: 50px;
+    width: 100%;
+    background: linear-gradient(to right, rgb(90, 90, 90) 10%, rgb(230, 230, 230) 70%);
+    transform: skewX(
+-17deg);
+}
+
+.title {
+    font-size: 2em;
+    font-weight: bold;
+    text-align: center;
+    float: left;
+    margin-left: 15px;
+    margin-top: 10px;
+    background-color: inherit;
+    color: rgb(230, 230, 230);
+    transform: skewX(17deg);
+}
+
+.title-wrapper:hover {
+    background: linear-gradient(to right, rgb(46, 125, 50) 10%, rgb(230, 230, 230) 70%);
 }
