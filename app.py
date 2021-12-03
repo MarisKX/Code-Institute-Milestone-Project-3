@@ -4,6 +4,7 @@ from flask import (
     redirect, request, session, url_for)
 from datetime import timedelta
 from flask_pymongo import PyMongo
+from pymongo import MongoClient
 from bson.objectid import ObjectId
 from werkzeug.security import generate_password_hash, check_password_hash
 if os.path.exists("env.py"):
@@ -17,7 +18,7 @@ app.config["MONGO_URI"] = os.environ.get("MONGO_URI")
 app.secret_key = os.environ.get("SECRET_KEY")
 
 # sets timeout for user session
-app.config['PERMANENT_SESSION_LIFETIME'] =  timedelta(seconds=30)
+app.config['PERMANENT_SESSION_LIFETIME'] =  timedelta(minutes=15)
 
 mongo = PyMongo(app)
 
@@ -131,7 +132,42 @@ def manager_logout():
 @app.route("/manager-dashboard/cars-for-sale/")
 def cars_for_sale():
     if "user" in session:
-        return render_template("manager-dashboard/cars-for-sale.html")
+        carsfs = mongo.db.cars_for_sale.find()
+        return render_template("manager-dashboard/cars-for-sale.html", carsfs=carsfs)
+    else:
+        flash("Your session has expired!", category="info")
+        return render_template("manager-dashboard/login.html")
+
+
+# ADD CAR FOR SALE # ADD CAR FOR SALE # ADD CAR FOR SALE # ADD CAR FOR SALE # ADD CAR FOR SALE 
+
+@app.route("/manager-dashboard/add-car-for-sale/", methods=["GET", "POST"])
+def add_car_for_sale():
+    if "user" in session:
+        if request.method == "POST":
+            apk = request.form.get("apk") if request.form.get("apk") else "no"
+            new_car_sale = {
+                "car_id": request.form.get("car-id"),
+                "make": request.form.get("make"),
+                "model": request.form.get("model"),
+                "picture1": request.form.get("picture1"),
+                "picture2": request.form.get("picture2"),
+                "picture3": request.form.get("picture3"),
+                "picture4": request.form.get("picture4"),
+                "year": request.form.get("year"),
+                "engine": request.form.get("engine"),
+                "fuel": request.form.get("fuel"),
+                "milage": request.form.get("milage"),
+                "apk": apk,
+                "description": request.form.get("description"),
+                "price": request.form.get("price"),
+                "created_by": session["user"],
+            }
+            mongo.db.cars_for_sale.insert_one(new_car_sale)
+            flash("New Car for Sale Added Successfully", category="success")
+            return redirect(url_for("cars_for_sale"))
+        car_id = str(mongo.db.cars_for_sale.count_documents({}) + 1)
+        return render_template("manager-dashboard/add-car-for-sale.html", car_id=car_id)
     else:
         flash("Your session has expired!", category="info")
         return render_template("manager-dashboard/login.html")

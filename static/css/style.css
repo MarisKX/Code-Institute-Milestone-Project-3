@@ -7,6 +7,11 @@ body {
     font-family: 'Josefin Sans', sans-serif;
 }
 
+.border-line {
+    margin-top: 10px;
+    width: 2px;
+}
+
 /* OVERWRITE MATERIALIZE AND MDB INCOMPACTIBILITIES */
 
 nav .sidenav-trigger {
@@ -109,7 +114,7 @@ header {
 
 /* Home page styles */
 
-div.container {
+main.container {
     width: 90%;
     max-width: 1450px;
 }
@@ -149,6 +154,16 @@ div.container {
     text-align: center;
 }
 
+/* Administration pages specific styles */
+
+table {
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.hidden {
+    display: none;
+}
 
 @media only screen and (max-width: 992px) {
     .brand-logo.not-mobile {
