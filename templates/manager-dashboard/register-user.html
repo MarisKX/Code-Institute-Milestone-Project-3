@@ -1,0 +1,65 @@
+{% extends "manager-dashboard/base.html" %}
+{% block content %}
+
+    <h3 class="center-align">Register</h3>
+
+    <div class="row register-row">
+        <form class="col s12 m8 offset-m2 l6 offset-l3" method="POST" action="#">
+            <div class="card-panel">
+                <!-- username field-->
+                <div class="row">
+					<div class="input-field col s12">
+						<i class="fas fa-user-plus prefix grey-text text-darken-1"></i>
+						<input id="username" name="username" type="text" minlength="5"
+                            maxlength="15" pattern="^[a-zA-Z0-9]{5,15}$" class="validate" required>
+						<label for="username">Username</label>
+					</div>
+                </div>
+                <!-- passowrd field-->
+                <div class="row">
+                    <div class="input-field col s12">
+						<i class="fas fa-user-lock prefix grey-text text-darken-1"></i>
+                        <input id="password" name="password" type="password" minlength="5"
+                            maxlength="15" pattern="^[a-zA-Z0-9!@#$%^&*()]{5,15}$" class="validate" required>
+                        <label for="password">Password</label>
+                    </div>
+                </div>
+                <!-- <p>
+                    <label for="sales-rights">
+                      <input type="checkbox" id="sales-rights" name="sales-rights" class="filled-in"/>
+                      <span>Edit Car Sales</span>
+                    </label>
+                    <label for="rent-rights">
+                      <input type="checkbox" id="rent-rights" name="rent-rights" class="filled-in"/>
+                      <span>Edit Rental Cars</span>
+                    </label>
+                </p>
+                <!-- SUPERUSER username field-->
+                <div class="row">
+					<div class="input-field col s12">
+						<i class="fas fa-user-cog prefix grey-text text-darken-1"></i>
+						<input id="super-username" name="super-username" type="text" minlength="5"
+                            maxlength="15" pattern="^[a-zA-Z0-9]{5,15}$" class="validate" required>
+                        <label for="super-username">Please, confirm new user and their rights with Your Username</label>
+					</div>
+                </div>
+                <!-- SUPERUSER passowrd field-->
+                <div class="row">
+                    <div class="input-field col s12">
+						<i class="fas fa-user-lock prefix grey-text text-darken-1"></i>
+                        <input id="super-password" name="super-password" type="password" minlength="5"
+                            maxlength="15" pattern="^[a-zA-Z0-9!@#$%^&*()]{5,15}$" class="validate" required>
+                        <label for="super-password">Please, confirm new user and their rights with Your Password</label>
+                    </div>
+                </div>
+                <!-- register button -->
+                <div class="row">
+                    <button type="submit" class="col s10 offset-s1 btn-large text-shadow grey darken-1">
+                        Register <i class="fas fa-sign-in-alt"></i>
+                    </button>
+                </div>
+            </div>
+        </form>
+    </div>
+
+{% endblock %}
