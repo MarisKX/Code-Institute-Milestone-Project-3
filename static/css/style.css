@@ -85,6 +85,10 @@ header {
     padding-top: 75px;
   }
 
+.brand-logo.mobile {
+    display: none;
+}
+
 /* Navbar styles for mobile */
 
 #burger-icon {
@@ -143,5 +147,15 @@ div.container {
     font-size: 1.5em;
     font-weight: bold;
     text-align: center;
+}
+
+
+@media only screen and (max-width: 992px) {
+    .brand-logo.not-mobile {
+        display: none;
+    }
+    .brand-logo.mobile {
+        display: inline-block;
+    }
 }
 
