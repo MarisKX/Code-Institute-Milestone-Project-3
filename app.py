@@ -2,6 +2,7 @@ import os
 from flask import (
     Flask, flash, render_template,
     redirect, request, session, url_for)
+from datetime import timedelta
 from flask_pymongo import PyMongo
 from bson.objectid import ObjectId
 from werkzeug.security import generate_password_hash, check_password_hash
@@ -14,6 +15,9 @@ app = Flask(__name__)
 app.config["MONGO_DBNAME"] = os.environ.get("MONGO_DBNAME")
 app.config["MONGO_URI"] = os.environ.get("MONGO_URI")
 app.secret_key = os.environ.get("SECRET_KEY")
+
+# sets timeout for user session
+app.config['PERMANENT_SESSION_LIFETIME'] =  timedelta(seconds=30)
 
 mongo = PyMongo(app)
 
@@ -29,22 +33,25 @@ def home():
 # INITIAL SCREEN # INITIAL SCREEN # INITIAL SCREEN # INITIAL SCREEN # INITIAL SCREEN
 
 
-@app.route("/manager-dashboard")
-def manager_dashboard():
-    return render_template("manager-dashboard/home.html")
+@app.route("/manager-dashboard/")
+def dashboard():
+    return render_template("manager-dashboard/login.html")
 
 
 # MANAGER MAIN SCREEN # MANAGER MAIN SCREEN # MANAGER MAIN SCREEN # MANAGER MAIN SCREEN 
 
 
-@app.route("/dashboard")
-def dashboard():
-    return render_template("manager-dashboard/dashboard.html")
+@app.route("/manager-dashboard/dashboard/")
+def manager_dashboard():
+    if "user" in session:
+        return render_template("manager-dashboard/dashboard.html")
+    else:
+        return render_template("manager-dashboard/login.html")
 
 
 # REGISTRATION # REGISTRATION # REGISTRATION # REGISTRATION # REGISTRATION
 
-@app.route("/register-user", methods=["GET", "POST"])
+@app.route("/manager-dashboard/register-user", methods=["GET", "POST"])
 def manager_register():
     if request.method == "POST":
         # check if registering user exists and has rights to register new users
@@ -79,7 +86,7 @@ def manager_register():
 
 # LOGIN # LOGIN # LOGIN # LOGIN # LOGIN # LOGIN # LOGIN # LOGIN # LOGIN # LOGIN
 
-@app.route("/login", methods=["GET", "POST"])
+@app.route("/manager-dashboard/login", methods=["GET", "POST"])
 def manager_login():
     if request.method == "POST":
         # check if username exists in db
@@ -93,7 +100,8 @@ def manager_login():
                     session["user"] = request.form.get("username").lower()
                     flash("Welcome, {}".format(
                         request.form.get("username")), category="success")
-                    return redirect(url_for("dashboard", username=session["user"]))
+                    session.permanent = True # sets session parameter to True
+                    return redirect(url_for("manager_dashboard", username=session["user"]))
             else:
                 # invalid password match
                 flash("Invalid Username and/or Password", category="error")
@@ -109,7 +117,7 @@ def manager_login():
 
 # LOGOUT FUNCTION # LOGOUT FUNCTION # LOGOUT FUNCTION # LOGOUT FUNCTION
 
-@app.route("/logout")
+@app.route("/manager-dashboard/logout")
 def manager_logout():
     # remove user from session cookie
     flash("You have been logged out", category="info")
