@@ -1,4 +1,5 @@
 import os
+import random
 from flask import (
     Flask, flash, render_template,
     redirect, request, session, url_for)
@@ -25,7 +26,8 @@ mongo = PyMongo(app)
 
 @app.route("/")
 def home():
-    car_sale_items = mongo.db.cars_for_sale.find()
+    all_car_sale_items = list(mongo.db.cars_for_sale.find({"active":"yes"}))
+    car_sale_items = random.sample(all_car_sale_items, k=2)
     return render_template("home.html", car_sale_items=car_sale_items)
 
 
@@ -159,7 +161,7 @@ def add_car_for_sale():
                 "fuel": request.form.get("fuel"),
                 "milage": request.form.get("milage"),
                 "apk": apk,
-                "description": request.form.get("description"),
+                "description": request.form.get("notes"),
                 "price": request.form.get("price"),
                 "created_by": session["user"],
             }

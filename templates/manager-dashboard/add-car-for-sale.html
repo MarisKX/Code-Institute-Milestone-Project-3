@@ -7,7 +7,7 @@
         <form class="col s12" method="POST" action="{{ url_for('add_car_for_sale') }}">
             <div class="row">
                 <div class="col s4">
-                    <input id="car-id" value="S {{ car_id }}" name="car-id" type="text" class="validate" required>
+                    <input id="car-id" value="S{{ car_id }}" name="car-id" type="text" class="validate" required>
                     <label for="car-id">CarID</label>
                 </div>
             </div>
@@ -61,19 +61,19 @@
             <div class="row">
                 <div class="col s1 offset-s2" onclick="apkTrigger()">
                     <label for="apk-init">
-                    <input type="checkbox" id="apk-init" name="apk-init" class="filled-in"/>
+                    <input type="checkbox" id="apk-init" name="apk-init" class="filled-in" required/>
                     <span>APK</span>
                     </label>
                 </div>
                 <div id="apk-trigger" class="col s6  hidden">
-                    <input id="apk" name="apk" type="text" class="validate" required>
+                    <input id="apk" name="apk" type="text" class="validate">
                     <label for="apk">APK end date</label>
                 </div>
             </div>
             <div class="row">
                 <div class="input-field col s12 m6">
-                    <input id="description" name="description" type="text" class="validate" required>
-                    <label for="description">Description</label>
+                    <input id="notes" name="notes" type="text" class="validate" required>
+                    <label for="notes">Notes</label>
                 </div>
                 <div class="input-field col s12 m3 offset-m3">
                     <i class="fas fa-euro-sign prefix green-text text-darken-1"></i>
