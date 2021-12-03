@@ -46,6 +46,7 @@ def manager_dashboard():
     if "user" in session:
         return render_template("manager-dashboard/dashboard.html")
     else:
+        flash("Your session has expired!", category="info")
         return render_template("manager-dashboard/login.html")
 
 
@@ -123,6 +124,17 @@ def manager_logout():
     flash("You have been logged out", category="info")
     session.pop("user")
     return redirect(url_for("dashboard"))
+
+
+# CARS FOR SALE FUNCTIONS # CARS FOR SALE FUNCTIONS # CARS FOR SALE FUNCTIONS # CARS FOR SALE FUNCTIONS 
+
+@app.route("/manager-dashboard/cars-for-sale/")
+def cars_for_sale():
+    if "user" in session:
+        return render_template("manager-dashboard/cars-for-sale.html")
+    else:
+        flash("Your session has expired!", category="info")
+        return render_template("manager-dashboard/login.html")
 
 
 if __name__ == "__main__":
