@@ -58,6 +58,10 @@ a:hover {
     color:rgb(230, 230, 230);
 }
 
+.col.s10.push-s1.xl10.push-xl3 {
+    min-width: 720px;
+}
+
 /* Navbar styles */
 
 header {
