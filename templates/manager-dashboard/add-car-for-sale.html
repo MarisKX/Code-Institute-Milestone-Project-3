@@ -1,14 +1,18 @@
 {% extends "manager-dashboard/base.html" %}
 {% block content %}
 
-    <h3 class="light-blue-text text-darken-4 center-align">Add New Product</h3>
+    <h3 class="light-blue-text text-darken-4 center-align">Add New Car for Sale</h3>
 
     <div class="row card-panel grey lighten-5">
         <form class="col s12" method="POST" action="{{ url_for('add_car_for_sale') }}">
             <div class="row">
-                <div class="col s4">
+                <div class="col s12 m4">
                     <input id="car-id" value="S{{ car_id }}" name="car-id" type="text" class="validate" required>
                     <label for="car-id">CarID</label>
+                </div>
+                <div class="input-field col s12 m4 offset-m4">
+                    <input id="created" name="created" type="text" class="datepicker validate" required>
+                    <label for="created">Created</label>
                 </div>
             </div>
             <div class="row">
@@ -22,7 +26,7 @@
                 </div>
             </div>
             <div class="row">
-                <h6 class="center">Provide pictures URL's</h6>
+                <h6 class="center">Provide picture URL's</h6>
                 <div class="input-field col s12 m10 offset-m1">
                     <input id="picture1" name="picture1" type="text" class="validate pic-url" required>
                     <label for="picture1">Picture #1</label>
@@ -41,6 +45,18 @@
                 </div>
             </div>
             <div class="row">
+                <div class="col s1 offset-s2" onclick="apkTrigger()">
+                    <label for="apk-init">
+                    <input type="checkbox" id="apk-init" name="apk-init" class="filled-in"/>
+                    <span>APK</span>
+                    </label>
+                </div>
+                <div id="apk-trigger" class="col s6  hidden">
+                    <input id="apk" name="apk" type="text" class="validate">
+                    <label for="apk">APK end date</label>
+                </div>
+            </div>
+            <div class="row">
                 <div class="input-field col s12 m3">
                     <input id="year" name="year" type="text" class="validate" required>
                     <label for="year">Year</label>
@@ -54,36 +70,42 @@
                     <label for="fuel">Fuel Type</label>
                 </div>
                 <div class="input-field col s12 m3">
-                    <input id="milage" name="milage" type="text" class="validate" required>
+                    <input id="milage" name="milage" type="number" min="0" step="1" class="validate" required>
                     <label for="milage">Milage</label>
                 </div>
             </div>
             <div class="row">
-                <div class="col s1 offset-s2" onclick="apkTrigger()">
-                    <label for="apk-init">
-                    <input type="checkbox" id="apk-init" name="apk-init" class="filled-in" required/>
-                    <span>APK</span>
-                    </label>
+                <div class="input-field col s12 m3">
+                    <input id="gearbox-type" name="gearbox-type" type="text" class="validate" required>
+                    <label for="gearbox-type">Gearbox</label>
                 </div>
-                <div id="apk-trigger" class="col s6  hidden">
-                    <input id="apk" name="apk" type="text" class="validate">
-                    <label for="apk">APK end date</label>
+                <div class="input-field col s12 m3">
+                    <input id="gears" name="gears" type="number" min="0" max="20" step="1" class="validate" required>
+                    <label for="gears">Gears</label>
+                </div>
+                <div class="input-field col s12 m3">
+                    <input id="body" name="body" type="text" class="validate" required>
+                    <label for="body">Body Type</label>
+                </div>
+                <div class="input-field col s12 m3">
+                    <input id="doors" name="doors" type="number" min="0" max="9" step="1" class="validate" required>
+                    <label for="doors">Doors</label>
                 </div>
             </div>
             <div class="row">
                 <div class="input-field col s12 m6">
-                    <input id="notes" name="notes" type="text" class="validate" required>
+                    <input id="notes" name="notes" type="text" class="validate">
                     <label for="notes">Notes</label>
                 </div>
                 <div class="input-field col s12 m3 offset-m3">
                     <i class="fas fa-euro-sign prefix green-text text-darken-1"></i>
-                    <input id="price" name="price" type="text" class="validate" required>
+                    <input id="price" name="price" type="number" min="0" step="1" class="validate" required>
                     <label for="price">Price</label>
                 </div>
             </div>
             <div class="div row">
                 <div class="col s12 center-align">
-                    <a href="#" class="waves-effect waves-light red darken-1 btn product-view-btn">
+                    <a href="{{ url_for('cars_for_sale') }}" class="waves-effect waves-light red darken-1 btn product-view-btn">
                         <i class="far fa-window-close left"></i>Cancel
                     </a> 
                     <button type="submit" class="waves-effect waves-light green darken-1 btn product-view-btn">

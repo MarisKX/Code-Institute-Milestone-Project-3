@@ -10,6 +10,7 @@
 <table>
     <tr>
         <th class="tooltipped" data-position="down" data-tooltip="Internal ID number of car">Car ID</th>
+        <th class="tooltipped" data-position="down" data-tooltip="Date of car being added to database">Since</th>
         <th class="tooltipped" data-position="down" data-tooltip="Make">Make</th>
         <th class="tooltipped" data-position="down" data-tooltip="Model">Model</th>
         <th class="tooltipped" data-position="down" data-tooltip="Year of first registration">Year</th>
@@ -26,6 +27,7 @@
         {% if c.active != "no" %}
             <tr>
                 <td>{{ c.car_id }}</td>
+                <td>{{ c.created }}</td>
                 <td>{{ c.make }}</td>
                 <td>{{ c.model}}</td>
                 <td>{{ c.year }}</td>

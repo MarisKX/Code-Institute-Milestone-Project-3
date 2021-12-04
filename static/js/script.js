@@ -1,5 +1,13 @@
 $(document).ready(function(){
     $('.sidenav').sidenav({edge: "right"});
+    $("select").formSelect();
+    $('.datepicker').datepicker({
+        format: "dd-mm-yyyy",
+        showClearBtn: true,
+        maxDate: new Date(),
+        i18n: {
+            done: "Select"
+        }});
 });
 
 

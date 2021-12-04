@@ -27,7 +27,7 @@ mongo = PyMongo(app)
 @app.route("/")
 def home():
     all_car_sale_items = list(mongo.db.cars_for_sale.find({"active":"yes"}))
-    car_sale_items = random.sample(all_car_sale_items, k=2)
+    car_sale_items = random.sample(all_car_sale_items, k=3)
     return render_template("home.html", car_sale_items=car_sale_items)
 
 
@@ -150,19 +150,27 @@ def add_car_for_sale():
             apk = request.form.get("apk") if request.form.get("apk") else "no"
             new_car_sale = {
                 "car_id": request.form.get("car-id"),
+                "created": request.form.get("created"),
                 "make": request.form.get("make"),
                 "model": request.form.get("model"),
                 "picture1": request.form.get("picture1"),
                 "picture2": request.form.get("picture2"),
                 "picture3": request.form.get("picture3"),
                 "picture4": request.form.get("picture4"),
+                "apk": apk,
                 "year": request.form.get("year"),
                 "engine": request.form.get("engine"),
                 "fuel": request.form.get("fuel"),
                 "milage": request.form.get("milage"),
-                "apk": apk,
-                "description": request.form.get("notes"),
+                "gearbox-type": request.form.get("gearbox-type"),
+                "gears": request.form.get("gears"),
+                "milage": request.form.get("milage"),
+                "body": request.form.get("body"),
+                "doors": request.form.get("doors"),
+                "notes": request.form.get("notes"),
                 "price": request.form.get("price"),
+                "sold": "no",
+                "active": "yes",
                 "created_by": session["user"],
             }
             mongo.db.cars_for_sale.insert_one(new_car_sale)
