@@ -1,0 +1,125 @@
+{% extends "manager-dashboard/base.html" %}
+{% block content %}
+
+    <h3 class="light-blue-text text-darken-4 center-align">Edit Car for Sale</h3>
+
+    <div class="row card-panel grey lighten-5">
+        <form class="col s12" method="POST" action="{{ url_for('edit_car_for_sale', edit_id=car._id) }}">
+            <div class="row">
+                <div class="col s12 m4">
+                    <input id="car-id" value="{{ car.car_id }}" name="car-id" type="text" class="validate" required>
+                    <label for="car-id">CarID</label>
+                </div>
+                <div class="input-field col s12 m4 offset-m4">
+                    <input id="edited" name="edited" type="text" class="datepicker validate" required>
+                    <label for="edited">Edited</label>
+                </div>
+            </div>
+            <div class="row">
+                <div class="input-field col s12 m6">
+                    <input id="make" value="{{ car.make }}" name="make" type="text" class="validate" required>
+                    <label for="make">Make</label>
+                </div>
+                <div class="input-field col s12 m6">
+                    <input id="model" value="{{ car.model }}" name="model" type="text" class="validate" required>
+                    <label for="model">Model</label>
+                </div>
+            </div>
+            <div class="row">
+                <h6 class="center">Provide picture URL's</h6>
+                <div class="input-field col s12 m10 offset-m1">
+                    <input id="picture1" value="{{ car.picture1 }}" name="picture1" type="text" class="validate pic-url" required>
+                    <label for="picture1">Picture #1</label>
+                </div>
+                <div class="input-field col s12 m10 offset-m1">
+                    <input id="picture2" value="{{ car.picture2 }}" name="picture2" type="text" class="validate pic-url" required>
+                    <label for="picture2">Picture #2</label>
+                </div>
+                <div class="input-field col s12 m10 offset-m1">
+                    <input id="picture3" value="{{ car.picture3 }}" name="picture3" type="text" class="validate pic-url" required>
+                    <label for="picture3">Picture #3</label>
+                </div>
+                <div class="input-field col s12 m10 offset-m1">
+                    <input id="picture4" value="{{ car.picture4 }}" name="picture4" type="text" class="validate pic-url" required>
+                    <label for="picture4">Picture #4</label>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col s1 offset-s2" onclick="apkTrigger()">
+                    <label for="apk-init">
+                    {% if car.apk != "no" %}
+                        <input type="checkbox" id="apk-init" name="apk-init" class="filled-in" checked/>
+                    {% else %}
+                        <input type="checkbox" id="apk-init" name="apk-init" class="filled-in"/>
+                    {% endif %}
+                    <span>APK</span>
+                    </label>
+                </div>
+                {% if car.apk != "no" %}
+                    <div id="apk-trigger" class="col s6  hidden">
+                        <input id="apk"  value="{{ car.apk }}" name="apk" type="text" class="validate">
+                        <label for="apk">APK end date</label>
+                    </div>
+                {% endif %}
+            </div>
+            <div class="row">
+                <div class="input-field col s12 m3">
+                    <input id="year" value="{{ car.year }}" name="year" type="text" class="validate" required>
+                    <label for="year">Year</label>
+                </div>
+                <div class="input-field col s12 m3">
+                    <input id="engine" value="{{ car.engine }}" name="engine" type="text" class="validate" required>
+                    <label for="engine">Engine</label>
+                </div>
+                <div class="input-field col s12 m3">
+                    <input id="fuel" value="{{ car.fuel }}" name="fuel" type="text" class="validate" required>
+                    <label for="fuel">Fuel Type</label>
+                </div>
+                <div class="input-field col s12 m3">
+                    <input id="milage" value="{{ car.milage }}" name="milage" type="number" min="0" step="1" class="validate" required>
+                    <label for="milage">Milage</label>
+                </div>
+            </div>
+            <div class="row">
+                <div class="input-field col s12 m3">
+                    <input id="gearbox-type" value="{{ car.gearbox }}" name="gearbox-type" type="text" class="validate" required>
+                    <label for="gearbox-type">Gearbox</label>
+                </div>
+                <div class="input-field col s12 m3">
+                    <input id="gears" value="{{ car.gears }}" name="gears" type="number" min="0" max="20" step="1" class="validate" required>
+                    <label for="gears">Gears</label>
+                </div>
+                <div class="input-field col s12 m3">
+                    <input id="body" value="{{ car.body }}" name="body" type="text" class="validate" required>
+                    <label for="body">Body Type</label>
+                </div>
+                <div class="input-field col s12 m3">
+                    <input id="doors" value="{{ car.doors }}" name="doors" type="number" min="0" max="9" step="1" class="validate" required>
+                    <label for="doors">Doors</label>
+                </div>
+            </div>
+            <div class="row">
+                <div class="input-field col s12 m6">
+                    <input id="notes" value="{{ car.notes }}" name="notes" type="text" class="validate">
+                    <label for="notes">Notes</label>
+                </div>
+                <div class="input-field col s12 m3 offset-m3">
+                    <i class="fas fa-euro-sign prefix green-text text-darken-1"></i>
+                    <input id="price" value="{{ car.price }}" name="price" type="number" min="0" step="1" class="validate" required>
+                    <label for="price">Price</label>
+                </div>
+            </div>
+            <div class="div row">
+                <div class="col s12 center-align">
+                    <a href="{{ url_for('cars_for_sale') }}" class="waves-effect waves-light red darken-1 btn product-view-btn">
+                        <i class="far fa-window-close left"></i>Cancel
+                    </a> 
+                    <button type="submit" class="waves-effect waves-light green darken-1 btn product-view-btn">
+                        <i class="far fa-arrow-alt-circle-up left"></i>Update Car
+                    </button>
+                </div>
+            </div>
+        </form>
+    </div>
+
+{% endblock %}

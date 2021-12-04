@@ -182,6 +182,48 @@ def add_car_for_sale():
         flash("Your session has expired!", category="info")
         return render_template("manager-dashboard/login.html")
 
+# EDIT CAR FOR SALE # EDIT CAR FOR SALE # EDIT CAR FOR SALE # EDIT CAR FOR SALE # EDIT CAR FOR SALE 
+
+@app.route("/manager-dashboard/edit-car-for-sale/<edit_id>", methods=["GET", "POST"])
+def edit_car_for_sale(edit_id):
+    if "user" in session:
+        if request.method == "POST":
+            apk = request.form.get("apk") if request.form.get("apk") else "no"
+            edit_car = {
+                "car_id": request.form.get("car-id"),
+                "make": request.form.get("make"),
+                "model": request.form.get("model"),
+                "picture1": request.form.get("picture1"),
+                "picture2": request.form.get("picture2"),
+                "picture3": request.form.get("picture3"),
+                "picture4": request.form.get("picture4"),
+                "apk": apk,
+                "year": request.form.get("year"),
+                "engine": request.form.get("engine"),
+                "fuel": request.form.get("fuel"),
+                "milage": request.form.get("milage"),
+                "gearbox-type": request.form.get("gearbox-type"),
+                "gears": request.form.get("gears"),
+                "milage": request.form.get("milage"),
+                "body": request.form.get("body"),
+                "doors": request.form.get("doors"),
+                "notes": request.form.get("notes"),
+                "price": request.form.get("price"),
+                "sold": "no",
+                "active": "yes",
+                "edited_by": session["user"],
+                "edited": request.form.get("edited"),
+            }
+            mongo.db.cars_for_sale.update_one({"_id": ObjectId(edit_id)}, {"$set": edit_car})
+            flash("Car Info Updated Successfully", category="success")
+            return redirect(url_for("cars_for_sale"))
+
+        car = mongo.db.cars_for_sale.find_one({"_id": ObjectId(edit_id)})
+        return render_template("manager-dashboard/edit-car-for-sale.html", car=car)
+    else:
+        flash("Your session has expired!", category="info")
+        return render_template("manager-dashboard/login.html")
+
 
 if __name__ == "__main__":
     app.run(host=os.environ.get("IP"),

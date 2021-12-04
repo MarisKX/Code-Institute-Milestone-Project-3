@@ -27,7 +27,7 @@
             <a href="#" data-target="mobile-demo" class="sidenav-trigger right"><i class="fas fa-bars"></i></a>
             <ul class="right hide-on-med-and-down">
                 {% if session.user %}
-                    <li><a href="#"><i class="fas fa-desktop left"></i>Dashboard</a></li>
+                    <li><a href="{{ url_for('manager_dashboard') }}"><i class="fas fa-desktop left"></i>Dashboard</a></li>
                     <li><a href="{{ url_for('cars_for_sale') }}"><i class="fas fa-car left"></i>Cars for sale</a></li>
                     <li><a href="#"><i class="fas fa-car-alt left"></i>Cars for rent</a></li>
                     <li><a href="#"><i class="fas fa-cogs left"></i>Settings</a></li>
@@ -42,7 +42,7 @@
         
         <ul class="sidenav" id="mobile-demo">
             {% if session.user %}
-                <li><a href="#">Dashboard</a></li>
+                <li><a href="{{ url_for('manager_dashboard') }}">Dashboard</a></li>
                 <li><a href="{{ url_for('cars_for_sale') }}">Cars for sale</a></li>
                 <li><a href="#">Cars for rent</a></li>
                 <li><a href="#">Settings</a></li>
