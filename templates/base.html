@@ -21,13 +21,13 @@
 <body>
   <header>
     <div class="col l3 menu-upper">
-      <a href="#!" class="brand-logo">Logo</a>
+      <a href="{{ url_for('home') }}" class="brand-logo">Logo</a>
     </div>
     <nav id="main-navbar">
       <div class="nav-wrapper row">
         <div class="col l7 push-l3">
           <ul class="hide-on-med-and-down">
-            <li class="nav-link-li"><a class="nav-link" href="sass.html">Cars for sale</a></li>
+            <li class="nav-link-li"><a class="nav-link" href="{{ url_for('for_sale') }}">Cars for sale</a></li>
             <li class="nav-link-li"><a class="nav-link" href="badges.html">Cars for rent</a></li>
             <li class="nav-link-li"><a class="nav-link" href="collapsible.html">Contact Us</a></li>
           </ul>
@@ -43,7 +43,7 @@
     </nav>
   
     <ul class="sidenav right" id="mobile-demo">
-      <li class="nav-link-mobile"><a href="sass.html">Cars for sale</a></li>
+      <li class="nav-link-mobile"><a href="{{ url_for('for_sale') }}">Cars for sale</a></li>
       <li class="nav-link-mobile"><a href="badges.html">Cars for rent</a></li>
       <li class="nav-link-mobile"><a href="collapsible.html">Contact Us</a></li>
     </ul>

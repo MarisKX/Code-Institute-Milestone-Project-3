@@ -206,3 +206,28 @@ table {
     }
 }
 
+/* Client side page settings (cars for sale/rent/contact)  */
+
+.description > .car-for-x-make {
+    font-size: 2.4em;;
+}
+
+.description > .car-for-x-model {
+    font-size: 1.8em;;
+}
+
+.description > .car-for-x-price {
+    font-size: 2em;
+    font-weight: bold;
+    margin: 20%;
+}
+
+.random-car-listing {
+    margin-top: 30px;
+}
+
+.car-item-seperator {
+    height: 3px;
+    background-color: rgb(66, 66, 66);
+    background: linear-gradient(to right, rgb(230, 230, 230) 0%, rgb(66, 66, 66) 10%, rgb(230, 230, 230) 80%);
+}

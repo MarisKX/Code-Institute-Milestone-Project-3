@@ -31,6 +31,15 @@ def home():
     return render_template("home.html", car_sale_items=car_sale_items)
 
 
+# CARS FOR SALE PUBLIC SIDE
+
+@app.route("/for-sale")
+def for_sale():
+    all_car_sale_items = list(mongo.db.cars_for_sale.find({"active":"yes"}))
+    car_sale_items = random.sample(all_car_sale_items, k=6)
+    return render_template("for-sale.html", car_sale_items=car_sale_items)
+
+
 # MANAGER DASHBOARD FUNCTIONS! # MANAGER DASHBOARD FUNCTIONS! # MANAGER DASHBOARD FUNCTIONS!
 
 # INITIAL SCREEN # INITIAL SCREEN # INITIAL SCREEN # INITIAL SCREEN # INITIAL SCREEN
@@ -162,7 +171,7 @@ def add_car_for_sale():
                 "engine": request.form.get("engine"),
                 "fuel": request.form.get("fuel"),
                 "milage": request.form.get("milage"),
-                "gearbox-type": request.form.get("gearbox-type"),
+                "gearbox_type": request.form.get("gearbox-type"),
                 "gears": request.form.get("gears"),
                 "milage": request.form.get("milage"),
                 "body": request.form.get("body"),
@@ -202,7 +211,7 @@ def edit_car_for_sale(edit_id):
                 "engine": request.form.get("engine"),
                 "fuel": request.form.get("fuel"),
                 "milage": request.form.get("milage"),
-                "gearbox-type": request.form.get("gearbox-type"),
+                "gearbox_type": request.form.get("gearbox-type"),
                 "gears": request.form.get("gears"),
                 "milage": request.form.get("milage"),
                 "body": request.form.get("body"),
@@ -214,7 +223,8 @@ def edit_car_for_sale(edit_id):
                 "edited_by": session["user"],
                 "edited": request.form.get("edited"),
             }
-            mongo.db.cars_for_sale.update_one({"_id": ObjectId(edit_id)}, {"$set": edit_car})
+            # USED SUPPORTED METHOD FOR CURRENT PYMONGO VERSION (old type - update with parameter without $set)
+            mongo.db.cars_for_sale.update_one({"_id": ObjectId(edit_id)}, {"$set": edit_car}) 
             flash("Car Info Updated Successfully", category="success")
             return redirect(url_for("cars_for_sale"))
 
