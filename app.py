@@ -37,16 +37,18 @@ def home():
 def for_sale():
     if request.method == "POST":
         search_keyword = request.form.get("make")
-        search_results = mongo.db.cars_for_sale.find({"make": search_keyword, "active":"yes"}).sort("make", 1)
-        all_car_sale_items = mongo.db.cars_for_sale.find({"active":"yes"}).sort("make", 1)
-        all_car_sale_items_list = list(mongo.db.cars_for_sale.find({"active":"yes"}))
-        car_sale_items = random.sample(all_car_sale_items_list, k=6)
-        return render_template("search-results.html", search_results=search_results, car_sale_items=car_sale_items, all_car_sale_items=all_car_sale_items)
+        if mongo.db.cars_for_sale.count_documents({"make": search_keyword}) != 0:
+            search_results = mongo.db.cars_for_sale.find({"make": search_keyword, "active":"yes"}).sort("model", 1)
+            car_makes = mongo.db.car_makes.find().sort("make", 1)
+            all_car_sale_items_list = list(mongo.db.cars_for_sale.find({"active":"yes"}))
+            car_sale_items = random.sample(all_car_sale_items_list, k=6)
+            return render_template("search-results.html", search_results=search_results, car_sale_items=car_sale_items, car_makes=car_makes)
+        flash("Select Your search criteria")
+    car_makes = mongo.db.car_makes.find().sort("make", 1)
     all_car_sale_items = mongo.db.cars_for_sale.find({"active":"yes"}).sort("make", 1)
     all_car_sale_items_list = list(mongo.db.cars_for_sale.find({"active":"yes"}))
     car_sale_items = random.sample(all_car_sale_items_list, k=6)
-    return render_template("for-sale.html", car_sale_items=car_sale_items, all_car_sale_items=all_car_sale_items)
-
+    return render_template("for-sale.html", car_sale_items=car_sale_items, car_makes=car_makes)
 
 
 # MANAGER DASHBOARD FUNCTIONS! # MANAGER DASHBOARD FUNCTIONS! # MANAGER DASHBOARD FUNCTIONS!

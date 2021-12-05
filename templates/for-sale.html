@@ -8,20 +8,10 @@
         <div class="col s12 l2 offset-l1 car-make">
             <select id="make" name="make">
               <option value="not_selected" disabled selected>Make</option>
-                {% for car in all_car_sale_items %}
+                {% for car in car_makes %}
                     <option value="{{ car.make }}">{{ car.make }}</option>
                 {% endfor %}
             </select>
-            <label>Materialize Select</label>
-        </div>
-        <div class="col s12 l2">
-            <select disabled>
-              <option value="" disabled selected>Model</option>
-              <option value="1">Option 1</option>
-              <option value="2">Option 2</option>
-              <option value="3">Option 3</option>
-            </select>
-            <label>Materialize Select</label>
         </div>
         <div class="col s12 l2">
             <select>
@@ -45,6 +35,16 @@
             <i class="material-icons left">Search</i>
         </button>
     </form>
+    <!-- FLASH MEDDAGES FOR SEARCH RESULTS-->
+    {% with messages = get_flashed_messages() %}
+        {% if messages %}
+            {% for category, message in get_flashed_messages(with_categories=True) %}
+                <div class="row flashes alert alert-{{category}}">
+                    <h3 class="center-align">{{ message }}</h3>
+                </div>
+            {% endfor %}
+        {% endif %}
+    {% endwith %}
 
     {% block search %}
       
