@@ -1,0 +1,24 @@
+{% extends "for-sale.html" %}
+
+{% block search %}
+    <div class="title-wrapper">
+        <h2 class="title">Results</h2>
+    </div>
+    {% for car in search_results %}
+    <div class="row random-car-listing">
+        <div class="col s12 m5 offset-m1">
+            <img src="{{ car.picture1 }}" alt="{{ car.make + car.model }}" width="268" height="200">
+        </div>
+        <ul class="col s12 m3 description">
+            <li class="car-for-x-make">{{ car.make }}</li>
+            <li class="car-for-x-model">{{ car.model }}</li>
+            <li>{{ car.year }}</li>
+            <li>{{ car.engine }}</li>  
+        </ul>
+        <div class="col s12 m4 description">
+            <p class="car-for-x-price waves-effect">{{ car.price }} EUR</p>
+        </div>
+    </div>
+    <div class="car-item-seperator"></div>
+    {% endfor %}
+{% endblock %}

@@ -26,3 +26,6 @@ function apkTrigger() {
         $("#apk-trigger").addClass("hidden");
     }
 }
+
+
+

@@ -4,6 +4,51 @@
     <div class="title-wrapper">
         <h2 class="title">Search</h2>
     </div>
+    <form class="search-form row" method="POST" acion = "{{ url_for('for_sale') }}">
+        <div class="col s12 l2 offset-l1 car-make">
+            <select id="make" name="make">
+              <option value="not_selected" disabled selected>Make</option>
+                {% for car in all_car_sale_items %}
+                    <option value="{{ car.make }}">{{ car.make }}</option>
+                {% endfor %}
+            </select>
+            <label>Materialize Select</label>
+        </div>
+        <div class="col s12 l2">
+            <select disabled>
+              <option value="" disabled selected>Model</option>
+              <option value="1">Option 1</option>
+              <option value="2">Option 2</option>
+              <option value="3">Option 3</option>
+            </select>
+            <label>Materialize Select</label>
+        </div>
+        <div class="col s12 l2">
+            <select>
+              <option value="" disabled selected>Fuel type</option>
+              <option value="1">Option 1</option>
+              <option value="2">Option 2</option>
+              <option value="3">Option 3</option>
+            </select>
+            <label>Materialize Select</label>
+        </div>
+        <div class="col s12 l2">
+            <select>
+              <option value="" disabled selected>Gearbox type</option>
+              <option value="1">Option 1</option>
+              <option value="2">Option 2</option>
+              <option value="3">Option 3</option>
+            </select>
+            <label>Materialize Select</label>
+        </div>
+        <button class="col S6 l1 btn waves-effect waves-light" type="submit" name="action">
+            <i class="material-icons left">Search</i>
+        </button>
+    </form>
+
+    {% block search %}
+      
+    {% endblock %}
     <div class="title-wrapper">
         <h2 class="title">Select</h2>
     </div>
@@ -19,7 +64,7 @@
             <li>{{ car.engine }}</li>  
         </ul>
         <div class="col s12 m4 description">
-            <p class="car-for-x-price">{{ car.price }} EUR</p>
+            <p class="car-for-x-price waves-effect">{{ car.price }} EUR</p>
         </div>
     </div>
     <div class="car-item-seperator"></div>

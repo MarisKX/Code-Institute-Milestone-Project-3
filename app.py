@@ -33,11 +33,20 @@ def home():
 
 # CARS FOR SALE PUBLIC SIDE
 
-@app.route("/for-sale")
+@app.route("/for-sale/", methods=["GET", "POST"])
 def for_sale():
-    all_car_sale_items = list(mongo.db.cars_for_sale.find({"active":"yes"}))
-    car_sale_items = random.sample(all_car_sale_items, k=6)
-    return render_template("for-sale.html", car_sale_items=car_sale_items)
+    if request.method == "POST":
+        search_keyword = request.form.get("make")
+        search_results = mongo.db.cars_for_sale.find({"make": search_keyword, "active":"yes"}).sort("make", 1)
+        all_car_sale_items = mongo.db.cars_for_sale.find({"active":"yes"}).sort("make", 1)
+        all_car_sale_items_list = list(mongo.db.cars_for_sale.find({"active":"yes"}))
+        car_sale_items = random.sample(all_car_sale_items_list, k=6)
+        return render_template("search-results.html", search_results=search_results, car_sale_items=car_sale_items, all_car_sale_items=all_car_sale_items)
+    all_car_sale_items = mongo.db.cars_for_sale.find({"active":"yes"}).sort("make", 1)
+    all_car_sale_items_list = list(mongo.db.cars_for_sale.find({"active":"yes"}))
+    car_sale_items = random.sample(all_car_sale_items_list, k=6)
+    return render_template("for-sale.html", car_sale_items=car_sale_items, all_car_sale_items=all_car_sale_items)
+
 
 
 # MANAGER DASHBOARD FUNCTIONS! # MANAGER DASHBOARD FUNCTIONS! # MANAGER DASHBOARD FUNCTIONS!
@@ -157,6 +166,8 @@ def add_car_for_sale():
     if "user" in session:
         if request.method == "POST":
             apk = request.form.get("apk") if request.form.get("apk") else "no"
+            form_car_make = request.form.get("make")
+            form_car_model = request.form.get("model")
             new_car_sale = {
                 "car_id": request.form.get("car-id"),
                 "created": request.form.get("created"),
@@ -183,6 +194,13 @@ def add_car_for_sale():
                 "created_by": session["user"],
             }
             mongo.db.cars_for_sale.insert_one(new_car_sale)
+            if mongo.db.car_makes.count_documents({"make": form_car_make}) == 0:
+                insert_car_make = {
+                    "make": form_car_make,
+                }
+                mongo.db.car_makes.insert_one(insert_car_make)
+            else:
+                pass
             flash("New Car for Sale Added Successfully", category="success")
             return redirect(url_for("cars_for_sale"))
         car_id = str(mongo.db.cars_for_sale.count_documents({}) + 1)
