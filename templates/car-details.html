@@ -1,0 +1,103 @@
+{% extends "base.html" %}
+{% block content %}
+
+
+{% for car in carfs %}
+<div class="car-list-item show">
+  <div class="row">
+    <div class="title-wrapper">
+      <h2 class="title back"><i class="fas fa-backward" aria-hidden="true"></i>Back</h2>
+    </div>
+    <div id="carouselExampleIndicators" class="carousel slide" data-mdb-ride="carousel">
+      <div class="carousel-indicators">
+        <button type="button" data-mdb-target="#carouselExampleIndicators" data-mdb-slide-to="0" class="active"
+          aria-current="true" aria-label="Slide 1">
+        </button>
+        <button type="button" data-mdb-target="#carouselExampleIndicators" data-mdb-slide-to="1" aria-label="Slide 2">
+        </button>
+        <button type="button" data-mdb-target="#carouselExampleIndicators" data-mdb-slide-to="2" aria-label="Slide 3">
+        </button>
+        <button type="button" data-mdb-target="#carouselExampleIndicators" data-mdb-slide-to="3" aria-label="Slide 4">
+        </button>
+      </div>
+      <div class="carousel-inner">
+        <div class="carousel-item active">
+          <img src="{{ car.picture1 }}" class="d-block w-100" alt="..." />
+        </div>
+        <div class="carousel-item">
+          <img src="{{ car.picture2 }}" class="d-block w-100" alt="..." />
+        </div>
+        <div class="carousel-item">
+          <img src="{{ car.picture3 }}" class="d-block w-100" alt="..." />
+        </div>
+        <div class="carousel-item">
+          <img src="{{ car.picture4 }}" class="d-block w-100" alt="..." />
+        </div>
+      </div>
+      <button class="carousel-control-prev" type="button" data-mdb-target="#carouselExampleIndicators"
+        data-mdb-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Previous</span>
+      </button>
+      <button class="carousel-control-next" type="button" data-mdb-target="#carouselExampleIndicators"
+        data-mdb-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Next</span>
+      </button>
+    </div>
+  </div>
+  <div class="row info-row">
+    <div class="title-wrapper info-title">
+      <h5 class="title basic-info">Basic info</h5>
+    </div>
+  </div>
+  <div class="row info-row">
+    <div class="info-details col-md-8">
+      <div class="row row-table">
+        <dl class="top-table left col-md-6">
+          <dt><span class="icon"><i class="fas fa-car" aria-hidden="true"></i></span><span
+              class="icon-title">Make</span></dt>
+          <dd id="make">{{ car.make }}</dd>
+          <dt><span class="icon"><i class="fas fa-car-side" aria-hidden="true"></i></span><span
+              class="icon-title">Model</span></dt>
+          <dd id="model">{{ car.model }}</dd>
+          <dt><span class="icon"><i class="far fa-calendar-alt" aria-hidden="true"></i></span><span
+              class="icon-title">Year</span></dt>
+          <dd id="year">{{ car.year }}</dd>
+          <dt><span class="icon"><i class="fas fa-gas-pump" aria-hidden="true"></i></span><span
+              class="icon-title">Fuel</span></dt>
+          <dd id="fuel">{{ car.fuel }}</dd>
+          <dt><span class="icon"><i class="fas fa-tachometer-alt" aria-hidden="true"></i></span><span
+              class="icon-title">Engine</span></dt>
+          <dd id="engine">{{ car.engine }}</dd>
+        </dl>
+        <dl class="top-table right col-md-6">
+          <dt><span class="icon"><i class="fas fa-cogs" aria-hidden="true"></i></span><span
+              class="icon-title">Gearbox</span></dt>
+          <dd id="gearbox">{{ car.gearbox_type }}</dd>
+          <dt><span class="icon"><i class="fas fa-palette" aria-hidden="true"></i></span><span
+              class="icon-title">Color</span></dt>
+          <dd id="color">{{ car.gears }}</dd>
+          <dt><span class="icon"><i class="fas fa-road" aria-hidden="true"></i></span><span
+              class="icon-title">Milage</span></dt>
+          <dd id="milage">{{ car.milage }}</dd>
+          <dt><span class="icon"><i class="fas fa-stamp" aria-hidden="true"></i></span><span
+              class="icon-title">APK</span></dt>
+          <dd id="apk">{{ car.apk }}</dd>
+          <dt><span class="icon"><i class="fas fa-euro-sign" aria-hidden="true"></i></span><span
+              class="icon-title">Price</span></dt>
+          <dd id="price">{{ car.price }}</dd>
+        </dl>
+      </div>
+    </div>
+  </div>
+  <div class="row info-row">
+    <div class="title-wrapper info-title">
+      <h5 class="title basic-info">Description</h5>
+    </div>
+  </div>
+</div>
+{% endfor %}
+
+
+{% endblock %}

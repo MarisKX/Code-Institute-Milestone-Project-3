@@ -7,7 +7,9 @@
     {% for car in search_results %}
     <div class="row random-car-listing">
         <div class="col s12 m5 offset-m1">
-            <img src="{{ car.picture1 }}" alt="{{ car.make + car.model }}" width="268" height="200">
+            <a href="{{ url_for('carfs_details', car_id=car._id) }}">
+                <img src="{{ car.picture1 }}" alt="{{ car.make + car.model }}" width="268" height="200">
+            </a>
         </div>
         <ul class="col s12 m3 description">
             <li class="car-for-x-make">{{ car.make }}</li>
@@ -16,7 +18,9 @@
             <li>{{ car.engine }}</li>  
         </ul>
         <div class="col s12 m4 description">
-            <p class="car-for-x-price waves-effect">{{ car.price }} EUR</p>
+            <a class="car-for-x-price-tag car-for-x-price waves-effect" href="{{ url_for('carfs_details', car_id=car._id) }}">
+                {{ car.price }} EUR</p> 
+            </a>
         </div>
     </div>
     <div class="car-item-seperator"></div>

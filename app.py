@@ -42,13 +42,20 @@ def for_sale():
             car_makes = mongo.db.car_makes.find().sort("make", 1)
             all_car_sale_items_list = list(mongo.db.cars_for_sale.find({"active":"yes"}))
             car_sale_items = random.sample(all_car_sale_items_list, k=6)
-            return render_template("search-results.html", search_results=search_results, car_sale_items=car_sale_items, car_makes=car_makes)
+            return render_template(
+                "search-results.html", search_results=search_results, car_sale_items=car_sale_items, car_makes=car_makes)
         flash("Select Your search criteria")
     car_makes = mongo.db.car_makes.find().sort("make", 1)
     all_car_sale_items = mongo.db.cars_for_sale.find({"active":"yes"}).sort("make", 1)
     all_car_sale_items_list = list(mongo.db.cars_for_sale.find({"active":"yes"}))
     car_sale_items = random.sample(all_car_sale_items_list, k=6)
     return render_template("for-sale.html", car_sale_items=car_sale_items, car_makes=car_makes)
+
+
+@app.route("/for-sale/details/<car_id>")
+def carfs_details(car_id):
+    carfs = mongo.db.cars_for_sale.find({"_id": ObjectId(car_id)})
+    return render_template("car-details.html", carfs=carfs)
 
 
 # MANAGER DASHBOARD FUNCTIONS! # MANAGER DASHBOARD FUNCTIONS! # MANAGER DASHBOARD FUNCTIONS!

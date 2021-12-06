@@ -259,3 +259,33 @@ table {
     background-color: rgb(66, 66, 66);
     background: linear-gradient(to right, rgb(230, 230, 230) 0%, rgb(66, 66, 66) 10%, rgb(230, 230, 230) 80%);
 }
+
+.dropdown-content li>a, .dropdown-content li>span {
+    color: rgb(66, 66, 66);
+}
+
+#search-btn:hover {
+    background-color: rgb(46, 125, 50);
+    color: rgb(230, 230, 230);
+}
+
+
+a.car-for-x-price-tag {
+    color: rgb(66, 66, 66);
+}
+
+.carousel .carousel-item {
+    visibility: visible;
+    max-width: 1300px;
+    width: 100%;
+    height: fit-content;
+    position: relative;
+}
+
+#carouselExampleIndicators {
+    height: fit-content;
+}
+
+button:focus {
+    background-color: transparent;
+}
