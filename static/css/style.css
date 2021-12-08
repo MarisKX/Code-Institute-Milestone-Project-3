@@ -221,6 +221,10 @@ table {
     display: none;
 }
 
+table.access-rights {
+    max-width: 500px;
+}
+
 @media only screen and (max-width: 992px) {
     .brand-logo.not-mobile {
         display: none;
@@ -228,6 +232,14 @@ table {
     .brand-logo.mobile {
         display: inline-block;
     }
+}
+
+.row.flashes.alert.alert-welcome {
+    text-transform: capitalize;
+}
+
+.settings-heading {
+    margin-bottom: 20px;
 }
 
 /* Client side page settings (cars for sale/rent/contact)  */

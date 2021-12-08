@@ -30,7 +30,7 @@
                     <li><a href="{{ url_for('manager_dashboard') }}"><i class="fas fa-desktop left"></i>Dashboard</a></li>
                     <li><a href="{{ url_for('cars_for_sale') }}"><i class="fas fa-car left"></i>Cars for sale</a></li>
                     <li><a href="#"><i class="fas fa-car-alt left"></i>Cars for rent</a></li>
-                    <li><a href="#"><i class="fas fa-cogs left"></i>Settings</a></li>
+                    <li><a href="{{ url_for('manager_settings', username=session['user']) }}"><i class="fas fa-cogs left"></i>Settings</a></li>
                     <li><a href="{{ url_for('manager_logout') }}">Log Out</a></li>
                 {% else %}
                     <li><a href="{{ url_for('manager_login') }}"><i class="fas fa-sign-in-alt left"></i>Log In</a></li>
@@ -45,7 +45,7 @@
                 <li><a href="{{ url_for('manager_dashboard') }}">Dashboard</a></li>
                 <li><a href="{{ url_for('cars_for_sale') }}">Cars for sale</a></li>
                 <li><a href="#">Cars for rent</a></li>
-                <li><a href="#">Settings</a></li>
+                <li><a href="{{ url_for('manager_settings', username=session['user']) }}">Settings</a></li>
                 <li><a href="{{ url_for('manager_logout') }}">Log Out</a></li>
             {% else %}
                 <li><a href="{{ url_for('manager_login') }}">Log In</a></li>
@@ -59,7 +59,7 @@
             {% if messages %}
                 {% for category, message in get_flashed_messages(with_categories=True) %}
                     <div class="row flashes alert alert-{{category}}">
-                        <h3 class="center-align">{{ message }}</h3>
+                        <h3 class="flash-message center-align">{{ message }}</h3>
                     </div>
                 {% endfor %}
             {% endif %}

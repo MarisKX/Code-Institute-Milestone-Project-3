@@ -15,6 +15,7 @@ $(window).scroll(function () {
     // add 'sticky-header' class to the body tag when the header top is scrolled out of view
     $('#main-navbar').toggleClass('sticky', $(this).scrollTop() > $('.menu-upper').height());
     $('.container').toggleClass('content-sticky', $(this).scrollTop() > $('.menu-upper').height());
+    $('h3.flash-message').toUpperCase();
 });
 
 function apkTrigger() {
@@ -26,6 +27,27 @@ function apkTrigger() {
         $("#apk-trigger").addClass("hidden");
     }
 }
+
+function showAccount() {
+    $(".access-rights").removeClass("hidden");
+    $(".change-password").addClass("hidden");
+    $(".users").addClass("hidden");
+}
+
+function showPassword() {
+    $(".access-rights").addClass("hidden");
+    $(".change-password").removeClass("hidden");
+    $(".users").addClass("hidden");
+}
+
+function showUsers() {
+    $(".access-rights").addClass("hidden");
+    $(".change-password").addClass("hidden");
+    $(".users").removeClass("hidden");
+}
+
+
+    
 
 
 

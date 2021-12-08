@@ -130,7 +130,7 @@ def manager_login():
                 existing_user["password"], request.form.get("password")):
                     session["user"] = request.form.get("username").lower()
                     flash("Welcome, {}".format(
-                        request.form.get("username")), category="success")
+                        request.form.get("username")), category="welcome")
                     session.permanent = True # sets session parameter to True
                     return redirect(url_for("manager_dashboard", username=session["user"]))
             else:
@@ -261,6 +261,27 @@ def edit_car_for_sale(edit_id):
         flash("Your session has expired!", category="info")
         return render_template("manager-dashboard/login.html")
 
+# SETTINGS AREA # SETTINGS AREA # SETTINGS AREA # SETTINGS AREA # SETTINGS AREA # SETTINGS AREA # SETTINGS AREA 
+
+@app.route("/manager-dashboard/settings/<username>", methods=["GET", "POST"])
+def manager_settings(username):    
+    if "user" in session:
+        user = mongo.db.managing_users.find({"username": session["user"]})
+        if request.method == "POST":
+            current_user = mongo.db.managing_users.find_one({"username": username})
+            if check_password_hash(current_user["password"], request.form.get("old_password")):
+                new_password = {
+                    "password": generate_password_hash(request.form.get("new_password"))
+                }
+                mongo.db.managing_users.update_one({"username": session["user"]}, {"$set": new_password})  
+                flash("Password changed for {}".format(session["user"]), category="success")
+                return redirect(url_for("manager_settings", user = user, username=session["user"]))
+            flash("Wrong password for {}".format(session["user"]), category="welcome")
+            return render_template("manager-dashboard/settings.html", user=user)
+        return render_template("manager-dashboard/settings.html", user=user)
+    else:
+        flash("Your session has expired!", category="info")
+        return render_template("manager-dashboard/login.html")
 
 if __name__ == "__main__":
     app.run(host=os.environ.get("IP"),
