@@ -100,7 +100,10 @@ def manager_register():
             if check_password_hash(super_user["password"], request.form.get("super-password")):
                 register = {
                 "username": request.form.get("username").lower(),
-                "password": generate_password_hash(request.form.get("password"))
+                "password": generate_password_hash(request.form.get("password")),
+                "car_sales": "no",
+                "car_rent": "no",
+                "settings": "no"
                 }
                 mongo.db.managing_users.insert_one(register)
                 flash("Welcome on board, {}".format(
@@ -267,18 +270,37 @@ def edit_car_for_sale(edit_id):
 def manager_settings(username):    
     if "user" in session:
         user = mongo.db.managing_users.find({"username": session["user"]})
+        all_users = mongo.db.managing_users.find()
         if request.method == "POST":
-            current_user = mongo.db.managing_users.find_one({"username": username})
-            if check_password_hash(current_user["password"], request.form.get("old_password")):
-                new_password = {
-                    "password": generate_password_hash(request.form.get("new_password"))
-                }
-                mongo.db.managing_users.update_one({"username": session["user"]}, {"$set": new_password})  
-                flash("Password changed for {}".format(session["user"]), category="success")
-                return redirect(url_for("manager_settings", user = user, username=session["user"]))
-            flash("Wrong password for {}".format(session["user"]), category="welcome")
-            return render_template("manager-dashboard/settings.html", user=user)
-        return render_template("manager-dashboard/settings.html", user=user)
+            if "change-password" in request.form:
+                current_user = mongo.db.managing_users.find_one({"username": username})
+                if check_password_hash(current_user["password"], request.form.get("old_password")):
+                    new_password = {
+                        "password": generate_password_hash(request.form.get("new_password"))
+                    }
+                    mongo.db.managing_users.update_one({"username": session["user"]}, {"$set": new_password})  
+                    flash("Password changed for {}".format(session["user"]), category="success")
+                    return redirect(url_for("manager_settings", username=username))
+                flash("Wrong password for {}".format(session["user"]), category="welcome")
+                return render_template("manager-dashboard/settings.html", user=user)
+            elif "user-rights" in request.form:
+                for i in all_users:
+                    upd_username = i["username"]
+                    if i["superuser"] == "yes" or upd_username == session["user"]:
+                        continue
+                    else:
+                        car_sales = "yes" if request.form.get("checkbox_sales " + upd_username + "") else "no"
+                        car_rent = "yes" if request.form.get("checkbox_rent " + upd_username + "") else "no"
+                        settings = "yes" if request.form.get("checkbox_settings " + upd_username + "") else "no"
+                        update_rights = {
+                            "car_sales": car_sales,
+                            "car_rent": car_rent,
+                            "settings": settings,
+                        }
+                        mongo.db.managing_users.update_one({"username": upd_username}, {"$set": update_rights})
+                flash("Acces rights changed".format(session["user"]), category="success")
+                return redirect(url_for("manager_settings", username=username))
+        return render_template("manager-dashboard/settings.html", user=user, all_users=all_users)
     else:
         flash("Your session has expired!", category="info")
         return render_template("manager-dashboard/login.html")

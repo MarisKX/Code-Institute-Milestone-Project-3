@@ -217,12 +217,39 @@ table {
     margin-bottom: 10px;
 }
 
+table.access-rights > tbody > tr > td, table.access-rights > tbody > tr > th {
+    text-align: center;
+}
+
 .hidden {
     display: none;
 }
 
-table.access-rights {
-    max-width: 500px;
+table.access-rights, table.user-rights {
+    max-width: 600px;
+}
+
+
+.row.flashes.alert.alert-welcome {
+    text-transform: capitalize;
+}
+
+.settings-heading {
+    margin-bottom: 20px;
+}
+
+.fa-check {
+    color: green;
+    font-weight: bold;
+}
+
+.fa-times {
+    color: red;
+    font-weight: bold;
+}
+
+.checkbox-imit {
+    font-size: 2em;
 }
 
 @media only screen and (max-width: 992px) {
@@ -232,14 +259,6 @@ table.access-rights {
     .brand-logo.mobile {
         display: inline-block;
     }
-}
-
-.row.flashes.alert.alert-welcome {
-    text-transform: capitalize;
-}
-
-.settings-heading {
-    margin-bottom: 20px;
 }
 
 /* Client side page settings (cars for sale/rent/contact)  */

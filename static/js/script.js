@@ -45,10 +45,3 @@ function showUsers() {
     $(".change-password").addClass("hidden");
     $(".users").removeClass("hidden");
 }
-
-
-    
-
-
-
-
