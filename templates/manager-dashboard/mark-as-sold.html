@@ -1,0 +1,74 @@
+{% extends "manager-dashboard/base.html" %}
+{% block content %}
+
+
+<h4>Car Details</h4>
+<form  method="POST" action="{{ url_for('mark_as_sold', car_id=car._id) }}">
+<table class="car-details">
+    <tr>
+        <td colspan="2">
+            <div class="input-field table-datapicker">
+                <input id="sold_at" name="sold_at" type="text" class="datepicker validate" required>
+                <label for="sold_at">Sold at: </label>
+            </div>
+        </td>
+    </tr>
+    <tr>
+        <td>Car ID</td>
+        <td>{{ car.car_id }}</td>
+    </tr>
+    <tr>
+        <td>Make</td>
+        <td>{{ car.make }}</td>
+    </tr>
+    <tr>
+        <td>Model</td>
+        <td>{{ car.model }}</td>
+    </tr>
+    <tr>
+        <td>Year</td>
+        <td>{{ car.year }}</td>
+    </tr>
+    <tr>
+        <td>Engine</td>
+        <td>{{ car.engine }}</td>
+    </tr>
+    <tr>
+        <td>Fuel type</td>
+        <td>{{ car.fuel }}</td>
+    </tr>
+    <tr>
+        <td>APK</td>
+        {% if car.apk == "no" %}
+        <td><i class="red-text fas fa-times"></i></td>
+        {% else %}
+        <td>{{ car.apk }}</td>
+        {% endif %}
+    </tr>
+    <tr>
+        <td>Milage</td>
+        <td>{{ car.milage }}</td>
+    </tr>
+    <tr>
+        <td>Price</td>
+        <td>{{ car.price }} <i class="fas fa-euro-sign"></i></td>
+    </tr>
+        <tr>
+            <td><label class="confirm-sale" for="final-price">Sales Price</label></td>
+            <td class="input-row">
+                <input id="final-price" name="final-price" type="text" class="validate" required>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2">
+                <button type="submit" class="waves-effect waves-light green darken-1 btn table-btn">
+                    <i class="fas fa-dollar-sign left"></i>Confirm As Sold
+                </button>
+            </td>
+        </tr>
+    </table>
+</form>
+
+
+
+{% endblock %}

@@ -264,6 +264,30 @@ def edit_car_for_sale(edit_id):
         flash("Your session has expired!", category="info")
         return render_template("manager-dashboard/login.html")
 
+# MARK AS SOLD # MARK AS SOLD # MARK AS SOLD # MARK AS SOLD # MARK AS SOLD # MARK AS SOLD 
+
+@app.route("/manager-dashboard/mark-as-sold/<car_id>", methods=["GET", "POST"])
+def mark_as_sold(car_id):
+    if "user" in session:
+        if request.method == "POST":
+            confirm_as_sold = {
+                "sold": "yes",
+                "sold_at": request.form.get("sold_at"),
+                "price": request.form.get("final-price"),
+                "sold_by": session["user"],
+            }
+            # USED SUPPORTED METHOD FOR CURRENT PYMONGO VERSION (old type - update with parameter without $set)
+            mongo.db.cars_for_sale.update_one({"_id": ObjectId(car_id)}, {"$set": confirm_as_sold}) 
+            flash("Car Marked as Sold Successfully", category="success")
+            return redirect(url_for("cars_for_sale"))
+
+        car = mongo.db.cars_for_sale.find_one({"_id": ObjectId(car_id)})
+        return render_template("manager-dashboard/mark-as-sold.html", car=car)
+    else:
+        flash("Your session has expired!", category="info")
+        return render_template("manager-dashboard/login.html")
+
+
 # SETTINGS AREA # SETTINGS AREA # SETTINGS AREA # SETTINGS AREA # SETTINGS AREA # SETTINGS AREA # SETTINGS AREA 
 
 @app.route("/manager-dashboard/settings/<username>", methods=["GET", "POST"])

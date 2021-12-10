@@ -8,6 +8,22 @@ $(document).ready(function(){
         i18n: {
             done: "Select"
         }});
+    $(function() {
+        $('.car-sold').click(function(event) {
+            event.preventDefault();
+            let actionPath = "/manager-dashboard/mark-as-sold/" + $(this).attr('data-car-id');
+            let innerId = $(this).attr('data-car-inner-id');
+            let make = $(this).attr('data-make');
+            let model = $(this).attr('data-model');
+            let price = $(this).attr('data-price');
+              $('#EditModal form').attr('action', actionPath);
+              $('#EditModal .id').text(innerId);
+              $('#EditModal .make').text(make);
+              $('#EditModal .model').text(model);
+              $('#EditModal .price').text(price);
+              $('#EditModal').modal('show');
+            });
+          });
 });
 
 
@@ -45,3 +61,6 @@ function showUsers() {
     $(".change-password").addClass("hidden");
     $(".users").removeClass("hidden");
 }
+
+
+

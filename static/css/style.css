@@ -225,8 +225,26 @@ table.access-rights > tbody > tr > td, table.access-rights > tbody > tr > th {
     display: none;
 }
 
-table.access-rights, table.user-rights {
+table.access-rights, table.user-rights, table.car-details {
     max-width: 600px;
+}
+
+.input-row {
+    width: 300px;
+}
+
+label.confirm-sale {
+    font-size: 2em;
+    font-weight: bold;
+}
+
+.table-btn {
+    margin-left: 30%;
+}
+
+.table-datapicker {
+    margin-left: 35%;
+    margin-right: 35%;
 }
 
 
@@ -251,6 +269,20 @@ table.access-rights, table.user-rights {
 .checkbox-imit {
     font-size: 2em;
 }
+button.list-item-btn {
+    border: none;
+    background-color: inherit;
+}
+
+button.list-item-btn:hover {
+    cursor: pointer;
+}
+
+i.disabled {
+    cursor: not-allowed;
+}
+
+
 
 @media only screen and (max-width: 992px) {
     .brand-logo.not-mobile {

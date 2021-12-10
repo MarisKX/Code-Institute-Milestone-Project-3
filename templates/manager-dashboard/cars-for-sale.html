@@ -41,14 +41,38 @@
                     <td><i class="red-text fas fa-times"></i></td>
                 {% endif %} 
                 <td>{{ cfs.milage }} km</td>
-                <td><i class="fas fa-euro-sign"></i> {{ cfs.price }}</td>
-                <td><a href="#"><i class="green-text text-darken-1 fas fa-chart-area"></i></a></td>
-                <td><a href="{{ url_for('edit_car_for_sale', edit_id=cfs._id) }}"><i class="green-text text-darken-1 fas fa-pen"></i></a></td>
-                <td><a href="#"><i class="green-text text-darken-1 fas fa-file-invoice-dollar"></i></a></td>
-                <td><a href="#"><i class="green-text text-darken-1 fas fa-archive"></i></a></td>
+                <td class="right">{{ cfs.price }} <i class="fas fa-euro-sign"></i></td>
+                <td><button class="list-item-btn"><a 
+                    href=""><i 
+                    class="green-text text-darken-1 fas fa-pen"></i></a></button></td>
+                {% if cfs.sold == "no" %}
+                <td><button class="list-item-btn"><a 
+                    href="{{ url_for('edit_car_for_sale', edit_id=cfs._id) }}"><i 
+                    class="green-text text-darken-1 fas fa-pen"></i></a></button>
+                </td>
+                <td><button class="list-item-btn"><a 
+                    href="{{ url_for('mark_as_sold', car_id=cfs._id) }}"><i 
+                    class="green-text text-darken-1 fas fa-hand-holding-usd"></i></a></button>
+                </td>
+                <td><button class="list-item-btn"><i 
+                    class="grey-text text-darken-1 disabled fas fa-archive"></i></button>
+                </td>
+                {% else %}
+                <td><button class="list-item-btn"><i 
+                    class="grey-text text-darken-1 disabled fas fa-pen"></i></button>
+                </td>
+                <td><button class="list-item-btn"><i 
+                    class="grey-text text-darken-1 disabled fas fa-hand-holding-usd"></i></button>
+                </td>
+                
+                <td><button class="list-item-btn"><a 
+                    href=""><i 
+                    class="green-text text-darken-1 fas fa-archive"></i></a></button>
+                </td>
+                {% endif %}
             </tr>
         {% endif %}
     {% endfor %}
-</table>
+
 
 {% endblock %}
