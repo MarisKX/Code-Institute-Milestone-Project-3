@@ -48,7 +48,7 @@ def for_sale():
     car_makes = mongo.db.car_makes.find().sort("make", 1)
     all_car_sale_items = mongo.db.cars_for_sale.find({"active":"yes"}).sort("make", 1)
     all_car_sale_items_list = list(mongo.db.cars_for_sale.find({"active":"yes"}))
-    car_sale_items = random.sample(all_car_sale_items_list, k=6)
+    car_sale_items = random.sample(all_car_sale_items_list, k=10)
     return render_template("for-sale.html", car_sale_items=car_sale_items, car_makes=car_makes)
 
 
@@ -74,7 +74,13 @@ def dashboard():
 @app.route("/manager-dashboard/dashboard/")
 def manager_dashboard():
     if "user" in session:
-        return render_template("manager-dashboard/dashboard.html")
+        all_cars_count = mongo.db.cars_for_sale.count_documents({"active": "yes"})
+        active_cars_count = mongo.db.cars_for_sale.count_documents({"active": "yes", "sold": "no"})
+        sold_cars_count = mongo.db.cars_for_sale.count_documents({"sold": "yes"})
+        return render_template("manager-dashboard/dashboard.html", 
+            all_cars_count=all_cars_count, 
+            active_cars_count=active_cars_count,
+            sold_cars_count=sold_cars_count)
     else:
         flash("Your session has expired!", category="info")
         return render_template("manager-dashboard/login.html")
