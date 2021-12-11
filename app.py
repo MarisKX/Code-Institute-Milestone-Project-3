@@ -75,12 +75,16 @@ def dashboard():
 def manager_dashboard():
     if "user" in session:
         all_cars_count = mongo.db.cars_for_sale.count_documents({"active": "yes"})
-        active_cars_count = mongo.db.cars_for_sale.count_documents({"active": "yes", "sold": "no"})
+        for_sale_cars_count = mongo.db.cars_for_sale.count_documents({"active": "yes", "sold": "no"})
         sold_cars_count = mongo.db.cars_for_sale.count_documents({"sold": "yes"})
+        sold_by_user = mongo.db.cars_for_sale.count_documents({"sold_by": session["user"]})
+        salesman = session["user"]
         return render_template("manager-dashboard/dashboard.html", 
             all_cars_count=all_cars_count, 
-            active_cars_count=active_cars_count,
-            sold_cars_count=sold_cars_count)
+            for_sale_cars_count=for_sale_cars_count,
+            sold_cars_count=sold_cars_count,
+            sold_by_user=sold_by_user,
+            salesman=salesman)
     else:
         flash("Your session has expired!", category="info")
         return render_template("manager-dashboard/login.html")
