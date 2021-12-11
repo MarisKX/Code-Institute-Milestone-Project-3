@@ -2,11 +2,22 @@
 {% block content %}
 
 <div class='border-line'></div>
-<a href="#" onclick=showAllCars() class="waves-effect waves-light green darken-1 btn"><i class="fas fa-car-alt left"></i><i class="fas fa-car left"></i> All cars</a>
-<a href="#" onclick=carsInStock() class="waves-effect waves-light green darken-1 btn"><i class="fas fa-car-alt left"></i>Cars in Stock</a>
-<a href="#" onclick=soldCars() class="waves-effect waves-light green darken-1 btn"><i class="fas fa-hand-holding-usd left"></i>Sold</a>
-<a href="#" onclick=archivedCars() class="waves-effect waves-light green darken-1 btn"><i class="fas fa-archive left"></i>Archive</a>
-<a href="{{ url_for('add_car_for_sale') }}" class="waves-effect waves-light green darken-1 btn" target="_parent"><i class="far fa-plus-square left"></i>Add New Car for Sale</a>
+<button onclick=showAllCars() 
+    class="waves-effect waves-light green darken-1 btn"><i 
+    class="fas fa-car-alt left"></i><i 
+    class="fas fa-car left"></i> All cars</button>
+<button onclick=carsInStock() 
+    class="waves-effect waves-light green darken-1 btn"><i 
+    class="fas fa-car-alt left"></i>Cars in Stock</button>
+<button onclick=soldCars() 
+    class="waves-effect waves-light green darken-1 btn"><i 
+    class="fas fa-hand-holding-usd left"></i>Sold</button>
+<button onclick=archivedCars() 
+    class="waves-effect waves-light green darken-1 btn"><i 
+    class="fas fa-archive left"></i>Archive</button>
+<button class="waves-effect waves-light green darken-1 btn"><a 
+    class="add-car-btn" href="{{ url_for('add_car_for_sale') }}"><i 
+    class="far fa-plus-square left"></i>Add New Car for Sale</a></button>
 
 <table>
     <tr>

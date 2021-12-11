@@ -159,7 +159,7 @@ header {
 
 
 #mobile-demo {
-    height: 150px;
+    height: 300px;
     margin-top: 140px;
 }
 
@@ -314,6 +314,14 @@ p.dashboard-numbers {
     background: linear-gradient(to right, rgb(46, 125, 50) 15%, rgb(90, 90, 90) 45%, rgb(90, 90, 90) 55%, rgb(46, 125, 50) 85%);
 }
 
+.add-car-btn {
+    color: rgb(230, 230, 230);
+}
+
+button.btn {
+    margin: 3px;
+}
+
 
 @media only screen and (max-width: 992px) {
     .brand-logo.not-mobile {
@@ -321,6 +329,17 @@ p.dashboard-numbers {
     }
     .brand-logo.mobile {
         display: inline-block;
+    }
+}
+
+@media only screen and (max-width: 745px) {
+    table {
+        font-size: 0.5em;
+    }
+    main.container {
+        width: 100%;
+        margin-left: 0;
+        margin-right: 0;
     }
 }
 
