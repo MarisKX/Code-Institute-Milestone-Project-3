@@ -2,10 +2,10 @@
 {% block content %}
 
 <div class='border-line'></div>
-<a href="#" class="waves-effect waves-light green darken-1 btn"><i class="fas fa-car-alt left"></i><i class="fas fa-car left"></i> All cars</a>
-<a href="#" class="waves-effect waves-light green darken-1 btn"><i class="fas fa-car-alt left"></i>Cars in Stock</a>
-<a href="#" class="waves-effect waves-light green darken-1 btn"><i class="fas fa-hand-holding-usd left"></i>Sold</a>
-<a href="#" class="waves-effect waves-light green darken-1 btn"><i class="fas fa-archive left"></i>Archive</a>
+<a href="#" onclick=showAllCars() class="waves-effect waves-light green darken-1 btn"><i class="fas fa-car-alt left"></i><i class="fas fa-car left"></i> All cars</a>
+<a href="#" onclick=carsInStock() class="waves-effect waves-light green darken-1 btn"><i class="fas fa-car-alt left"></i>Cars in Stock</a>
+<a href="#" onclick=soldCars() class="waves-effect waves-light green darken-1 btn"><i class="fas fa-hand-holding-usd left"></i>Sold</a>
+<a href="#" onclick=archivedCars() class="waves-effect waves-light green darken-1 btn"><i class="fas fa-archive left"></i>Archive</a>
 <a href="{{ url_for('add_car_for_sale') }}" class="waves-effect waves-light green darken-1 btn" target="_parent"><i class="far fa-plus-square left"></i>Add New Car for Sale</a>
 
 <table>
@@ -26,8 +26,8 @@
         <th class="tooltipped" data-position="down" data-tooltip="Put item in archive"></th>
     </tr>
     {% for cfs in carsfs %}
-        {% if cfs.active != "no" %}
-            <tr>
+        {% if cfs.active == "yes" %}
+            <tr class="all-cars hidden">
                 <td>{{ cfs.car_id }}</td>
                 <td>{{ cfs.created }}</td>
                 <td>{{ cfs.make }}</td>
@@ -72,6 +72,148 @@
                 {% endif %}
             </tr>
         {% endif %}
+    
+        {% if cfs.active == "yes" and cfs.sold == "no" %}
+            <tr class="cars-in-stock">
+                <td>{{ cfs.car_id }}</td>
+                <td>{{ cfs.created }}</td>
+                <td>{{ cfs.make }}</td>
+                <td>{{ cfs.model}}</td>
+                <td>{{ cfs.year }}</td>
+                <td>{{ cfs.engine }}</td>
+                <td>{{ cfs.fuel }}</td>
+                {% if cfs.apk != "no" %}
+                    <td>{{ cfs.apk }}</td>
+                {% else %}
+                    <td><i class="red-text fas fa-times"></i></td>
+                {% endif %} 
+                <td>{{ cfs.milage }} km</td>
+                <td class="right">{{ cfs.price }} <i class="fas fa-euro-sign"></i></td>
+                <td><button class="list-item-btn"><a 
+                    href=""><i 
+                    class="green-text text-darken-1 fas fa-pen"></i></a></button></td>
+                {% if cfs.sold == "no" %}
+                <td><button class="list-item-btn"><a 
+                    href="{{ url_for('edit_car_for_sale', edit_id=cfs._id) }}"><i 
+                    class="green-text text-darken-1 fas fa-pen"></i></a></button>
+                </td>
+                <td><button class="list-item-btn"><a 
+                    href="{{ url_for('mark_as_sold', car_id=cfs._id) }}"><i 
+                    class="green-text text-darken-1 fas fa-hand-holding-usd"></i></a></button>
+                </td>
+                <td><button class="list-item-btn"><i 
+                    class="grey-text text-darken-1 disabled fas fa-archive"></i></button>
+                </td>
+                {% else %}
+                <td><button class="list-item-btn"><i 
+                    class="grey-text text-darken-1 disabled fas fa-pen"></i></button>
+                </td>
+                <td><button class="list-item-btn"><i 
+                    class="grey-text text-darken-1 disabled fas fa-hand-holding-usd"></i></button>
+                </td>
+                
+                <td><button class="list-item-btn"><a 
+                    href=""><i 
+                    class="green-text text-darken-1 fas fa-archive"></i></a></button>
+                </td>
+                {% endif %}
+            </tr>
+        {% endif %}
+
+        {% if cfs.active == "yes" and cfs.sold == "yes" %}
+            <tr class="sold-cars hidden">
+                <td>{{ cfs.car_id }}</td>
+                <td>{{ cfs.created }}</td>
+                <td>{{ cfs.make }}</td>
+                <td>{{ cfs.model}}</td>
+                <td>{{ cfs.year }}</td>
+                <td>{{ cfs.engine }}</td>
+                <td>{{ cfs.fuel }}</td>
+                {% if cfs.apk != "no" %}
+                    <td>{{ cfs.apk }}</td>
+                {% else %}
+                    <td><i class="red-text fas fa-times"></i></td>
+                {% endif %} 
+                <td>{{ cfs.milage }} km</td>
+                <td class="right">{{ cfs.price }} <i class="fas fa-euro-sign"></i></td>
+                <td><button class="list-item-btn"><a 
+                    href=""><i 
+                    class="green-text text-darken-1 fas fa-pen"></i></a></button></td>
+                {% if cfs.sold == "no" %}
+                <td><button class="list-item-btn"><a 
+                    href="{{ url_for('edit_car_for_sale', edit_id=cfs._id) }}"><i 
+                    class="green-text text-darken-1 fas fa-pen"></i></a></button>
+                </td>
+                <td><button class="list-item-btn"><a 
+                    href="{{ url_for('mark_as_sold', car_id=cfs._id) }}"><i 
+                    class="green-text text-darken-1 fas fa-hand-holding-usd"></i></a></button>
+                </td>
+                <td><button class="list-item-btn"><i 
+                    class="grey-text text-darken-1 disabled fas fa-archive"></i></button>
+                </td>
+                {% else %}
+                <td><button class="list-item-btn"><i 
+                    class="grey-text text-darken-1 disabled fas fa-pen"></i></button>
+                </td>
+                <td><button class="list-item-btn"><i 
+                    class="grey-text text-darken-1 disabled fas fa-hand-holding-usd"></i></button>
+                </td>
+                
+                <td><button class="list-item-btn"><a 
+                    href=""><i 
+                    class="green-text text-darken-1 fas fa-archive"></i></a></button>
+                </td>
+                {% endif %}
+            </tr>
+        {% endif %}
+
+        {% if cfs.active == "no" %}
+            <tr class="archive hidden">
+                <td>{{ cfs.car_id }}</td>
+                <td>{{ cfs.created }}</td>
+                <td>{{ cfs.make }}</td>
+                <td>{{ cfs.model}}</td>
+                <td>{{ cfs.year }}</td>
+                <td>{{ cfs.engine }}</td>
+                <td>{{ cfs.fuel }}</td>
+                {% if cfs.apk != "no" %}
+                    <td>{{ cfs.apk }}</td>
+                {% else %}
+                    <td><i class="red-text fas fa-times"></i></td>
+                {% endif %} 
+                <td>{{ cfs.milage }} km</td>
+                <td class="right">{{ cfs.price }} <i class="fas fa-euro-sign"></i></td>
+                <td><button class="list-item-btn"><a 
+                    href=""><i 
+                    class="green-text text-darken-1 fas fa-pen"></i></a></button></td>
+                {% if cfs.sold == "no" %}
+                <td><button class="list-item-btn"><a 
+                    href="{{ url_for('edit_car_for_sale', edit_id=cfs._id) }}"><i 
+                    class="green-text text-darken-1 fas fa-pen"></i></a></button>
+                </td>
+                <td><button class="list-item-btn"><a 
+                    href="{{ url_for('mark_as_sold', car_id=cfs._id) }}"><i 
+                    class="green-text text-darken-1 fas fa-hand-holding-usd"></i></a></button>
+                </td>
+                <td><button class="list-item-btn"><i 
+                    class="grey-text text-darken-1 disabled fas fa-archive"></i></button>
+                </td>
+                {% else %}
+                <td><button class="list-item-btn"><i 
+                    class="grey-text text-darken-1 disabled fas fa-pen"></i></button>
+                </td>
+                <td><button class="list-item-btn"><i 
+                    class="grey-text text-darken-1 disabled fas fa-hand-holding-usd"></i></button>
+                </td>
+                
+                <td><button class="list-item-btn"><a 
+                    href=""><i 
+                    class="green-text text-darken-1 fas fa-archive"></i></a></button>
+                </td>
+                {% endif %}
+            </tr>
+        {% endif %}
+
     {% endfor %}
 
 

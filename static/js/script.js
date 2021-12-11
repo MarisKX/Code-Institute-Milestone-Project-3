@@ -62,5 +62,33 @@ function showUsers() {
     $(".users").removeClass("hidden");
 }
 
+function showAllCars() {
+    $(".all-cars").removeClass("hidden");
+    $(".cars-in-stock").addClass("hidden");
+    $(".sold-cars").addClass("hidden");
+    $(".archive").addClass("hidden");
+}
+
+function carsInStock() {
+    $(".all-cars").addClass("hidden");
+    $(".cars-in-stock").removeClass("hidden");
+    $(".sold-cars").addClass("hidden");
+    $(".archive").addClass("hidden");
+}
+
+function soldCars() {
+    $(".all-cars").addClass("hidden");
+    $(".cars-in-stock").addClass("hidden");
+    $(".sold-cars").removeClass("hidden");
+    $(".archive").addClass("hidden");
+}
+
+function archivedCars() {
+    $(".all-cars").addClass("hidden");
+    $(".cars-in-stock").addClass("hidden");
+    $(".sold-cars").addClass("hidden");
+    $(".archive").removeClass("hidden");
+}
+
 
 

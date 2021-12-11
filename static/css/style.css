@@ -238,8 +238,12 @@ label.confirm-sale {
     font-weight: bold;
 }
 
-.table-btn {
-    margin-left: 30%;
+.table-btn,  {
+    margin-left: 10%;
+}
+
+.cancel-btn {
+    margin-left: 15px;
 }
 
 .table-datapicker {
