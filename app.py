@@ -3,7 +3,7 @@ import random
 from flask import (
     Flask, flash, render_template,
     redirect, request, session, url_for)
-from datetime import timedelta
+from datetime import timedelta, date
 from flask_pymongo import PyMongo
 from pymongo import MongoClient
 from bson.objectid import ObjectId

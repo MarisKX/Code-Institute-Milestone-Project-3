@@ -26,117 +26,54 @@
                 <td>Sold</td>
                 <td>Delete/Archive</td>
             </tr>
-            {% if u.car_sales and u.settings and u.car_rent == "yes" %}
             <tr>
                 <td>Cars for Sale</td>
+                {% if u.car_sales == "yes" %}
                 <td><i class="fas fa-check"></i></td>
                 <td><i class="fas fa-check"></i></td>
                 <td><i class="fas fa-check"></i></td>
+                {% else %}
+                <td><i class="fas fa-times"></i></td>
+                <td><i class="fas fa-times"></i></td>
+                <td><i class="fas fa-times"></i></td>
+                {% endif %}
+                {% if u.settings == "yes" %}
                 <td><i class="fas fa-check"></i></td>
+                {% else %}
+                <td><i class="fas fa-times"></i></td>
+                {% endif %}
             </tr>
             <tr>
                 <td>Cars for Rent</td>
+                {% if u.car_rent == "yes" %}
                 <td><i class="fas fa-check"></i></td>
                 <td><i class="fas fa-check"></i></td>
                 <td><i class="fas fa-minus"></i></td>
+                {% else %}
+                <td><i class="fas fa-times"></i></td>
+                <td><i class="fas fa-times"></i></td>
+                <td><i class="fas fa-minus"></i></td>
+                {% endif %}
+                {% if u.settings == "yes" %}
                 <td><i class="fas fa-check"></i></td>
+                {% else %}
+                <td><i class="fas fa-times"></i></td>
+                {% endif %}
             </tr>
             <tr>
                 <td>Users</td>
+                {% if u.settings == "yes" %}
                 <td><i class="fas fa-check"></i></td>
                 <td><i class="fas fa-check"></i></td>
                 <td><i class="fas fa-minus"></i></td>
-                <td><i class="fas fa-check"></i></td>   
-            </tr>
-            {% elif u.car_sales and u.car_rent == "yes" and u.settings == "no" %}
-            <tr>
-                <td>Cars for Sale</td>
                 <td><i class="fas fa-check"></i></td>
-                <td><i class="fas fa-check"></i></td>
-                <td><i class="fas fa-check"></i></td>
-                <td><i class="fas fa-times"></i></td>
-            </tr>
-            <tr>
-                <td>Cars for Rent</td>
-                <td><i class="fas fa-check"></i></td>
-                <td><i class="fas fa-check"></i></td>
-                <td><i class="fas fa-minus"></i></td>
-                <td><i class="fas fa-times"></i></td>
-            </tr>
-            <tr>
-                <td>Users</td>
+                {% else %}
                 <td><i class="fas fa-times"></i></td>
                 <td><i class="fas fa-times"></i></td>
                 <td><i class="fas fa-minus"></i></td>
-                <td><i class="fas fa-times"></i></td>   
+                <td><i class="fas fa-times"></i></td>
+                {% endif %}   
             </tr>
-            {% elif u.car_sales == "yes" and u.settings and u.car_rent == "no" %}
-            <tr>
-                <td>Cars for Sale</td>
-                <td><i class="fas fa-check"></i></td>
-                <td><i class="fas fa-check"></i></td>
-                <td><i class="fas fa-check"></i></td>
-                <td><i class="fas fa-times"></i></td>
-            </tr>
-            <tr>
-                <td>Cars for Rent</td>
-                <td><i class="fas fa-times"></i></td> 
-                <td><i class="fas fa-times"></i></td>
-                <td><i class="fas fa-minus"></i></td> 
-                <td><i class="fas fa-times"></i></td>
-            </tr>
-            <tr>
-                <td>Users</td>
-                <td><i class="fas fa-times"></i></td>
-                <td><i class="fas fa-times"></i></td>
-                <td><i class="fas fa-minus"></i></td>
-                <td><i class="fas fa-times"></i></td>   
-            </tr>
-            {% elif u.car_rent == "yes" and u.settings and u.car_sales == "no" %}
-            <tr>
-                <td>Cars for Sale</td>
-                <td><i class="fas fa-times"></i></td>
-                <td><i class="fas fa-times"></i></td>
-                <td><i class="fas fa-times"></i></td>
-                <td><i class="fas fa-times"></i></td>
-            </tr>
-            <tr>
-                <td>Cars for Rent</td>
-                <td><i class="fas fa-check"></i></td>
-                <td><i class="fas fa-check"></i></td>
-                <td><i class="fas fa-minus"></i></td> 
-                <td><i class="fas fa-times"></i></td>
-            </tr>
-            <tr>
-                <td>Users</td>
-                <td><i class="fas fa-times"></i></td>
-                <td><i class="fas fa-times"></i></td>
-                <td><i class="fas fa-minus"></i></td>
-                <td><i class="fas fa-times"></i></td>   
-            </tr>
-            {% else %}
-            <tr>
-                <td>Cars for Sale</td>
-                <td><i class="fas fa-times"></i></td>
-                <td><i class="fas fa-times"></i></td>
-                <td><i class="fas fa-times"></i></td>
-                <td><i class="fas fa-times"></i></td>
-            </tr>
-            <tr>
-                <td>Cars for Rent</td>
-                <td><i class="fas fa-times"></i></td>
-                <td><i class="fas fa-times"></i></td> 
-                <td><i class="fas fa-minus"></i></td>
-                <td><i class="fas fa-times"></i></td>
-            </tr>
-            <tr>
-                <td>Users</td>
-                <td><i class="fas fa-times"></i></td>
-                <td><i class="fas fa-times"></i></td>
-                <td><i class="fas fa-minus"></i></td>
-                <td><i class="fas fa-times"></i></td>   
-            </tr>
-            {% endif %}
         </table>
     </div>
 

@@ -7,7 +7,7 @@
         <form class="col s12" method="POST" action="{{ url_for('edit_car_for_sale', edit_id=car._id) }}">
             <div class="row">
                 <div class="col s12 m4">
-                    <input id="car-id" value="{{ car.car_id }}" name="car-id" type="text" class="validate" required>
+                    <input id="car-id" value="{{ car.car_id }}" name="car-id" type="text" class="validate" required readonly>
                     <label for="car-id">CarID</label>
                 </div>
                 <div class="input-field col s12 m4 offset-m4">
