@@ -462,3 +462,11 @@ a.car-for-x-price-tag {
 button:focus {
     background-color: transparent;
 }
+
+.carousel-control-next-icon:after, .carousel-control-prev-icon:after {
+    font-size: 3rem;
+}
+
+.carousel-control-next, .carousel-control-prev {
+    width: 8%;
+}
