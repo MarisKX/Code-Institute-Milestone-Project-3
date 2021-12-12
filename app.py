@@ -79,12 +79,19 @@ def manager_dashboard():
         sold_cars_count = mongo.db.cars_for_sale.count_documents({"sold": "yes"})
         sold_by_user = mongo.db.cars_for_sale.count_documents({"sold_by": session["user"]})
         salesman = session["user"]
+        all_rental_cars = mongo.db.cars_for_rent.count_documents({"archived": "no"})
+        avail_rental_cars = mongo.db.cars_for_rent.count_documents({"available": "yes"})
+        created_by_user = mongo.db.cars_for_rent.count_documents({"created_by": session["user"]})
         return render_template("manager-dashboard/dashboard.html", 
             all_cars_count=all_cars_count, 
             for_sale_cars_count=for_sale_cars_count,
             sold_cars_count=sold_cars_count,
             sold_by_user=sold_by_user,
-            salesman=salesman)
+            salesman=salesman,
+            all_rental_cars=all_rental_cars,
+            avail_rental_cars=avail_rental_cars,
+            created_by_user=created_by_user
+            )
     else:
         flash("Your session has expired!", category="info")
         return render_template("manager-dashboard/login.html")
@@ -177,7 +184,8 @@ def manager_logout():
 def cars_for_sale():
     if "user" in session:
         carsfs = mongo.db.cars_for_sale.find()
-        return render_template("manager-dashboard/cars-for-sale.html", carsfs=carsfs)
+        db_user = mongo.db.managing_users.find_one({"username": session["user"]})
+        return render_template("manager-dashboard/cars-for-sale.html", carsfs=carsfs, db_user=db_user)
     else:
         flash("Your session has expired!", category="info")
         return render_template("manager-dashboard/login.html")
@@ -239,7 +247,6 @@ def add_car_for_sale():
 def car_details(car_id):
     if "user" in session:
         selected_car = mongo.db.cars_for_sale.find({"_id": ObjectId(car_id)})
-        print(selected_car)
         return render_template("manager-dashboard/car-details.html", selected_car=selected_car)
     else:
         flash("Your session has expired!", category="info")
@@ -319,20 +326,21 @@ def mark_as_sold(car_id):
 def cars_for_rent():
     if "user" in session:
         carsfr = mongo.db.cars_for_rent.find()
-        return render_template("manager-dashboard/cars-for-rent.html", carsfr=carsfr)
+        db_user = mongo.db.managing_users.find_one({"username": session["user"]})
+        return render_template("manager-dashboard/cars-for-rent.html", carsfr=carsfr, db_user=db_user)
     else:
         flash("Your session has expired!", category="info")
         return render_template("manager-dashboard/login.html")
 
 # ADD CAR FOR RENT # ADD CAR FOR RENT # ADD CAR FOR RENT # ADD CAR FOR RENT # ADD CAR FOR RENT 
 
-@app.route("/manager-dashboard/add-car-for-sale/", methods=["GET", "POST"])
-def add_car_for_sale():
+@app.route("/manager-dashboard/add-car-for-rent/", methods=["GET", "POST"])
+def add_car_for_rent():
     if "user" in session:
         if request.method == "POST":
             form_car_make = request.form.get("make")
             new_car_rent = {
-                "car_id": request.form.get("car-id"),
+                "car_id": request.form.get("car-rent-id"),
                 "created": request.form.get("created"),
                 "make": request.form.get("make"),
                 "model": request.form.get("model"),
@@ -344,7 +352,6 @@ def add_car_for_sale():
                 "engine": request.form.get("engine"),
                 "fuel": request.form.get("fuel"),
                 "gearbox_type": request.form.get("gearbox-type"),
-                "gears": request.form.get("gears"),
                 "body": request.form.get("body"),
                 "doors": request.form.get("doors"),
                 "notes": request.form.get("notes"),
@@ -368,6 +375,29 @@ def add_car_for_sale():
     else:
         flash("Your session has expired!", category="info")
         return render_template("manager-dashboard/login.html")
+
+# CHANGE AVAILABLITY # CHANGE AVAILABLITY # CHANGE AVAILABLITY # CHANGE AVAILABLITY 
+
+@app.route("/change-availability/<rent_id>")
+def change_availability(rent_id):
+    rental_car = mongo.db.cars_for_rent.find({"_id": ObjectId(rent_id)})
+    for i in rental_car:
+        if i["available"] == "yes":
+            details = {
+                "available": "no",
+            }
+            mongo.db.cars_for_rent.update_one({"_id": ObjectId(rent_id)}, {"$set": details})
+            flash("{} is marked as Unavailable".format(i["make"] + " " + "(" + i["car_id"] + ")"))
+            return redirect(url_for("cars_for_rent"))
+        else:
+            details = {
+                "available": "yes",
+            }
+            mongo.db.cars_for_rent.update_one({"_id": ObjectId(rent_id)}, {"$set": details})
+            flash("{} is marked as Available".format(i["make"] + " " + "(" + i["car_id"] + ")"))
+            return redirect(url_for("cars_for_rent"))
+            flash("Welcome, {}".format(
+                        request.form.get("username")), category="welcome")
 
 # SETTINGS AREA # SETTINGS AREA # SETTINGS AREA # SETTINGS AREA # SETTINGS AREA # SETTINGS AREA # SETTINGS AREA 
 

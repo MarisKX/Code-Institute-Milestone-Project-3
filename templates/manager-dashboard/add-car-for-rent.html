@@ -7,8 +7,8 @@
         <form class="col s12" method="POST" action="{{ url_for('add_car_for_rent') }}">
             <div class="row">
                 <div class="col s12 m4">
-                    <input id="car-id" value="R{{ car_id }}" name="car-id" type="text" class="validate" required readonly>
-                    <label for="car-id">CarID</label>
+                    <input id="car-rent-id" value="R{{ car_rent_id }}" name="car-rent-id" type="text" class="validate" required readonly>
+                    <label for="car-rent-id">CarID</label>
                 </div>
                 <div class="input-field col s12 m4 offset-m4">
                     <input id="created" name="created" type="text" class="datepicker validate" required>
@@ -45,33 +45,29 @@
                 </div>
             </div>
             <div class="row">
-                <div class="input-field col s12 m3">
+                <div class="input-field col s12 m2 offset-m2">
                     <input id="year" name="year" type="text" class="validate" required>
                     <label for="year">Year</label>
                 </div>
-                <div class="input-field col s12 m3">
+                <div class="input-field col s12 m2">
                     <input id="engine" name="engine" type="text" class="validate" required>
                     <label for="engine">Engine</label>
                 </div>
-                <div class="input-field col s12 m3">
+                <div class="input-field col s12 m2">
                     <input id="fuel" name="fuel" type="text" class="validate" required>
                     <label for="fuel">Fuel Type</label>
                 </div>
             </div>
             <div class="row">
-                <div class="input-field col s12 m3">
+                <div class="input-field col s12 m2 offset-m2">
                     <input id="gearbox-type" name="gearbox-type" type="text" class="validate" required>
                     <label for="gearbox-type">Gearbox</label>
                 </div>
-                <div class="input-field col s12 m3">
-                    <input id="gears" name="gears" type="number" min="0" max="20" step="1" class="validate" required>
-                    <label for="gears">Gears</label>
-                </div>
-                <div class="input-field col s12 m3">
+                <div class="input-field col s12 m2">
                     <input id="body" name="body" type="text" class="validate" required>
                     <label for="body">Body Type</label>
                 </div>
-                <div class="input-field col s12 m3">
+                <div class="input-field col s12 m2">
                     <input id="doors" name="doors" type="number" min="0" max="9" step="1" class="validate" required>
                     <label for="doors">Doors</label>
                 </div>

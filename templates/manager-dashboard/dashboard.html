@@ -29,5 +29,28 @@
       </div>
     </div>
   </div>
+  <h4>Cars for Rent</h4>
+  <div class="row card">
+    <div class="col s12">
+      <div class="card-content white-text row">
+        <div class="col s12 m4">
+          <span class="card-title">Total cars:</span>
+          <p class="dashboard-numbers">{{ all_rental_cars }}</p>
+        </div>
+        <div class="col s12 m4">
+          <span class="card-title">Available for rent:</span>
+          <p class="dashboard-numbers">{{ avail_rental_cars }}</p>
+        </div>
+        <div class="col s12 m4">
+          <p class="card-title">Cars created by {{ salesman.capitalize() }}:</p>
+          <p class="dashboard-numbers">{{ created_by_user }}</p>
+        </div>
+      </div>
+      <div class="seperation-line"></div>
+      <div class="card-action">
+        <a class="dasboard-link" href="{{ url_for('cars_for_rent') }}">More details >> </a>
+      </div>
+    </div>
+  </div>
 </div>
 {% endblock %}
