@@ -322,6 +322,51 @@ button.btn {
     margin: 3px;
 }
 
+.row.inner-details {
+    width: 80%;
+    margin-top: 30px;
+}
+
+span.make-model-id-price {
+    font-size: 4rem;
+    font-weight: bold;
+}
+
+img.manager-picture {
+    height: 180px;
+    width: 240px;
+}
+
+.manager-picture {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 5px;
+}
+
+.detail-table {
+    width: 60%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.history {
+    border-top: 5px solid rgb(46, 125, 50);
+}
+
+@media only screen and (max-width: 1350px) {
+    .row.inner-details {
+        width: 100%;
+        margin-top: 25px;
+    }
+    main.container {
+        width: 95%;
+    }
+}
+
+.close-btn {
+    margin-bottom: 25px;
+}
 
 @media only screen and (max-width: 992px) {
     .brand-logo.not-mobile {
@@ -330,16 +375,31 @@ button.btn {
     .brand-logo.mobile {
         display: inline-block;
     }
+    table.list-table {
+        font-size: 0.8em;
+    }
+    div.inner-details > h5 {
+        font-size: 1.2rem;
+    }
+    span.make-model-id-price {
+        font-size: 3rem;
+    }
 }
 
 @media only screen and (max-width: 745px) {
-    table {
-        font-size: 0.5em;
+    table.list-table {
+        font-size: 0.6em;
     }
     main.container {
         width: 100%;
         margin-left: 0;
         margin-right: 0;
+    }
+}
+
+@media only screen and (max-width: 515px) {
+    table.list-table {
+        font-size: 0.4em;
     }
 }
 

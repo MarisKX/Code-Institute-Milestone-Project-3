@@ -19,7 +19,7 @@
     class="add-car-btn" href="{{ url_for('add_car_for_sale') }}"><i 
     class="far fa-plus-square left"></i>Add New Car for Sale</a></button>
 
-<table>
+<table class="list-table">
     <tr>
         <th class="tooltipped" data-position="down" data-tooltip="Internal ID number of car">Car ID</th>
         <th class="tooltipped" data-position="down" data-tooltip="Date of car being added to database">Since</th>
@@ -54,7 +54,7 @@
                 <td>{{ cfs.milage }} km</td>
                 <td class="right">{{ cfs.price }} <i class="fas fa-euro-sign"></i></td>
                 <td><button class="list-item-btn"><a 
-                    href=""><i 
+                    href="{{ url_for('car_details', car_id=cfs._id) }}"><i 
                     class="green-text text-darken-1 far fa-chart-bar"></i></a></button></td>
                 {% if cfs.sold == "no" %}
                 <td><button class="list-item-btn"><a 
@@ -101,7 +101,7 @@
                 <td>{{ cfs.milage }} km</td>
                 <td class="right">{{ cfs.price }} <i class="fas fa-euro-sign"></i></td>
                 <td><button class="list-item-btn"><a 
-                    href=""><i 
+                    href="{{ url_for('car_details', car_id=cfs._id) }}"><i 
                     class="green-text text-darken-1 far fa-chart-bar"></i></a></button></td>
                 {% if cfs.sold == "no" %}
                 <td><button class="list-item-btn"><a 
@@ -148,7 +148,7 @@
                 <td>{{ cfs.milage }} km</td>
                 <td class="right">{{ cfs.price }} <i class="fas fa-euro-sign"></i></td>
                 <td><button class="list-item-btn"><a 
-                    href=""><i 
+                    href="{{ url_for('car_details', car_id=cfs._id) }}"><i 
                     class="green-text text-darken-1 far fa-chart-bar"></i></a></button></td>
                 {% if cfs.sold == "no" %}
                 <td><button class="list-item-btn"><a 
@@ -195,7 +195,7 @@
                 <td>{{ cfs.milage }} km</td>
                 <td class="right">{{ cfs.price }} <i class="fas fa-euro-sign"></i></td>
                 <td><button class="list-item-btn"><a 
-                    href=""><i 
+                    href="{{ url_for('car_details', car_id=cfs._id) }}"><i 
                     class="green-text text-darken-1 far fa-chart-bar"></i></a></button></td>
                 {% if cfs.sold == "no" %}
                 <td><button class="list-item-btn"><a 

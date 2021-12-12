@@ -231,6 +231,19 @@ def add_car_for_sale():
         flash("Your session has expired!", category="info")
         return render_template("manager-dashboard/login.html")
 
+
+# SHOW DETAILS/STATS # SHOW DETAILS/STATS # SHOW DETAILS/STATS # SHOW DETAILS/STATS # SHOW DETAILS/STATS 
+
+@app.route("/manager-dashboard/car-details/<car_id>", methods=["GET", "POST"])
+def car_details(car_id):
+    if "user" in session:
+        selected_car = mongo.db.cars_for_sale.find({"_id": ObjectId(car_id)})
+        print(selected_car)
+        return render_template("manager-dashboard/car-details.html", selected_car=selected_car)
+    else:
+        flash("Your session has expired!", category="info")
+        return render_template("manager-dashboard/login.html")
+
 # EDIT CAR FOR SALE # EDIT CAR FOR SALE # EDIT CAR FOR SALE # EDIT CAR FOR SALE # EDIT CAR FOR SALE 
 
 @app.route("/manager-dashboard/edit-car-for-sale/<edit_id>", methods=["GET", "POST"])
