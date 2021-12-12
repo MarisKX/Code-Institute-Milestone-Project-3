@@ -196,6 +196,10 @@ def cars_for_sale():
 @app.route("/manager-dashboard/add-car-for-sale/", methods=["GET", "POST"])
 def add_car_for_sale():
     if "user" in session:
+        sales_cars_count =  mongo.db.car_count.find_one({"type":"sales"})
+        current_count = int(sales_cars_count["car_count"])
+        car_id = str(current_count + 1)
+
         if request.method == "POST":
             apk = request.form.get("apk") if request.form.get("apk") else "no"
             form_car_make = request.form.get("make")
@@ -224,7 +228,11 @@ def add_car_for_sale():
                 "active": "yes",
                 "created_by": session["user"],
             }
+            new_car_count = {
+                "car_count": car_id,
+            }
             mongo.db.cars_for_sale.insert_one(new_car_sale)
+            mongo.db.car_count.update_one({"type": "sales"}, {"$set": new_car_count})
             if mongo.db.car_makes.count_documents({"make": form_car_make}) == 0:
                 insert_car_make = {
                     "make": form_car_make,
@@ -234,7 +242,7 @@ def add_car_for_sale():
                 pass
             flash("New Car for Sale Added Successfully", category="success")
             return redirect(url_for("cars_for_sale"))
-        car_id = str(mongo.db.cars_for_sale.count_documents({}) + 1)
+
         return render_template("manager-dashboard/add-car-for-sale.html", car_id=car_id)
     else:
         flash("Your session has expired!", category="info")
@@ -339,7 +347,6 @@ def add_car_for_rent():
     if "user" in session:
         rental_car_count =  mongo.db.car_count.find_one({"type":"rental"})
         current_count = int(rental_car_count["car_count"])
-
         car_rent_id = str(current_count + 1)
 
         if request.method == "POST":
@@ -369,7 +376,7 @@ def add_car_for_rent():
                 "car_count": car_rent_id,
             }
             mongo.db.cars_for_rent.insert_one(new_car_rent)
-            mongo.db.car_count.update_one({"type": "rental"}, {"$set": edit_car}) 
+            mongo.db.car_count.update_one({"type": "rental"}, {"$set": new_car_count}) 
             if mongo.db.car_makes_rent.count_documents({"make": form_car_make}) == 0:
                 insert_car_make = {
                     "make": form_car_make,
