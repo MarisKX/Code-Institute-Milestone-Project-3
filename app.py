@@ -337,6 +337,11 @@ def cars_for_rent():
 @app.route("/manager-dashboard/add-car-for-rent/", methods=["GET", "POST"])
 def add_car_for_rent():
     if "user" in session:
+        rental_car_count =  mongo.db.car_count.find_one({"type":"rental"})
+        current_count = int(rental_car_count["car_count"])
+
+        car_rent_id = str(current_count + 1)
+
         if request.method == "POST":
             form_car_make = request.form.get("make")
             new_car_rent = {
@@ -360,7 +365,11 @@ def add_car_for_rent():
                 "archived": "no",
                 "created_by": session["user"],
             }
+            new_car_count = {
+                "car_count": car_rent_id,
+            }
             mongo.db.cars_for_rent.insert_one(new_car_rent)
+            mongo.db.car_count.update_one({"type": "rental"}, {"$set": edit_car}) 
             if mongo.db.car_makes_rent.count_documents({"make": form_car_make}) == 0:
                 insert_car_make = {
                     "make": form_car_make,
@@ -370,7 +379,7 @@ def add_car_for_rent():
                 pass
             flash("New Car for Rent Added Successfully", category="success")
             return redirect(url_for("cars_for_rent"))
-        car_rent_id = str(mongo.db.cars_for_rent.count_documents({}) + 1)
+
         return render_template("manager-dashboard/add-car-for-rent.html", car_rent_id=car_rent_id)
     else:
         flash("Your session has expired!", category="info")
