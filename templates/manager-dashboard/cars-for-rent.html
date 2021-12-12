@@ -2,10 +2,10 @@
 {% block content %}
 
 <div class='border-line'></div>
-<button onclick=showAllRentalCars() 
+<button onclick=showUnavailableRentalCars() 
     class="waves-effect waves-light green darken-1 btn"><i 
     class="fas fa-car-alt left"></i><i 
-    class="fas fa-car left"></i> All cars</button>
+    class="fas fa-car left"></i>Unavailable</button>
 <button onclick=carsAvailableForRent() 
     class="waves-effect waves-light green darken-1 btn"><i 
     class="fas fa-car-alt left"></i>Available for Rent</button>
@@ -36,7 +36,41 @@
         <th class="tooltipped" data-position="down" data-tooltip="Put item in archive"></th>
     </tr>
     {% for cfr in carsfr %}
-        {% if cfr.available == "yes" and cfr.archived == "no" %}
+        {% if cfr.available == "no" and cfr.archived == "no" %}
+            <tr class="unavailable-rental-cars hidden">
+                <td>{{ cfr.car_id }}</td>
+                <td>{{ cfr.created }}</td>
+                <td>{{ cfr.make }}</td>
+                <td>{{ cfr.model}}</td>
+                <td>{{ cfr.year }}</td>
+                <td>{{ cfr.engine }}</td>
+                <td>{{ cfr.fuel }}</td> 
+                <td class="right">{{ cfr.price }} <i class="fas fa-euro-sign"></i></td>
+                <td><button class="list-item-btn"><a 
+                    href=""><i 
+                    class="green-text text-darken-1 far fa-chart-bar"></i></a></button></td>
+                {% if db_user.car_rent == "yes" %}
+                <td><button class="list-item-btn"><a 
+                    href=""><i 
+                    class="green-text text-darken-1 fas fa-pen"></i></a></button>
+                </td>
+                <td><button class="list-item-btn"><a 
+                    href="{{ url_for('change_availability', rent_id=cfr._id) }}"><i 
+                    class="green-text text-darken-1 fas fa-check-circle"></i></a></button>
+                </td>
+                {% else %}
+                <td><button class="list-item-btn disabled"><i 
+                    class="grey-text text-darken-1 fas fa-pen"></i></button>
+                </td>
+                <td><button class="list-item-btn disabled"><i 
+                    class="grey-text text-darken-1 fas fa-check-circle"></i></button>
+                </td>
+                {% endif %}
+                <td><button class="list-item-btn"><i 
+                    class="grey-text text-darken-1 disabled fas fa-archive"></i></button>
+                </td>
+            </tr>
+        {% elif cfr.available == "yes" and cfr.archived == "no" %}
             <tr class="rental-cars">
                 <td>{{ cfr.car_id }}</td>
                 <td>{{ cfr.created }}</td>
@@ -105,39 +139,7 @@
                 </td>
             </tr>
         {% else %}
-            <tr class="all-rental-cars hidden">
-                <td>{{ cfr.car_id }}</td>
-                <td>{{ cfr.created }}</td>
-                <td>{{ cfr.make }}</td>
-                <td>{{ cfr.model}}</td>
-                <td>{{ cfr.year }}</td>
-                <td>{{ cfr.engine }}</td>
-                <td>{{ cfr.fuel }}</td> 
-                <td class="right">{{ cfr.price }} <i class="fas fa-euro-sign"></i></td>
-                <td><button class="list-item-btn"><a 
-                    href=""><i 
-                    class="green-text text-darken-1 far fa-chart-bar"></i></a></button></td>
-                {% if db_user.car_rent == "yes" %}
-                <td><button class="list-item-btn"><a 
-                    href=""><i 
-                    class="green-text text-darken-1 fas fa-pen"></i></a></button>
-                </td>
-                <td><button class="list-item-btn"><a 
-                    href="{{ url_for('change_availability', rent_id=cfr._id) }}"><i 
-                    class="green-text text-darken-1 fas fa-check-circle"></i></a></button>
-                </td>
-                {% else %}
-                <td><button class="list-item-btn disabled"><i 
-                    class="grey-text text-darken-1 fas fa-pen"></i></button>
-                </td>
-                <td><button class="list-item-btn disabled"><i 
-                    class="grey-text text-darken-1 fas fa-check-circle"></i></button>
-                </td>
-                {% endif %}
-                <td><button class="list-item-btn"><i 
-                    class="grey-text text-darken-1 disabled fas fa-archive"></i></button>
-                </td>
-            </tr>
+            <h3>No records found</h3>
         {% endif %}
 
     {% endfor %}

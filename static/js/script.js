@@ -90,20 +90,20 @@ function archivedCars() {
     $(".archive").removeClass("hidden");
 }
 
-function showAllRentalCars() {
-    $(".all-rental-cars").removeClass("hidden");
+function showUnavailableRentalCars() {
+    $(".unavailable-rental-cars").removeClass("hidden");
     $(".rental-cars").addClass("hidden");
     $(".sold-cars").addClass("hidden");
 }
 
 function carsAvailableForRent() {
-    $(".all-rental-cars").addClass("hidden");
+    $(".unavailable-rental-cars").addClass("hidden");
     $(".rental-cars").removeClass("hidden");
     $(".sold-cars").addClass("hidden");
 }
 
 function archivedRentalCars() {
-    $(".all-rental-cars").addClass("hidden");
+    $(".unavailable-rental-cars").addClass("hidden");
     $(".rental-cars").addClass("hidden");
     $(".sold-cars").removeClass("hidden");
 }

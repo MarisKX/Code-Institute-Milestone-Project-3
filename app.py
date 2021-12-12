@@ -387,14 +387,14 @@ def change_availability(rent_id):
                 "available": "no",
             }
             mongo.db.cars_for_rent.update_one({"_id": ObjectId(rent_id)}, {"$set": details})
-            flash("{} is marked as Unavailable".format(i["make"] + " " + "(" + i["car_id"] + ")"))
+            flash("{} is marked as Unavailable".format(i["make"] + " (" + i["car_id"] + ")"))
             return redirect(url_for("cars_for_rent"))
         else:
             details = {
                 "available": "yes",
             }
             mongo.db.cars_for_rent.update_one({"_id": ObjectId(rent_id)}, {"$set": details})
-            flash("{} is marked as Available".format(i["make"] + " " + "(" + i["car_id"] + ")"))
+            flash("{} is marked as Available".format(i["make"] + " (" + i["car_id"] + ")"))
             return redirect(url_for("cars_for_rent"))
             flash("Welcome, {}".format(
                         request.form.get("username")), category="welcome")
