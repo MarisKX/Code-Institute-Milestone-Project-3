@@ -75,6 +75,12 @@
             <h6>History:</h6>
             <table class="detail-table">
                 <tr>
+                    <td>Created</td>
+                    <td><h6>{{ detail.created }}</h6></td>
+                    <td>Created By</td>
+                    <td><h6>{{ detail.created_by.capitalize() }}</h6></td>
+                </tr>
+                <tr>
                     {% if detail.edited == None %}
                     <td>Last Edited</td>
                     <td><h6><i class="fas fa-minus"></i></h6></td>

@@ -29,7 +29,7 @@
                 {% if session.user %}
                     <li><a href="{{ url_for('manager_dashboard') }}"><i class="fas fa-desktop left"></i>Dashboard</a></li>
                     <li><a href="{{ url_for('cars_for_sale') }}"><i class="fas fa-car left"></i>Cars for sale</a></li>
-                    <li><a href="#"><i class="fas fa-car-alt left"></i>Cars for rent</a></li>
+                    <li><a href="{{ url_for('cars_for_rent') }}"><i class="fas fa-car-alt left"></i>Cars for rent</a></li>
                     <li><a href="{{ url_for('manager_settings', username=session['user']) }}"><i class="fas fa-cogs left"></i>Settings</a></li>
                     <li><a href="{{ url_for('manager_logout') }}"><i class="fas fa-sign-out-alt left"></i>Log Out</a></li>
                 {% else %}
@@ -44,7 +44,7 @@
             {% if session.user %}
                 <li><a href="{{ url_for('manager_dashboard') }}">Dashboard</a></li>
                 <li><a href="{{ url_for('cars_for_sale') }}">Cars for sale</a></li>
-                <li><a href="#">Cars for rent</a></li>
+                <li><a href="{{ url_for('cars_for_rent') }}">Cars for rent</a></li>
                 <li><a href="{{ url_for('manager_settings', username=session['user']) }}">Settings</a></li>
                 <li><a href="{{ url_for('manager_logout') }}">Log Out</a></li>
             {% else %}

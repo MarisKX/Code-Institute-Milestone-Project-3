@@ -171,6 +171,8 @@ def manager_logout():
 
 # CARS FOR SALE FUNCTIONS # CARS FOR SALE FUNCTIONS # CARS FOR SALE FUNCTIONS # CARS FOR SALE FUNCTIONS 
 
+# MAIN ROUTE # MAIN ROUTE # MAIN ROUTE # MAIN ROUTE # MAIN ROUTE # MAIN ROUTE # MAIN ROUTE 
+
 @app.route("/manager-dashboard/cars-for-sale/")
 def cars_for_sale():
     if "user" in session:
@@ -189,7 +191,6 @@ def add_car_for_sale():
         if request.method == "POST":
             apk = request.form.get("apk") if request.form.get("apk") else "no"
             form_car_make = request.form.get("make")
-            form_car_model = request.form.get("model")
             new_car_sale = {
                 "car_id": request.form.get("car-id"),
                 "created": request.form.get("created"),
@@ -310,6 +311,63 @@ def mark_as_sold(car_id):
         flash("Your session has expired!", category="info")
         return render_template("manager-dashboard/login.html")
 
+# CARS FOR RENT FUNCTIONS # CARS FOR RENT FUNCTIONS # CARS FOR RENT FUNCTIONS # CARS FOR RENT FUNCTIONS 
+
+# MAIN ROUTE # MAIN ROUTE # MAIN ROUTE # MAIN ROUTE # MAIN ROUTE # MAIN ROUTE # MAIN ROUTE 
+
+@app.route("/manager-dashboard/cars-for-rent/")
+def cars_for_rent():
+    if "user" in session:
+        carsfr = mongo.db.cars_for_rent.find()
+        return render_template("manager-dashboard/cars-for-rent.html", carsfr=carsfr)
+    else:
+        flash("Your session has expired!", category="info")
+        return render_template("manager-dashboard/login.html")
+
+# ADD CAR FOR RENT # ADD CAR FOR RENT # ADD CAR FOR RENT # ADD CAR FOR RENT # ADD CAR FOR RENT 
+
+@app.route("/manager-dashboard/add-car-for-sale/", methods=["GET", "POST"])
+def add_car_for_sale():
+    if "user" in session:
+        if request.method == "POST":
+            form_car_make = request.form.get("make")
+            new_car_rent = {
+                "car_id": request.form.get("car-id"),
+                "created": request.form.get("created"),
+                "make": request.form.get("make"),
+                "model": request.form.get("model"),
+                "picture1": request.form.get("picture1"),
+                "picture2": request.form.get("picture2"),
+                "picture3": request.form.get("picture3"),
+                "picture4": request.form.get("picture4"),
+                "year": request.form.get("year"),
+                "engine": request.form.get("engine"),
+                "fuel": request.form.get("fuel"),
+                "gearbox_type": request.form.get("gearbox-type"),
+                "gears": request.form.get("gears"),
+                "body": request.form.get("body"),
+                "doors": request.form.get("doors"),
+                "notes": request.form.get("notes"),
+                "price": request.form.get("price"),
+                "available": "no",
+                "archived": "no",
+                "created_by": session["user"],
+            }
+            mongo.db.cars_for_rent.insert_one(new_car_rent)
+            if mongo.db.car_makes_rent.count_documents({"make": form_car_make}) == 0:
+                insert_car_make = {
+                    "make": form_car_make,
+                }
+                mongo.db.car_makes_rent.insert_one(insert_car_make)
+            else:
+                pass
+            flash("New Car for Rent Added Successfully", category="success")
+            return redirect(url_for("cars_for_rent"))
+        car_rent_id = str(mongo.db.cars_for_rent.count_documents({}) + 1)
+        return render_template("manager-dashboard/add-car-for-rent.html", car_rent_id=car_rent_id)
+    else:
+        flash("Your session has expired!", category="info")
+        return render_template("manager-dashboard/login.html")
 
 # SETTINGS AREA # SETTINGS AREA # SETTINGS AREA # SETTINGS AREA # SETTINGS AREA # SETTINGS AREA # SETTINGS AREA 
 
