@@ -23,12 +23,15 @@ app.config['PERMANENT_SESSION_LIFETIME'] =  timedelta(minutes=15)
 
 mongo = PyMongo(app)
 
+# PUBLIC HOME PAGE # PUBLIC HOME PAGE # PUBLIC HOME PAGE # PUBLIC HOME PAGE # PUBLIC HOME PAGE 
 
 @app.route("/")
 def home():
     all_car_sale_items = list(mongo.db.cars_for_sale.find({"active":"yes"}))
     car_sale_items = random.sample(all_car_sale_items, k=3)
-    return render_template("home.html", car_sale_items=car_sale_items)
+    all_car_rent_items = list(mongo.db.cars_for_rent.find({"available":"yes"}))
+    car_rent_items = random.sample(all_car_rent_items, k=3)
+    return render_template("home.html", car_sale_items=car_sale_items, car_rent_items=car_rent_items)
 
 
 # CARS FOR SALE PUBLIC SIDE
@@ -56,6 +59,32 @@ def for_sale():
 def carfs_details(car_id):
     carfs = mongo.db.cars_for_sale.find({"_id": ObjectId(car_id)})
     return render_template("car-details.html", carfs=carfs)
+
+# CARS FOR RENT PUBLIC SIDE # CARS FOR RENT PUBLIC SIDE # CARS FOR RENT PUBLIC SIDE # CARS FOR RENT PUBLIC SIDE 
+
+@app.route("/for-rent/", methods=["GET", "POST"])
+def for_rent():
+    if request.method == "POST":
+        search_keyword = request.form.get("make")
+        if mongo.db.cars_for_rent.count_documents({"make": search_keyword}) != 0:
+            search_results = mongo.db.cars_for_rent.find({"make": search_keyword}).sort("model", 1)
+            car_makes_rent = mongo.db.car_makes_rent.find().sort("make", 1)
+            all_car_rent_items_list = list(mongo.db.cars_for_rent.find({"available":"yes"}))
+            car_rent_items = random.sample(all_car_rent_items_list, k=3)
+            return render_template(
+                "search-results-rent.html", search_results=search_results, car_rent_items=car_rent_items, car_makes_rent=car_makes_rent)
+        flash("Select Your search criteria")
+    car_makes_rent = mongo.db.car_makes_rent.find().sort("make", 1)
+    all_car_rent_items = mongo.db.cars_for_rent.find({"available":"yes"}).sort("make", 1)
+    all_car_rent_items_list = list(mongo.db.cars_for_rent.find({"available":"yes"}))
+    car_rent_items = random.sample(all_car_rent_items_list, k=3)
+    return render_template("for-rent.html", car_rent_items=car_rent_items, car_makes_rent=car_makes_rent)
+
+
+@app.route("/for-rent/details/<car_id>")
+def carfr_details(car_id):
+    carfr = mongo.db.cars_for_rent.find({"_id": ObjectId(car_id)})
+    return render_template("car-rent-details.html", carfr=carfr)
 
 
 # MANAGER DASHBOARD FUNCTIONS! # MANAGER DASHBOARD FUNCTIONS! # MANAGER DASHBOARD FUNCTIONS!
@@ -366,6 +395,7 @@ def add_car_for_rent():
                 "gearbox_type": request.form.get("gearbox-type"),
                 "body": request.form.get("body"),
                 "doors": request.form.get("doors"),
+                "milage_limit": request.form.get("milage-limit"),
                 "notes": request.form.get("notes"),
                 "price": request.form.get("price"),
                 "available": "no",
@@ -388,6 +418,44 @@ def add_car_for_rent():
             return redirect(url_for("cars_for_rent"))
 
         return render_template("manager-dashboard/add-car-for-rent.html", car_rent_id=car_rent_id)
+    else:
+        flash("Your session has expired!", category="info")
+        return render_template("manager-dashboard/login.html")
+
+# EDIT CAR FOR RENT # EDIT CAR FOR RENT # EDIT CAR FOR RENT # EDIT CAR FOR RENT # EDIT CAR FOR RENT 
+
+@app.route("/manager-dashboard/edit-car-for-rent/<edit_id>", methods=["GET", "POST"])
+def edit_car_for_rent(edit_id):
+    if "user" in session:
+        if request.method == "POST":
+            edit_car = {
+                "car_id": request.form.get("car-rent-id"),
+                "make": request.form.get("make"),
+                "model": request.form.get("model"),
+                "picture1": request.form.get("picture1"),
+                "picture2": request.form.get("picture2"),
+                "picture3": request.form.get("picture3"),
+                "picture4": request.form.get("picture4"),
+                "year": request.form.get("year"),
+                "engine": request.form.get("engine"),
+                "fuel": request.form.get("fuel"),
+                "gearbox_type": request.form.get("gearbox-type"),
+                "body": request.form.get("body"),
+                "doors": request.form.get("doors"),
+                "milage_limit": request.form.get("milage-limit"),
+                "notes": request.form.get("notes"),
+                "price": request.form.get("price"),
+                "archived": "no",
+                "edited_by": session["user"],
+                "edited": request.form.get("edited"),
+            }
+            # USED SUPPORTED METHOD FOR CURRENT PYMONGO VERSION (old type - update with parameter without $set)
+            mongo.db.cars_for_rent.update_one({"_id": ObjectId(edit_id)}, {"$set": edit_car}) 
+            flash("Car Info Updated Successfully", category="success")
+            return redirect(url_for("cars_for_rent"))
+
+        car = mongo.db.cars_for_rent.find_one({"_id": ObjectId(edit_id)})
+        return render_template("manager-dashboard/edit-car-for-rent.html", car=car)
     else:
         flash("Your session has expired!", category="info")
         return render_template("manager-dashboard/login.html")

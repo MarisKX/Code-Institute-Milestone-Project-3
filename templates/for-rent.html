@@ -1,0 +1,67 @@
+{% extends "base.html" %}
+{% block content %}
+
+<div class="title-wrapper">
+    <h2 class="title">Search</h2>
+</div>
+<form class="search-form row" method="POST" acion="{{ url_for('for_rent') }}">
+    <div class="col s12 l2 offset-l1 car-make">
+        <select id="make" name="make">
+            <option value="not_selected" disabled selected>Make</option>
+            {% for car in car_makes_rent %}
+            <option value="{{ car.make }}">{{ car.make }}</option>
+            {% endfor %}
+        </select>
+    </div>
+    <button id="search-btn" class="col S6 l1 btn waves-effect" type="submit" name="action">
+        <i class="fas fa-search"></i>
+    </button>
+</form>
+<!-- FLASH MEDDAGES FOR SEARCH RESULTS-->
+{% with messages = get_flashed_messages() %}
+    {% if messages %}
+        {% for category, message in get_flashed_messages(with_categories=True) %}
+            <div class="row flashes alert alert-{{category}}">
+                <h3 class="center-align">{{ message }}</h3>
+            </div>
+        {% endfor %}
+    {% endif %}
+{% endwith %}
+
+{% block search %}
+
+{% endblock %}
+<div class="title-wrapper">
+    <h2 class="title">Select</h2>
+</div>
+{% for car in car_rent_items %}
+<div class="row random-car-listing">
+    <div class="col s12 m5 offset-m1">
+        <a href="{{ url_for('carfr_details', car_id=car._id) }}">
+            <img src="{{ car.picture1 }}" alt="{{ car.make + car.model }}" width="268" height="200">
+        </a>
+    </div>
+    <ul class="col s12 m3 description">
+        <li class="car-for-x-make">{{ car.make }}</li>
+
+        <li class="car-for-x-model">{{ car.model }}</li>
+        <li>{{ car.year }}</li>
+        <li>{{ car.engine }}</li>
+    </ul>
+    <div class="col s12 m4 description">
+        <a class="car-for-x-price-tag car-for-x-price waves-effect"
+            href="{{ url_for('carfr_details', car_id=car._id) }}">
+            {{ car.price }} EUR
+        </a>
+    </div>
+</div>
+<div class="car-item-seperator"></div>
+{% endfor %}
+
+<div class="title-wrapper">
+    <a href="cars-for-sale.html">
+        <h2 class="title">Contact Us</h2>
+    </a>
+</div>
+
+{% endblock %}

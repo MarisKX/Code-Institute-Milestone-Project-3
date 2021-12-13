@@ -29,7 +29,8 @@
         <th class="tooltipped" data-position="down" data-tooltip="Year of first registration">Year</th>
         <th class="tooltipped" data-position="down" data-tooltip="Engine (1.6i/2.2TiD/1.5CRDi)">Engine</th>
         <th class="tooltipped" data-position="down" data-tooltip="Fuel Type (petrol/diesel/electric etc">Fuel type</th>
-        <th class="tooltipped" data-position="down" data-tooltip="Sales Price">Price/24h</th>
+        <th class="tooltipped" data-position="down" data-tooltip="Milage Limit">Milage limit</th>
+        <th class="tooltipped" data-position="down" data-tooltip="Rental Price">Price/24h</th>
         <th class="tooltipped" data-position="down" data-tooltip="View listing"></th>
         <th class="tooltipped" data-position="down" data-tooltip="Edit listing"></th>
         <th class="tooltipped" data-position="down" data-tooltip="Change availability"></th>
@@ -45,13 +46,14 @@
                 <td>{{ cfr.year }}</td>
                 <td>{{ cfr.engine }}</td>
                 <td>{{ cfr.fuel }}</td> 
+                <td>{{ cfr.milage_limit }} km</td> 
                 <td class="right">{{ cfr.price }} <i class="fas fa-euro-sign"></i></td>
                 <td><button class="list-item-btn"><a 
                     href=""><i 
                     class="green-text text-darken-1 far fa-chart-bar"></i></a></button></td>
                 {% if db_user.car_rent == "yes" %}
                 <td><button class="list-item-btn"><a 
-                    href=""><i 
+                    href="{{ url_for('edit_car_for_rent', edit_id=cfr._id) }}"><i 
                     class="green-text text-darken-1 fas fa-pen"></i></a></button>
                 </td>
                 <td><button class="list-item-btn"><a 
@@ -79,13 +81,14 @@
                 <td>{{ cfr.year }}</td>
                 <td>{{ cfr.engine }}</td>
                 <td>{{ cfr.fuel }}</td> 
+                <td>{{ cfr.milage_limit }} km</td>
                 <td class="right">{{ cfr.price }} <i class="fas fa-euro-sign"></i></td>
                 <td><button class="list-item-btn"><a 
                     href=""><i 
                     class="green-text text-darken-1 far fa-chart-bar"></i></a></button></td>
                 {% if db_user.car_rent == "yes" %}
                 <td><button class="list-item-btn"><a 
-                    href=""><i 
+                    href="{{ url_for('edit_car_for_rent', edit_id=cfr._id) }}"><i 
                     class="green-text text-darken-1 fas fa-pen"></i></a></button>
                 </td>
                 <td><button class="list-item-btn"><a 
@@ -113,13 +116,14 @@
                 <td>{{ cfr.year }}</td>
                 <td>{{ cfr.engine }}</td>
                 <td>{{ cfr.fuel }}</td> 
+                <td>{{ cfr.milage_limit }} km</td>
                 <td class="right">{{ cfr.price }} <i class="fas fa-euro-sign"></i></td>
                 <td><button class="list-item-btn"><a 
                     href="{{ url_for('rental_car_details', rent_id=cfr._id) }}"><i 
                     class="green-text text-darken-1 far fa-chart-bar"></i></a></button></td>
                 {% if db_user.car_rent == "yes" %}
                 <td><button class="list-item-btn"><a 
-                    href=""><i 
+                    href="{{ url_for('edit_car_for_rent', edit_id=cfr._id) }}"><i 
                     class="green-text text-darken-1 fas fa-pen"></i></a></button>
                 </td>
                 <td><button class="list-item-btn"><a 
