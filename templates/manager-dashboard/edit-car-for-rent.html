@@ -73,7 +73,7 @@
                 </div>
                 <div class="input-field col s12 m2">
                     <select id="milage-limit" value="{{ car.milage_limit }}" name="milage-limit" class="validate" required>
-                        <option value="" disabled selected>Select limit</option>
+                        <option value="{{ car.milage_limit }}" selected>Selected: {{ car.milage_limit }} km</option>
                         <option value="100">100km</option>
                         <option value="150">150km</option>
                         <option value="200">200km</option>
