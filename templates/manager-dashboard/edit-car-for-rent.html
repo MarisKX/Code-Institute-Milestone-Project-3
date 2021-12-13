@@ -98,9 +98,15 @@
                     <a href="{{ url_for('cars_for_rent') }}" class="waves-effect waves-light red darken-1 btn cancel-btn">
                         <i class="far fa-window-close left"></i>Cancel
                     </a> 
+                    {% if db_user.car_rent == "yes" %}
                     <button type="submit" class="waves-effect waves-light green darken-1 btn">
-                        <i class="far fa-arrow-alt-circle-up left"></i>Edit Car
+                        <i class="far fa-arrow-alt-circle-up left"></i>Update Car
                     </button>
+                    {% else %}
+                    <button class="waves-effect waves-light green darken-1 btn" disabled>
+                        <i class="far fa-arrow-alt-circle-up left"></i>Update Car
+                    </button>
+                    {% endif %}
                 </div>
             </div>
         </form>

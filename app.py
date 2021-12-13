@@ -508,6 +508,23 @@ def add_car_for_rent():
         flash("Your session has expired!", category="info")
         return render_template("manager-dashboard/login.html")
 
+# SHOW DETAILS/STATS # SHOW DETAILS/STATS # SHOW DETAILS/STATS
+
+
+@app.route(
+    "/manager-dashboard/car-details-rent/<car_id>",
+    methods=["GET", "POST"])
+def rental_car_details(car_id):
+    if "user" in session:
+        selected_rental_car = mongo.db.cars_for_rent.find(
+            {"_id": ObjectId(car_id)})
+        return render_template(
+            "manager-dashboard/car-details-rent.html",
+            selected_rental_car=selected_rental_car)
+    else:
+        flash("Your session has expired!", category="info")
+        return render_template("manager-dashboard/login.html")
+
 # EDIT CAR FOR RENT # EDIT CAR FOR RENT # EDIT CAR FOR RENT # EDIT CAR FOR RENT
 
 
@@ -516,6 +533,8 @@ def add_car_for_rent():
     methods=["GET", "POST"])
 def edit_car_for_rent(edit_id):
     if "user" in session:
+        db_user = mongo.db.managing_users.find_one(
+            {"username": session["user"]})
         if request.method == "POST":
             edit_car = {
                 "car_id": request.form.get("car-rent-id"),
@@ -548,7 +567,8 @@ def edit_car_for_rent(edit_id):
         car = mongo.db.cars_for_rent.find_one({"_id": ObjectId(edit_id)})
         return render_template(
             "manager-dashboard/edit-car-for-rent.html",
-            car=car)
+            car=car,
+            db_user=db_user)
     else:
         flash("Your session has expired!", category="info")
         return render_template("manager-dashboard/login.html")

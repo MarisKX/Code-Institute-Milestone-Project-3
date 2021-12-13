@@ -418,6 +418,9 @@ img.manager-picture {
     table.list-table {
         font-size: 0.4em;
     }
+    span.make-model-id-price {
+        font-size: 2rem;
+    }
 }
 
 /* Client side page settings (cars for sale/rent/contact)  */
