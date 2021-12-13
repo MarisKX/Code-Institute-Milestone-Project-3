@@ -462,26 +462,56 @@ def edit_car_for_rent(edit_id):
 
 # CHANGE AVAILABLITY # CHANGE AVAILABLITY # CHANGE AVAILABLITY # CHANGE AVAILABLITY 
 
-@app.route("/change-availability/<rent_id>")
+@app.route("/manager-dashboard/change-availability/<rent_id>")
 def change_availability(rent_id):
-    rental_car = mongo.db.cars_for_rent.find({"_id": ObjectId(rent_id)})
-    for i in rental_car:
-        if i["available"] == "yes":
-            details = {
-                "available": "no",
-            }
-            mongo.db.cars_for_rent.update_one({"_id": ObjectId(rent_id)}, {"$set": details})
-            flash("{} is marked as Unavailable".format(i["make"] + " (" + i["car_id"] + ")"))
-            return redirect(url_for("cars_for_rent"))
-        else:
-            details = {
-                "available": "yes",
-            }
-            mongo.db.cars_for_rent.update_one({"_id": ObjectId(rent_id)}, {"$set": details})
-            flash("{} is marked as Available".format(i["make"] + " (" + i["car_id"] + ")"))
-            return redirect(url_for("cars_for_rent"))
-            flash("Welcome, {}".format(
-                        request.form.get("username")), category="welcome")
+    if "user" in session:
+        rental_car = mongo.db.cars_for_rent.find({"_id": ObjectId(rent_id)})
+        for i in rental_car:
+            if i["available"] == "yes":
+                details = {
+                    "available": "no",
+                }
+                mongo.db.cars_for_rent.update_one({"_id": ObjectId(rent_id)}, {"$set": details})
+                flash("{} is marked as Unavailable".format(i["make"] + " (" + i["car_id"] + ")"))
+                return redirect(url_for("cars_for_rent"))
+            else:
+                details = {
+                    "available": "yes",
+                }
+                mongo.db.cars_for_rent.update_one({"_id": ObjectId(rent_id)}, {"$set": details})
+                flash("{} is marked as Available".format(i["make"] + " (" + i["car_id"] + ")"))
+                return redirect(url_for("cars_for_rent"))
+                flash("Welcome, {}".format(
+                            request.form.get("username")), category="welcome")
+    else:
+        flash("Your session has expired!", category="info")
+        return render_template("manager-dashboard/login.html")
+
+
+# MOVE RENTAL CAR TO ARCHIVE # MOVE RENTAL CAR TO ARCHIVE # MOVE RENTAL CAR TO ARCHIVE # MOVE RENTAL CAR TO ARCHIVE 
+
+@app.route("/manager-dashboard/rent-archive/<rent_id>")
+def rent_archive(rent_id):
+    if "user" in session:
+        rental_car = mongo.db.cars_for_rent.find({"_id": ObjectId(rent_id)})
+        for i in rental_car:
+            if i["archived"] == "yes":
+                details = {
+                    "archived": "no",
+                }
+                mongo.db.cars_for_rent.update_one({"_id": ObjectId(rent_id)}, {"$set": details})
+                flash("{} is removed from arhive".format(i["make"] + " (" + i["car_id"] + ")"))
+                return redirect(url_for("cars_for_rent"))
+            else:
+                details = {
+                    "archived": "yes",
+                }
+                mongo.db.cars_for_rent.update_one({"_id": ObjectId(rent_id)}, {"$set": details})
+                flash("{} is moved to arhive".format(i["make"] + " (" + i["car_id"] + ")"))
+                return redirect(url_for("cars_for_rent"))
+    else:
+        flash("Your session has expired!", category="info")
+        return render_template("manager-dashboard/login.html")
 
 # SETTINGS AREA # SETTINGS AREA # SETTINGS AREA # SETTINGS AREA # SETTINGS AREA # SETTINGS AREA # SETTINGS AREA 
 
