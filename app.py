@@ -28,11 +28,14 @@ mongo = PyMongo(app)
 
 @app.route("/")
 def home():
-    all_car_sale_items = list(mongo.db.cars_for_sale.find({"active":"yes"}))
-    car_sale_items = random.sample(all_car_sale_items, k=3)
-    all_car_rent_items = list(mongo.db.cars_for_rent.find({"available":"yes"}))
-    car_rent_items = random.sample(all_car_rent_items, k=3)
-    return render_template("home.html", car_sale_items=car_sale_items, car_rent_items=car_rent_items)
+    if mongo.db.cars_for_sale.count_documents({"active":"yes"}) < 10 or mongo.db.cars_for_rent.count_documents({"available":"yes"}) < 3:
+        return render_template("coming-soon.html")
+    else:
+        all_car_sale_items = list(mongo.db.cars_for_sale.find({"active":"yes"}))
+        car_sale_items = random.sample(all_car_sale_items, k=3)
+        all_car_rent_items = list(mongo.db.cars_for_rent.find({"available":"yes"}))
+        car_rent_items = random.sample(all_car_rent_items, k=3)
+        return render_template("home.html", car_sale_items=car_sale_items, car_rent_items=car_rent_items)
 
 
 # CARS FOR SALE PUBLIC SIDE
@@ -45,7 +48,7 @@ def for_sale():
             search_results = mongo.db.cars_for_sale.find({"make": search_keyword, "active":"yes"}).sort("model", 1)
             car_makes = mongo.db.car_makes.find().sort("make", 1)
             all_car_sale_items_list = list(mongo.db.cars_for_sale.find({"active":"yes"}))
-            car_sale_items = random.sample(all_car_sale_items_list, k=6)
+            car_sale_items = random.sample(all_car_sale_items_list, k=10)
             return render_template(
                 "search-results.html", search_results=search_results, car_sale_items=car_sale_items, car_makes=car_makes)
         flash("Select Your search criteria")

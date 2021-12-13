@@ -210,6 +210,14 @@ main.container {
     text-align: center;
 }
 
+div.back {
+    cursor: pointer;
+}
+
+.error-handler {
+    margin-top: 25%;
+}
+
 /* Administration pages specific styles */
 
 table {
