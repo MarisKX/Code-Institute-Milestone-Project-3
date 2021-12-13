@@ -488,7 +488,7 @@ def change_availability(rent_id):
         return render_template("manager-dashboard/login.html")
 
 
-# MOVE RENTAL CAR TO ARCHIVE # MOVE RENTAL CAR TO ARCHIVE # MOVE RENTAL CAR TO ARCHIVE # MOVE RENTAL CAR TO ARCHIVE 
+# MOVE RENTAL CAR TO AND FROM ARCHIVE # MOVE RENTAL CAR TO AND FROM ARCHIVE # MOVE RENTAL CAR TO AND FROM ARCHIVE 
 
 @app.route("/manager-dashboard/rent-archive/<rent_id>")
 def rent_archive(rent_id):
@@ -509,6 +509,24 @@ def rent_archive(rent_id):
                 mongo.db.cars_for_rent.update_one({"_id": ObjectId(rent_id)}, {"$set": details})
                 flash("{} is moved to arhive".format(i["make"] + " (" + i["car_id"] + ")"))
                 return redirect(url_for("cars_for_rent"))
+    else:
+        flash("Your session has expired!", category="info")
+        return render_template("manager-dashboard/login.html")
+
+# DELETE RENTAL CAR # DELETE RENTAL CAR # DELETE RENTAL CAR # DELETE RENTAL CAR # DELETE RENTAL CAR 
+
+@app.route("/manager-dashboard/delete-rental-car/<rent_id>", methods=["GET", "POST"])
+def delete_rental_car(rent_id):
+    if "user" in session:
+        car = mongo.db.cars_for_rent.find({"_id": ObjectId(rent_id)})
+        deleted_car =  mongo.db.cars_for_rent.find_one({"_id": ObjectId(rent_id)})
+        make = str(deleted_car["make"])
+        carid = str(deleted_car["car_id"])
+        if request.method == "POST":
+            mongo.db.cars_for_rent.delete_one({"_id": ObjectId(rent_id)})
+            flash("{} is deleted".format(make + " (" + carid + ")"))
+            return redirect(url_for("cars_for_rent")) 
+        return render_template("manager-dashboard/delete-rental-car.html", car=car)
     else:
         flash("Your session has expired!", category="info")
         return render_template("manager-dashboard/login.html")

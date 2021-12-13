@@ -1,0 +1,120 @@
+{% extends "manager-dashboard/base.html" %}
+{% block content %}
+
+    <h3 class="light-blue-text text-darken-4 center-align">You are about to delete following car:</h3>
+
+    {% for detail in car %}
+
+    <div class="row inner-details">
+        <div class="col s4 offset-s4">
+            <h4>ID: <span class="make-model-id-price">{{ detail.car_id }}</span></h4>
+        </div>
+    </div>
+    <div class="row inner-details">
+        <div class="col s8 m4 offset-s4 offset-m2">
+            <h5>Make: <span class="make-model-id-price">{{ detail.make }}</span></h5>
+        </div>
+        <div class="col s8 offset-s4 m4 offset-m2">
+            <h5>Model: <span class="make-model-id-price">{{ detail.model }}</span></h5>
+        </div>
+    </div>
+    <div class="row inner-details">
+        <div class="col s12 m6 l3">
+            <img class="manager-picture" src="{{ detail.picture1 }}" alt="{{ detail.make }}" />
+        </div>
+        <div class="col s12 m6 l3">
+            <img class="manager-picture" src="{{ detail.picture2 }}" alt="{{ detail.make }}" />
+        </div>
+        <div class="col s12 m6 l3">
+            <img class="manager-picture" src="{{ detail.picture3 }}" alt="{{ detail.make }}" />
+        </div>
+        <div class="col s12 m6 l3">
+            <img class="manager-picture" src="{{ detail.picture4 }}" alt="{{ detail.make }}" />
+        </div>
+    </div>
+    <div class="row inner-details">
+        <table class="detail-table">
+            <tr>
+                <td>Year</td>
+                <td><h5>{{ detail.year }}</h5></td>
+                <td>Engine</td>
+                <td><h5>{{ detail.engine }}</h5></td>
+            </tr>
+            <tr>
+                <td>Fuel Type</td>
+                <td><h5>{{ detail.fuel }}</h5></td>
+                <td>APK</td>
+                {% if detail.apk == "no" %}
+                <td><h5><i class="red-text fas fa-times"></i></h5></td>
+                {% else %}
+                <td><h5>{{ detail.apk }}</h5></td>
+                {% endif %}
+            </tr>
+            <tr>
+                <td>Gearbox</td>
+                <td><h5>{{ detail.gearbox_type }}</h5></td>
+                <td>Gears</td>
+                <td><h5>{{ detail.gears }}</h5></td>
+            </tr>
+            <tr>
+                <td>Body</td>
+                <td><h5>{{ detail.body }}</h5></td>
+                <td>Doors</td>
+                <td><h5>{{ detail.doors }}</h5></td>
+            </tr>
+            <tr>
+                <td colspan="2">Notes</td>
+                <td><h6>{{ detail.notes }}</h6></td>
+            </tr>
+            <tr>
+                <td colspan="2">Price</td>
+                <td><h5><span class="make-model-id-price">{{ detail.price }} <i class="fas fa-euro-sign"></i></span></h5></td>
+            </tr>
+        </table>
+    </div>
+    <div class="row inner-details">
+        <div class="col s8 offset-s2 history">
+            <h6>History:</h6>
+            <table class="detail-table">
+                <tr>
+                    <td>Created</td>
+                    <td><h6>{{ detail.created }}</h6></td>
+                    <td>Created By</td>
+                    <td><h6>{{ detail.created_by }}</h6></td>
+                </tr>
+                <tr>
+                    {% if detail.edited == None %}
+                    <td>Last Edited</td>
+                    <td><h6><i class="fas fa-minus"></i></h6></td>
+                    <td>Edited By</td>
+                    <td><h6><i class="fas fa-minus"></i></h6></td>
+                    {% else %}
+                    <td>Last Edited</td>
+                    <td><h6><i class="fas fa-minus"></i></h6></td>
+                    <td>Edited By</td>
+                    <td><h6><i class="fas fa-minus"></i></h6></td>
+                    {% endif %}
+                </tr>
+            </table>
+        </div>
+    </div>
+    <form class="col s12" method="POST" action="{{ url_for('delete_rental_car', rent_id=detail._id) }}">
+        <div class="div row">
+            <h3 class="light-blue-text text-darken-4 center-align">Are You sure?</h3>
+            <h6 class="light-blue-text text-darken-4 center-align">This action is not reversable</h6>
+            <div class="col s12 center-align">
+                <a href="{{ url_for('cars_for_rent') }}" 
+                    class="waves-effect waves-light red darken-1 btn cancel-btn">
+                    <i class="far fa-window-close left"></i>No - cancel
+                </a> 
+                <button type="submit"
+                    class="waves-effect waves-light green darken-1 btn">
+                    <i class="far fa-arrow-alt-circle-up left"></i>Yes - delete
+                </button>
+            </div>
+        </div>
+    </form>
+    </div>
+    {% endfor %}
+
+{% endblock %}

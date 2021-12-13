@@ -127,11 +127,11 @@
                     class="green-text text-darken-1 far fa-chart-bar"></i></a></button></td>
                 {% if db_user.car_rent == "yes" %}
                 <td><button class="list-item-btn"><a 
-                    href=""><i 
-                    class="red-text text-darken-1 fas fa-minus-circle"></i></a></button>
+                    href="{{ url_for('rent_archive', rent_id=cfr._id) }}"><i 
+                    class="red-text text-darken-1 fas fas fa-archive"></i></a></button>
                 </td>
                 <td><button class="list-item-btn"><a 
-                    href=""><i 
+                    href="{{ url_for('delete_rental_car', rent_id=cfr._id) }}"><i 
                     class="green-text text-darken-1 far fa-trash-alt"></i></a></button>
                 </td>
                 {% else %}
@@ -139,7 +139,7 @@
                     class="grey-text text-darken-1 fas fa-minus-circle"></i></button>
                 </td>
                 <td><button class="list-item-btn"><i 
-                    class="grey-text text-darken-1 disabled far fa-trash-alt"></i></button>
+                    class="grey-text text-darken-1 far fa-trash-alt"></i></button>
                 </td>
                 {% endif %}
             </tr>
