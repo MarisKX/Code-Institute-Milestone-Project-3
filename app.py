@@ -18,8 +18,9 @@ app.config["MONGO_DBNAME"] = os.environ.get("MONGO_DBNAME")
 app.config["MONGO_URI"] = os.environ.get("MONGO_URI")
 app.secret_key = os.environ.get("SECRET_KEY")
 
-# sets timeout for user session
-app.config['PERMANENT_SESSION_LIFETIME'] =  timedelta(minutes=15)
+# SETS TIMOUT FOR USER SESSION
+
+app.config['PERMANENT_SESSION_LIFETIME'] = timedelta(minutes=15)
 
 mongo = PyMongo(app)
 
@@ -523,6 +524,11 @@ def delete_rental_car(rent_id):
         make = str(deleted_car["make"])
         carid = str(deleted_car["car_id"])
         if request.method == "POST":
+            rental_car_count =  mongo.db.car_count.count_documents({"make": make})
+            if rental_car_count > 1:
+                pass
+            else:
+                mongo.db.car_makes_rent.delete_one({"make": make})
             mongo.db.cars_for_rent.delete_one({"_id": ObjectId(rent_id)})
             flash("{} is deleted".format(make + " (" + carid + ")"))
             return redirect(url_for("cars_for_rent")) 
