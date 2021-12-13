@@ -237,6 +237,10 @@ table.access-rights, table.user-rights, table.car-details {
     max-width: 600px;
 }
 
+table.delete {
+    max-width: 300px;
+}
+
 .input-row {
     width: 300px;
 }
@@ -358,8 +362,13 @@ img.manager-picture {
     margin-right: auto;
 }
 
+
 .history {
     border-top: 5px solid rgb(46, 125, 50);
+}
+
+.settings-h5 {
+    margin-top: 25px;
 }
 
 @media only screen and (max-width: 1350px) {

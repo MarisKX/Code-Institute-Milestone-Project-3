@@ -153,7 +153,8 @@ def manager_register():
                 "password": generate_password_hash(request.form.get("password")),
                 "car_sales": "no",
                 "car_rent": "no",
-                "settings": "no"
+                "settings": "no",
+                "superuser": "no"
                 }
                 mongo.db.managing_users.insert_one(register)
                 flash("Welcome on board, {}".format(
@@ -546,7 +547,7 @@ def delete_rental_car(rent_id):
 def manager_settings(username):    
     if "user" in session:
         user = mongo.db.managing_users.find({"username": session["user"]})
-        all_users = mongo.db.managing_users.find()
+        all_users = list(mongo.db.managing_users.find())
         if request.method == "POST":
             if "change-password" in request.form:
                 current_user = mongo.db.managing_users.find_one({"username": username})
@@ -575,6 +576,13 @@ def manager_settings(username):
                         }
                         mongo.db.managing_users.update_one({"username": upd_username}, {"$set": update_rights})
                 flash("Acces rights changed".format(session["user"]), category="success")
+                return redirect(url_for("manager_settings", username=username))
+            elif "delete-user" in request.form:
+                print("Here")
+                user_delete = request.form.get("user")
+                print(user_delete)
+                mongo.db.managing_users.delete_one({"username": user_delete})
+                flash("{} deleted".format(user_delete.capitalize()), category="success")
                 return redirect(url_for("manager_settings", username=username))
         return render_template("manager-dashboard/settings.html", user=user, all_users=all_users)
     else:

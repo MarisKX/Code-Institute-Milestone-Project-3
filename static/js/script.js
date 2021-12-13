@@ -85,14 +85,14 @@ function soldCars() {
     $(".archive").addClass("hidden");
 }
 
-// Switches between sections in rental cars according to their status
-
 function archivedCars() {
     $(".all-cars").addClass("hidden");
     $(".cars-in-stock").addClass("hidden");
     $(".sold-cars").addClass("hidden");
     $(".archive").removeClass("hidden");
 }
+
+// Switches between sections in rental cars according to their status
 
 function showUnavailableRentalCars() {
     $(".unavailable-rental-cars").removeClass("hidden");
@@ -112,5 +112,18 @@ function archivedRentalCars() {
     $(".rental-cars-archive").removeClass("hidden");
 }
 
+function archivedRentalCars() {
+    $(".unavailable-rental-cars").addClass("hidden");
+    $(".rental-cars").addClass("hidden");
+    $(".rental-cars-archive").removeClass("hidden");
+}
+
+function resetDeleteUser() {
+    $("option").removeAttr("selected");
+    $(".default").addAttr("selected");
+    $(".access-rights").addClass("hidden");
+    $(".change-password").addClass("hidden");
+    $(".users").removeClass("hidden");
+}
 
 

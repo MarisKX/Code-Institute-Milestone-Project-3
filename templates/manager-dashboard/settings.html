@@ -105,8 +105,8 @@
     </div>
 
     <div class="users hidden">
-        <h5>Users</h5>
-        <form class="col s12 m8 offset-m2 l6 offset-l3" name="form-name" value="user-rights" method="POST">
+        <h5 class="settings-h5">Users</h5>
+        <form class="col s12 m8 l6" method="POST">
             <table class="user-rights">
                 <tr>
                     <th>User</th>
@@ -168,6 +168,26 @@
             <button name="user-rights" type="submit" class="waves-effect waves-light green darken-1 btn">
                 Confirm<i class="far fa-check-square left"></i>
             </button>
+        </form>
+        <h5 class="settings-h5">Delete User</h5>
+        <form class="col s12 m6 offset-m1" method="POST">
+            <div class="delete row">
+                <div class="col s12 m3 l2">
+                    <select id="user" name="user">
+                    <option value="not_selected" selected disabled>Select User</option>
+                    {% for user in all_users %}
+                        {% if user.superuser == "yes" %}
+                        <option value="not_selected" disabled>{{ user.username.capitalize() }}</option>
+                        {% else %}
+                        <option value="{{ user.username }}">{{ user.username.capitalize() }}</option>
+                        {% endif %}
+                    {% endfor %}
+                    </select>
+                </div>
+                <button class="col S6 m3 l2 waves-effect waves-light red darken-1 btn" type="submit" name="delete-user">
+                    <i class="fas fa-trash left"></i><span>Delete User</span>  
+                </button>  
+            </div>
         </form>
     </div>
 
