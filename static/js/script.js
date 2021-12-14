@@ -139,4 +139,8 @@ if($(this).width() <772){
     $(".invisible").removeClass("hidden");
 }
 
+if($(this).width() <520){
+    $(".invisible2").removeClass("hidden");
+}
+
 

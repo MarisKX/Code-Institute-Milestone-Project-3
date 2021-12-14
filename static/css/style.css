@@ -244,6 +244,16 @@ div.back {
     font-weight: bold;
 }
 
+.phone-link {
+    color: rgb(66, 66, 66);
+    font-size: 1.0em;
+}
+
+.phone-link:hover {
+    color: rgb(66, 66, 66);
+    font-weight: bold;
+}
+
 .footer {
     background-color: rgb(46, 125, 50);
 }
