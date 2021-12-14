@@ -129,6 +129,14 @@ function initMap() {
     });
     var markerCluster = new MarkerClusterer(map, markers,
     {imagePath: "https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/m"});
-  }
+}
+
+if($(this).width() <1200){
+    $(".car-item-seperator").removeClass("hidden");
+}
+
+if($(this).width() <772){
+    $(".invisible").removeClass("hidden");
+}
 
 

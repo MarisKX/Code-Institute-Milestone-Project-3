@@ -7,12 +7,12 @@
     </div>
     <div class="row">
         {% for car in car_sale_items %}
-        <div class="col s12 m6 l4">
+        <div class="home-car-listing col s12 l4">
             <div class="row">
-                <div class="col s12 m6">
-                    <img src="{{ car.picture1 }}" alt="{{ car.make + car.model }}" width="240" height="180">
+                <div class="col s12 m8">
+                    <img class="home-page-list-image" src="{{ car.picture1 }}" alt="{{ car.make + car.model }}" width="240" height="180">
                 </div>
-                <ul class="col s12 m6 description">
+                <ul class="col s12 m4 description">
                     <li>{{ car.make }}</li>
                     <li>{{ car.model }}</li>
                     <li>{{ car.year }}</li>
@@ -21,6 +21,7 @@
                 </ul>
             </div>
         </div>
+        <div class="car-item-seperator hidden"></div>
         {% endfor %}
     </div>
     <div class="title-wrapper">
@@ -28,12 +29,12 @@
     </div>
     <div class="row">
         {% for car in car_rent_items %}
-        <div class="col s12 m6 l4">
+        <div class="home-car-listing col s12 l4">
             <div class="row">
-                <div class="col s12 m6">
-                    <img src="{{ car.picture1 }}" alt="{{ car.make + car.model }}" width="240" height="180">
+                <div class="col s12 m8">
+                    <img class="home-page-list-image" src="{{ car.picture1 }}" alt="{{ car.make + car.model }}" width="240" height="180">
                 </div>
-                <ul class="col s12 m6 description">
+                <ul class="col s12 m4 description">
                     <li>{{ car.make }}</li>
                     <li>{{ car.model }}</li>
                     <li>{{ car.year }}</li>
@@ -42,6 +43,7 @@
                 </ul>
             </div>
         </div>
+        <div class="car-item-seperator hidden"></div>
         {% endfor %}
     </div>
     

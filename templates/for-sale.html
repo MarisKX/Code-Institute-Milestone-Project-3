@@ -38,10 +38,11 @@
 {% for car in car_sale_items %}
 <div class="row random-car-listing">
     <div class="col s12 m5 offset-m1">
-        <a href="{{ url_for('carfs_details', car_id=car._id) }}">
+        <a class="home-page-list-image" href="{{ url_for('carfs_details', car_id=car._id) }}">
             <img src="{{ car.picture1 }}" alt="{{ car.make + car.model }}" width="268" height="200">
         </a>
     </div>
+    <div class="hidden invisible"></div>
     <ul class="col s12 m3 description">
         <li class="car-for-x-make">{{ car.make }}</li>
 

@@ -30,7 +30,7 @@ mongo = PyMongo(app)
 def home():
     if mongo.db.cars_for_sale.count_documents(
         {"active": "yes"}) < 10 or mongo.db.cars_for_rent.count_documents(
-            {"available": "yes"}) < 10:
+            {"available": "yes"}) < 3:
         return render_template("coming-soon.html")
     else:
         all_car_sale_items = list(mongo.db.cars_for_sale.find({
