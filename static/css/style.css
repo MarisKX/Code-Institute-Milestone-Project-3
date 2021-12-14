@@ -139,7 +139,7 @@ header {
     position: fixed;
     top: 0;
     width: 100%;
-    z-index: 1
+    z-index: 2;
 }
 
 .content-sticky {
@@ -148,6 +148,17 @@ header {
 
 .brand-logo.mobile {
     display: none;
+}
+
+.footer {
+    margin-top: 30px;
+    padding-top: 30px;
+}
+
+.footer-wrapper {
+    max-width: 1320px;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 /* Navbar styles for mobile */
@@ -216,6 +227,21 @@ div.back {
 
 .error-handler {
     margin-top: 25%;
+}
+
+.footer {
+    background-color: rgb(46, 125, 50);
+}
+
+/* map settings  *//* map settings  */
+
+.map-frame {
+    margin: auto;
+    width: 85%;
+}
+  
+#map {
+    min-height: 450px;
 }
 
 /* Administration pages specific styles */
@@ -489,4 +515,20 @@ button:focus {
 
 .carousel-control-next, .carousel-control-prev {
     width: 8%;
+}
+
+@media only screen and (max-width: 745px) {
+    .description > .car-for-x-make {
+    font-size: 1.5em;;
+    }
+
+    .description > .car-for-x-model {
+    font-size: 1.3em;;
+    }
+
+    .description > .car-for-x-price {
+    font-size: 1.2em;
+    font-weight: bold;
+    margin: 25%;
+    }
 }

@@ -49,21 +49,76 @@
       <li class="nav-link-mobile"><a href="collapsible.html">Contact Us</a></li>
     </ul>
   </header>
-
-  <div class="container">
+  <div class="content">
     {% block content %}
+    
 
-    {% endblock %}
+    
+    {% endblock %} 
   </div>
 
-  <script src="https://code.jquery.com/jquery-3.5.1.min.js"
+<footer class="container-fluid footer">
+  <div class="footer-wrapper">
+    <div id="footer-content" class="row">
+      <div class="col-md-4 col-12">
+        <h4 class="footer-title">Visit Us</h4>
+        <h5>Car2Go BV</h5>
+        <p>Erasplaats 38<br>
+        5046LB Tilburg<br>
+        </p>
+      </div>
+      <div class="col-md-4 co-12">
+        <h4 class="footer-title">Call Us</h4>
+        <p>+31 (0) 682 799 274</p><br>
+        <h4 class="footer-title">Write Us</h4>
+        <p>info@car2go.nl</p>
+      </div>
+      <div class="col-md-4 col-12">
+        <h4>Follow Us</h4>
+        <ul class="list-inline social-media-links">
+          <li class="list-inline-item">
+            <a href="https://www.facebook.com" target="_blank">
+              <i class="fab fa-facebook-f" aria-hidden="true"></i>
+              <span class="sr-only">Facebook</span>
+            </a>
+          </li>
+          <li class="list-inline-item">
+            <a href="https://twitter.com" target="_blank">
+              <i class="fab fa-twitter" aria-hidden="true"></i>
+              <span class="sr-only">Twitter</span>
+            </a>
+          </li>
+          <li class="list-inline-item">
+            <a href="https://www.linkedin.com" target="_blank">
+              <i class="fab fa-linkedin-in" aria-hidden="true"></i>
+              <span class="sr-only">Linkedin</span>
+            </a>
+          </li>
+          <li class="list-inline-item">
+            <a href="https://www.instagram.com" target="_blank">
+              <i class="fab fa-instagram" aria-hidden="true"></i>
+              <span class="sr-only">Instagram</span>
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div id="copyright">
+    <i class="far fa-copyright" aria-hidden="true"> MKX 2021</i>
+  </div>
+</footer>
+
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"
         integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" 
         integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" 
         crossorigin="anonymous"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/3.10.1/mdb.min.js"></script>
-  <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/3.10.1/mdb.min.js"></script>
+<script src="https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/markerclusterer.js"></script>
+<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDEUmxT1D5NcJi0SThLWZBrjiy4C_NJ8sw&callback=initMap&v=weekly"></script>
+<script src="{{ url_for('static', filename='js/script.js') }}"></script>
 
 </body>
 

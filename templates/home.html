@@ -1,6 +1,7 @@
 {% extends "base.html" %}
 {% block content %}
 
+<div class="container">
     <div class="title-wrapper">
         <a href="{{ url_for('for_sale') }}"><h2 class="title">Cars for sale</h2></a>
     </div>
@@ -47,5 +48,31 @@
     <div class="title-wrapper">
         <a href="cars-for-sale.html"><h2 class="title">Contact Us</h2></a>
     </div>
+    <div class="map-frame">
+        <div class="" id="map"></div>
+        <div class="title-wrapper info-title">
+          <h5 class="title basic-info">Our locations</h5>
+        </div>
+        <div class="row">
+            <div class="col-sm-4 col-12">
+                <h4>Main office (A)</h4>
+                <p>Erasplaats 38<br>
+                5046 LB Tilburg<br>
+                </p>
+            </div>
+        <div class="col-sm-4 col-12">
+            <h4>Car showroom (B)</h4>
+            <p>Pegasusweg 4<br>
+              5015 BZ Tilburg<br>
+            </p>
+        </div>
+        <div class="col-sm-4 col-12">
+            <h4>Car rental office (C)</h4>
+            <p>Goirkekanaaldijk 2b<br>
+              5046 AT Tilburg<br>
+            </p>
+        </div>
+    </div>
+</div>
     
 {% endblock %}

@@ -8,30 +8,13 @@ $(document).ready(function(){
         i18n: {
             done: "Select"
         }});
-    $(function() {
-        $('.car-sold').click(function(event) {
-            event.preventDefault();
-            let actionPath = "/manager-dashboard/mark-as-sold/" + $(this).attr('data-car-id');
-            let innerId = $(this).attr('data-car-inner-id');
-            let make = $(this).attr('data-make');
-            let model = $(this).attr('data-model');
-            let price = $(this).attr('data-price');
-              $('#EditModal form').attr('action', actionPath);
-              $('#EditModal .id').text(innerId);
-              $('#EditModal .make').text(make);
-              $('#EditModal .model').text(model);
-              $('#EditModal .price').text(price);
-              $('#EditModal').modal('show');
-            });
-          });
-        $('h3.flash-message').toUpperCase;
 });
 
 
 $(window).scroll(function () {
     // add 'sticky-header' class to the body tag when the header top is scrolled out of view
     $('#main-navbar').toggleClass('sticky', $(this).scrollTop() > $('.menu-upper').height());
-    $('.container').toggleClass('content-sticky', $(this).scrollTop() > $('.menu-upper').height());
+    $('.content').toggleClass('content-sticky', $(this).scrollTop() > $('.menu-upper').height());
 });
 
 function apkTrigger() {
@@ -118,5 +101,28 @@ function archivedRentalCars() {
     $(".rental-cars-archive").removeClass("hidden");
 }
 
+function initMap() {
+    var map = new google.maps.Map(document.getElementById("map"), {
+      zoom: 14,
+      center: {
+        lat: 51.574734,
+        lng: 5.099945
+      }
+    });
+    var labels = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+    var locations = [
+      {lat: 51.574534, lng: 5.080644},
+      {lat: 51.578754, lng: 5.118803},
+      {lat: 51.578564, lng: 5.084015}
+    ];
+    var markers = locations.map(function(location, i) {
+      return new google.maps.Marker({
+        position: location,
+        label: labels[i % labels.length]
+      });
+    });
+    var markerCluster = new MarkerClusterer(map, markers,
+    {imagePath: "https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/m"});
+  }
 
 
