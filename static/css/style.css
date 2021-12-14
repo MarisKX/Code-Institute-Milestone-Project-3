@@ -243,6 +243,23 @@ div.back {
     background-color: rgb(46, 125, 50);
 }
 
+div.col-md-4.col-12 {
+    font-size: 1.4em;
+    font-weight: bold;
+    padding-left: 15%;
+    color: rgb(66, 66, 66);
+}
+
+div.col-md-4.col-12 > h4, div.col-md-4.col-12 > h5 {
+    font-size: 1.3em;
+    font-weight: bold;
+    color: rgb(66, 66, 66);
+}
+
+.list-inline-item {
+    color: rgb(66, 66, 66);
+}
+
 /* map settings  *//* map settings  */
 
 .map-frame {
