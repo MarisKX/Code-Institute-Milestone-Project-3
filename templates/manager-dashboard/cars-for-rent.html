@@ -22,19 +22,19 @@
 {% endif %}
 <table class="list-table">
     <tr>
-        <th class="tooltipped" data-position="down" data-tooltip="Internal ID number of car">Car ID</th>
-        <th class="tooltipped" data-position="down" data-tooltip="Date of car being added to database">Since</th>
-        <th class="tooltipped" data-position="down" data-tooltip="Make">Make</th>
-        <th class="tooltipped" data-position="down" data-tooltip="Model">Model</th>
-        <th class="tooltipped" data-position="down" data-tooltip="Year of first registration">Year</th>
-        <th class="tooltipped" data-position="down" data-tooltip="Engine (1.6i/2.2TiD/1.5CRDi)">Engine</th>
-        <th class="tooltipped" data-position="down" data-tooltip="Fuel Type (petrol/diesel/electric etc">Fuel type</th>
-        <th class="tooltipped" data-position="down" data-tooltip="Milage Limit">Milage limit</th>
-        <th class="tooltipped" data-position="down" data-tooltip="Rental Price">Price/24h</th>
-        <th class="tooltipped" data-position="down" data-tooltip="View listing"></th>
-        <th class="tooltipped" data-position="down" data-tooltip="Edit listing"></th>
-        <th class="tooltipped" data-position="down" data-tooltip="Change availability"></th>
-        <th class="tooltipped" data-position="down" data-tooltip="Put item in archive"></th>
+        <th>Car ID</th>
+        <th>Since</th>
+        <th>Make</th>
+        <th>Model</th>
+        <th>Year</th>
+        <th>Engine</th>
+        <th>Fuel type</th>
+        <th>Milage limit</th>
+        <th>Price/24h</th>
+        <th></th>
+        <th></th>
+        <th></th>
+        <th></th>
     </tr>
     {% for cfr in carsfr %}
         {% if cfr.available == "no" and cfr.archived == "no" %}

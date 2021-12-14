@@ -26,20 +26,20 @@
 
 <table class="list-table">
     <tr>
-        <th class="tooltipped" data-position="down" data-tooltip="Internal ID number of car">Car ID</th>
-        <th class="tooltipped" data-position="down" data-tooltip="Date of car being added to database">Since</th>
-        <th class="tooltipped" data-position="down" data-tooltip="Make">Make</th>
-        <th class="tooltipped" data-position="down" data-tooltip="Model">Model</th>
-        <th class="tooltipped" data-position="down" data-tooltip="Year of first registration">Year</th>
-        <th class="tooltipped" data-position="down" data-tooltip="Engine (1.6i/2.2TiD/1.5CRDi)">Engine</th>
-        <th class="tooltipped" data-position="down" data-tooltip="Fuel Type (petrol/diesel/electric etc">Fuel type</th>
-        <th class="tooltipped" data-position="down" data-tooltip="APK (if not - x )">APK</th>
-        <th class="tooltipped" data-position="down" data-tooltip="Odometer reading">Milage</th>
-        <th class="tooltipped" data-position="down" data-tooltip="Sales Price">Price</th>
-        <th class="tooltipped" data-position="down" data-tooltip="View listing"></th>
-        <th class="tooltipped" data-position="down" data-tooltip="Edit listing"></th>
-        <th class="tooltipped" data-position="down" data-tooltip="Mark as sold"></th>
-        <th class="tooltipped" data-position="down" data-tooltip="Put item in archive"></th>
+        <th>Car ID</th>
+        <th>Since</th>
+        <th>Make</th>
+        <th>Model</th>
+        <th>Year</th>
+        <th>Engine</th>
+        <th>Fuel type</th>
+        <th>APK</th>
+        <th>Milage</th>
+        <th>Price</th>
+        <th></th>
+        <th></th>
+        <th></th>
+        <th></th>
     </tr>
     {% for cfs in carsfs %}
         {% if cfs.active == "yes" %}

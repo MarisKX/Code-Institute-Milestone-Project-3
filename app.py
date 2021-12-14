@@ -166,7 +166,7 @@ def manager_dashboard():
             avail_rental_cars=avail_rental_cars,
             created_by_user=created_by_user)
     else:
-        flash("Your session has expired!", category="info")
+        flash("Your session has expired!")
         return render_template("manager-dashboard/login.html")
 
 
@@ -187,8 +187,7 @@ def manager_register():
         if super_user:
             if existing_user:
                 flash(
-                    "Username already exists! Chose another one!",
-                    category="error")
+                    "Username already exists! Chose another one!")
 
                 return redirect(url_for("manager_register"))
             if check_password_hash(super_user[
@@ -204,14 +203,13 @@ def manager_register():
                     }
                 mongo.db.managing_users.insert_one(register)
                 flash("Welcome on board, {}".format(
-                    request.form.get("username")), category="success")
+                    request.form.get("username")))
                 return redirect(url_for("manager_login"))
-            flash("Invalid Supervisor login/password", category="error")
+            flash("Invalid Supervisor login/password")
             return redirect(url_for("manager_register"))
         flash(
             "You don't have rights to register new Users" +
-            "or Your username and/or password is incorrect!",
-            category="error")
+            "or Your username and/or password is incorrect!")
         return redirect(url_for("manager_register"))
 
     return render_template("manager-dashboard/register-user.html")
@@ -232,19 +230,19 @@ def manager_login():
                     existing_user["password"], request.form.get("password")):
                 session["user"] = request.form.get("username").lower()
                 flash("Welcome, {}".format(
-                        request.form.get("username")), category="welcome")
+                        request.form.get("username")))
                 session.permanent = True   # sets session parameter to True
                 return redirect(url_for(
                     "manager_dashboard",
                     username=session["user"]))
             else:
                 # invalid password match
-                flash("Invalid Username and/or Password", category="error")
+                flash("Invalid Username and/or Password")
                 return redirect(url_for("manager_login"))
 
         else:
             # username doesn't exist
-            flash("Invalid Username and/or Password", category="error")
+            flash("Invalid Username and/or Password")
             return redirect(url_for("manager_login"))
 
     return render_template("manager-dashboard/login.html")
@@ -255,7 +253,7 @@ def manager_login():
 @app.route("/manager-dashboard/logout")
 def manager_logout():
     # remove user from session cookie
-    flash("You have been logged out", category="info")
+    flash("You have been logged out")
     session.pop("user")
     return redirect(url_for("dashboard"))
 
@@ -275,7 +273,7 @@ def cars_for_sale():
             carsfs=carsfs,
             db_user=db_user)
     else:
-        flash("Your session has expired!", category="info")
+        flash("Your session has expired!")
         return render_template("manager-dashboard/login.html")
 
 
@@ -329,14 +327,14 @@ def add_car_for_sale():
                 mongo.db.car_makes.insert_one(insert_car_make)
             else:
                 pass
-            flash("New Car for Sale Added Successfully", category="success")
+            flash("New Car for Sale Added Successfully")
             return redirect(url_for("cars_for_sale"))
 
         return render_template(
             "manager-dashboard/add-car-for-sale.html",
             car_id=car_id)
     else:
-        flash("Your session has expired!", category="info")
+        flash("Your session has expired!")
         return render_template("manager-dashboard/login.html")
 
 
@@ -350,7 +348,7 @@ def car_details(car_id):
             "manager-dashboard/car-details.html",
             selected_car=selected_car)
     else:
-        flash("Your session has expired!", category="info")
+        flash("Your session has expired!")
         return render_template("manager-dashboard/login.html")
 
 # EDIT CAR FOR SALE # EDIT CAR FOR SALE # EDIT CAR FOR SALE
@@ -393,7 +391,7 @@ def edit_car_for_sale(edit_id):
             # (old type - update with parameter without $set)
             mongo.db.cars_for_sale.update_one(
                 {"_id": ObjectId(edit_id)}, {"$set": edit_car})
-            flash("Car Info Updated Successfully", category="success")
+            flash("Car Info Updated Successfully")
             return redirect(url_for("cars_for_sale"))
 
         car = mongo.db.cars_for_sale.find_one({"_id": ObjectId(edit_id)})
@@ -402,7 +400,7 @@ def edit_car_for_sale(edit_id):
             car=car,
             db_user=db_user)
     else:
-        flash("Your session has expired!", category="info")
+        flash("Your session has expired!")
         return render_template("manager-dashboard/login.html")
 
 # MARK AS SOLD # MARK AS SOLD # MARK AS SOLD # MARK AS SOLD # MARK AS SOLD
@@ -422,13 +420,13 @@ def mark_as_sold(car_id):
             # (old type - update with parameter without $set)
             mongo.db.cars_for_sale.update_one(
                 {"_id": ObjectId(car_id)}, {"$set": confirm_as_sold})
-            flash("Car Marked as Sold Successfully", category="success")
+            flash("Car Marked as Sold Successfully")
             return redirect(url_for("cars_for_sale"))
 
         car = mongo.db.cars_for_sale.find_one({"_id": ObjectId(car_id)})
         return render_template("manager-dashboard/mark-as-sold.html", car=car)
     else:
-        flash("Your session has expired!", category="info")
+        flash("Your session has expired!")
         return render_template("manager-dashboard/login.html")
 
 # MOVE SALES CAR TO AND FROM ARCHIVE # MOVE SALES CAR TO AND FROM ARCHIVE
@@ -463,7 +461,7 @@ def sales_archive(car_id):
                     .format(i["make"] + " (" + i["car_id"] + ")"))
                 return redirect(url_for("cars_for_sale"))
     else:
-        flash("Your session has expired!", category="info")
+        flash("Your session has expired!")
         return render_template("manager-dashboard/login.html")
 
 # DELETE SALES CAR # DELETE SALES CAR # DELETE SALES CAR # DELETE SALES CAR
@@ -495,7 +493,7 @@ def delete_sales_car(car_id):
             "manager-dashboard/delete-sales-car.html",
             car=car)
     else:
-        flash("Your session has expired!", category="info")
+        flash("Your session has expired!")
         return render_template("manager-dashboard/login.html")
 
 # CARS FOR RENT FUNCTIONS # CARS FOR RENT FUNCTIONS # CARS FOR RENT FUNCTIONS
@@ -514,7 +512,7 @@ def cars_for_rent():
             carsfr=carsfr,
             db_user=db_user)
     else:
-        flash("Your session has expired!", category="info")
+        flash("Your session has expired!")
         return render_template("manager-dashboard/login.html")
 
 # ADD CAR FOR RENT # ADD CAR FOR RENT # ADD CAR FOR RENT # ADD CAR FOR RENT
@@ -565,14 +563,14 @@ def add_car_for_rent():
                 mongo.db.car_makes_rent.insert_one(insert_car_make)
             else:
                 pass
-            flash("New Car for Rent Added Successfully", category="success")
+            flash("New Car for Rent Added Successfully")
             return redirect(url_for("cars_for_rent"))
 
         return render_template(
             "manager-dashboard/add-car-for-rent.html",
             car_rent_id=car_rent_id)
     else:
-        flash("Your session has expired!", category="info")
+        flash("Your session has expired!")
         return render_template("manager-dashboard/login.html")
 
 # SHOW DETAILS/STATS # SHOW DETAILS/STATS # SHOW DETAILS/STATS
@@ -589,7 +587,7 @@ def rental_car_details(car_id):
             "manager-dashboard/car-details-rent.html",
             selected_rental_car=selected_rental_car)
     else:
-        flash("Your session has expired!", category="info")
+        flash("Your session has expired!")
         return render_template("manager-dashboard/login.html")
 
 # EDIT CAR FOR RENT # EDIT CAR FOR RENT # EDIT CAR FOR RENT # EDIT CAR FOR RENT
@@ -628,7 +626,7 @@ def edit_car_for_rent(edit_id):
             # (old type - update with parameter without $set)
             mongo.db.cars_for_rent.update_one(
                 {"_id": ObjectId(edit_id)}, {"$set": edit_car})
-            flash("Car Info Updated Successfully", category="success")
+            flash("Car Info Updated Successfully")
             return redirect(url_for("cars_for_rent"))
 
         car = mongo.db.cars_for_rent.find_one({"_id": ObjectId(edit_id)})
@@ -637,7 +635,7 @@ def edit_car_for_rent(edit_id):
             car=car,
             db_user=db_user)
     else:
-        flash("Your session has expired!", category="info")
+        flash("Your session has expired!")
         return render_template("manager-dashboard/login.html")
 
 # CHANGE AVAILABLITY # CHANGE AVAILABLITY # CHANGE AVAILABLITY
@@ -671,7 +669,7 @@ def change_availability(rent_id):
                     .format(i["make"] + " (" + i["car_id"] + ")"))
                 return redirect(url_for("cars_for_rent"))
     else:
-        flash("Your session has expired!", category="info")
+        flash("Your session has expired!")
         return render_template("manager-dashboard/login.html")
 
 
@@ -705,7 +703,7 @@ def rent_archive(rent_id):
                     .format(i["make"] + " (" + i["car_id"] + ")"))
                 return redirect(url_for("cars_for_rent"))
     else:
-        flash("Your session has expired!", category="info")
+        flash("Your session has expired!")
         return render_template("manager-dashboard/login.html")
 
 # DELETE RENTAL CAR # DELETE RENTAL CAR # DELETE RENTAL CAR # DELETE RENTAL CAR
@@ -735,7 +733,7 @@ def delete_rental_car(rent_id):
             "manager-dashboard/delete-rental-car.html",
             car=car)
     else:
-        flash("Your session has expired!", category="info")
+        flash("Your session has expired!")
         return render_template("manager-dashboard/login.html")
 
 # SETTINGS AREA # SETTINGS AREA # SETTINGS AREA # SETTINGS AREA # SETTINGS AREA
@@ -762,15 +760,14 @@ def manager_settings(username):
                         {"$set": new_password})
                     flash(
                         "Password changed for {}"
-                        .format(session["user"]), category="success")
+                        .format(session["user"]))
 
                     return redirect(url_for(
                         "manager_settings",
                         username=username))
                 flash(
                     "Wrong password for {}"
-                    .format(session["user"]),
-                    category="welcome")
+                    .format(session["user"]))
 
                 return render_template(
                     "manager-dashboard/settings.html",
@@ -797,7 +794,7 @@ def manager_settings(username):
                             {"username": upd_username},
                             {"$set": update_rights})
                 flash(
-                    "Acces rights changed", category="success")
+                    "Acces rights changed")
                 return redirect(url_for("manager_settings", username=username))
             elif "delete-user" in request.form:
                 print("Here")
@@ -805,15 +802,13 @@ def manager_settings(username):
                 if user_delete == session["user"]:
                     flash(
                         "{}, You can not delete Yourself!"
-                        .format(user_delete.capitalize()),
-                        category="success")
+                        .format(user_delete.capitalize()))
                 else:
                     mongo.db.managing_users.delete_one(
                         {"username": user_delete})
                     flash(
                         "{} deleted"
-                        .format(user_delete.capitalize()),
-                        category="success")
+                        .format(user_delete.capitalize()))
                     return redirect(url_for(
                         "manager_settings",
                         username=username))
@@ -822,7 +817,7 @@ def manager_settings(username):
             user=user,
             all_users=all_users)
     else:
-        flash("Your session has expired!", category="info")
+        flash("Your session has expired!")
         return render_template("manager-dashboard/login.html")
 
 
