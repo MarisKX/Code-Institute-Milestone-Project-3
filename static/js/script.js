@@ -7,7 +7,25 @@ $(document).ready(function(){
         maxDate: new Date(),
         i18n: {
             done: "Select"
-        }});
+    }});
+    $('#year').keydown( function(){
+        let carYear = 3;
+        if ($(this).val().length >= carYear) { 
+            $(this).val($(this).val().substr(0, carYear));
+        }
+    });
+    $('#doors').keydown( function(){
+        let carDoors = 0;
+        if ($(this).val().length >= carDoors) { 
+            $(this).val($(this).val().substr(0, carDoors));
+        }
+    });
+    $('#gears').keydown( function(){
+        let carGears = 1;
+        if ($(this).val().length >= carGears) { 
+            $(this).val($(this).val().substr(0, carGears));
+        }
+    });
 });
 
 
@@ -142,5 +160,7 @@ if($(this).width() <772){
 if($(this).width() <520){
     $(".invisible2").removeClass("hidden");
 }
+
+
 
 
