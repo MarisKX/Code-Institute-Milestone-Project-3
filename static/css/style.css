@@ -229,6 +229,16 @@ div.back {
     margin-top: 25%;
 }
 
+.map-link {
+    color: rgb(66, 66, 66);
+    font-size: 1.4em;
+}
+
+.map-link:hover {
+    color: rgb(66, 66, 66);
+    font-weight: bold;
+}
+
 .footer {
     background-color: rgb(46, 125, 50);
 }

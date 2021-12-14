@@ -17,6 +17,8 @@ $(window).scroll(function () {
     $('.content').toggleClass('content-sticky', $(this).scrollTop() > $('.menu-upper').height());
 });
 
+
+// Triggers APK field after clicking check button
 function apkTrigger() {
     if ($("#apk-init").is(":checked")){
         $("#apk").attr("required", true);
@@ -27,6 +29,8 @@ function apkTrigger() {
     }
 }
 
+
+// Settings page sections
 function showAccount() {
     $(".access-rights").removeClass("hidden");
     $(".change-password").addClass("hidden");
@@ -45,8 +49,8 @@ function showUsers() {
     $(".users").removeClass("hidden");
 }
 
-// Switches between sections in cars for sale according to their status
 
+// Switches between sections in cars for sale according to their status
 function showAllCars() {
     $(".all-cars").removeClass("hidden");
     $(".cars-in-stock").addClass("hidden");
@@ -75,8 +79,8 @@ function archivedCars() {
     $(".archive").removeClass("hidden");
 }
 
-// Switches between sections in rental cars according to their status
 
+// Switches between sections in rental cars according to their status
 function showUnavailableRentalCars() {
     $(".unavailable-rental-cars").removeClass("hidden");
     $(".rental-cars").addClass("hidden");
@@ -101,6 +105,8 @@ function archivedRentalCars() {
     $(".rental-cars-archive").removeClass("hidden");
 }
 
+
+// Creates and shows google map for public side home page and contact area
 function initMap() {
     var map = new google.maps.Map(document.getElementById("map"), {
       zoom: 14,
@@ -111,9 +117,9 @@ function initMap() {
     });
     var labels = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
     var locations = [
-      {lat: 51.574534, lng: 5.080644},
-      {lat: 51.578754, lng: 5.118803},
-      {lat: 51.578564, lng: 5.084015}
+      {lat: 51.574534, lng: 5.080644}, // Erasplaats 38, 5046 LB Tilburg
+      {lat: 51.578754, lng: 5.118803}, // Pegasusweg 4, 5015 BZ Tilburg
+      {lat: 51.578564, lng: 5.084015}  // Goirkekanaaldijk 2b, 5046 AT Tilburg
     ];
     var markers = locations.map(function(location, i) {
       return new google.maps.Marker({
