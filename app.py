@@ -313,7 +313,7 @@ def add_car_for_sale():
                 "price": request.form.get("price"),
                 "sold": "no",
                 "active": "yes",
-                "created_by": session["user"],
+                "created_by": session["user"]
             }
             new_car_count = {
                 "car_count": car_id,
@@ -387,7 +387,7 @@ def edit_car_for_sale(edit_id):
                 "sold": "no",
                 "active": "yes",
                 "edited_by": session["user"],
-                "edited": request.form.get("edited"),
+                "edited": request.form.get("edited")
             }
             # USED SUPPORTED METHOD FOR CURRENT PYMONGO VERSION
             # (old type - update with parameter without $set)
@@ -427,6 +427,41 @@ def mark_as_sold(car_id):
 
         car = mongo.db.cars_for_sale.find_one({"_id": ObjectId(car_id)})
         return render_template("manager-dashboard/mark-as-sold.html", car=car)
+    else:
+        flash("Your session has expired!", category="info")
+        return render_template("manager-dashboard/login.html")
+
+# MOVE SALES CAR TO AND FROM ARCHIVE # MOVE SALES CAR TO AND FROM ARCHIVE
+
+
+@app.route("/manager-dashboard/sales-archive/<car_id>")
+def sales_archive(car_id):
+    if "user" in session:
+        sales_car = mongo.db.cars_for_sale.find({"_id": ObjectId(car_id)})
+        print(sales_car)
+        for i in sales_car:
+            if i["active"] == "yes":
+                details = {
+                    "active": "no",
+                }
+                mongo.db.cars_for_sale.update_one(
+                    {"_id": ObjectId(car_id)},
+                    {"$set": details})
+                flash(
+                    "{} is moved to archive"
+                    .format(i["make"] + " (" + i["car_id"] + ")"))
+                return redirect(url_for("cars_for_sale"))
+            else:
+                details = {
+                    "active": "yes",
+                }
+                mongo.db.cars_for_sale.update_one(
+                    {"_id": ObjectId(car_id)},
+                    {"$set": details})
+                flash(
+                    "{} is removed from archive"
+                    .format(i["make"] + " (" + i["car_id"] + ")"))
+                return redirect(url_for("cars_for_sale"))
     else:
         flash("Your session has expired!", category="info")
         return render_template("manager-dashboard/login.html")
@@ -603,8 +638,6 @@ def change_availability(rent_id):
                     "{} is marked as Available"
                     .format(i["make"] + " (" + i["car_id"] + ")"))
                 return redirect(url_for("cars_for_rent"))
-                flash("Welcome, {}".format(
-                            request.form.get("username")), category="welcome")
     else:
         flash("Your session has expired!", category="info")
         return render_template("manager-dashboard/login.html")

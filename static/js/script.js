@@ -118,12 +118,5 @@ function archivedRentalCars() {
     $(".rental-cars-archive").removeClass("hidden");
 }
 
-function resetDeleteUser() {
-    $("option").removeAttr("selected");
-    $(".default").addAttr("selected");
-    $(".access-rights").addClass("hidden");
-    $(".change-password").addClass("hidden");
-    $(".users").removeClass("hidden");
-}
 
 
