@@ -1,9 +1,9 @@
 import os
 import random
+from datetime import timedelta
 from flask import (
     Flask, flash, render_template,
     redirect, request, session, url_for)
-from datetime import timedelta
 from flask_pymongo import PyMongo
 from bson.objectid import ObjectId
 from werkzeug.security import generate_password_hash, check_password_hash
@@ -466,6 +466,38 @@ def sales_archive(car_id):
         flash("Your session has expired!", category="info")
         return render_template("manager-dashboard/login.html")
 
+# DELETE SALES CAR # DELETE SALES CAR # DELETE SALES CAR # DELETE SALES CAR
+
+
+@app.route(
+    "/manager-dashboard/delete-sales-car/<car_id>",
+    methods=["GET", "POST"])
+def delete_sales_car(car_id):
+    if "user" in session:
+        car = mongo.db.cars_for_sale.find({"_id": ObjectId(car_id)})
+        print(car)
+        deleted_car = mongo.db.cars_for_sale.find_one(
+            {"_id": ObjectId(car_id)})
+        print(deleted_car)
+        make = str(deleted_car["make"])
+        carid = str(deleted_car["car_id"])
+        if request.method == "POST":
+            sales_car_count = mongo.db.car_makes.count_documents(
+                {"make": make})
+            if sales_car_count > 1:
+                pass
+            else:
+                mongo.db.car_makes.delete_one({"make": make})
+            mongo.db.cars_for_sale.delete_one({"_id": ObjectId(car_id)})
+            flash("{} is deleted".format(make + " (" + carid + ")"))
+            return redirect(url_for("cars_for_sale"))
+        return render_template(
+            "manager-dashboard/delete-sales-car.html",
+            car=car)
+    else:
+        flash("Your session has expired!", category="info")
+        return render_template("manager-dashboard/login.html")
+
 # CARS FOR RENT FUNCTIONS # CARS FOR RENT FUNCTIONS # CARS FOR RENT FUNCTIONS
 
 # MAIN ROUTE # MAIN ROUTE # MAIN ROUTE # MAIN ROUTE # MAIN ROUTE # MAIN ROUTE
@@ -690,7 +722,7 @@ def delete_rental_car(rent_id):
         make = str(deleted_car["make"])
         carid = str(deleted_car["car_id"])
         if request.method == "POST":
-            rental_car_count = mongo.db.car_count.count_documents(
+            rental_car_count = mongo.db.car_makes_rent.count_documents(
                 {"make": make})
             if rental_car_count > 1:
                 pass
@@ -765,19 +797,26 @@ def manager_settings(username):
                             {"username": upd_username},
                             {"$set": update_rights})
                 flash(
-                    "Acces rights changed for {}"
-                    .format(session["user"].capitalize()), category="success")
+                    "Acces rights changed", category="success")
                 return redirect(url_for("manager_settings", username=username))
             elif "delete-user" in request.form:
                 print("Here")
                 user_delete = request.form.get("user")
-                print(user_delete)
-                mongo.db.managing_users.delete_one({"username": user_delete})
-                flash(
-                    "{} deleted"
-                    .format(user_delete.capitalize()),
-                    category="success")
-                return redirect(url_for("manager_settings", username=username))
+                if user_delete == session["user"]:
+                    flash(
+                        "{}, You can not delete Yourself!"
+                        .format(user_delete.capitalize()),
+                        category="success")
+                else:
+                    mongo.db.managing_users.delete_one(
+                        {"username": user_delete})
+                    flash(
+                        "{} deleted"
+                        .format(user_delete.capitalize()),
+                        category="success")
+                    return redirect(url_for(
+                        "manager_settings",
+                        username=username))
         return render_template(
             "manager-dashboard/settings.html",
             user=user,

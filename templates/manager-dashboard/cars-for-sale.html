@@ -248,15 +248,15 @@
                     href="{{ url_for('sales_archive', car_id=cfs._id) }}"><i 
                     class="red-text text-darken-1 fas fa-archive"></i></a></button>
                 </td>
-                <td><button class="list-item-btn">Delete<i 
-                    class="grey-text text-darken-1 disabled fas fa-archive"></i></button>
+                <td><button class="list-item-btn"><a href="{{ url_for('delete_sales_car', car_id=cfs._id) }}"><i 
+                    class="red-text text-darken-1 fas fa-trash"></i></a></button>
                 </td>
                 {% else %}
-                <td><button class="list-item-btn">Archive disabl<i 
-                    class="grey-text text-darken-1 disabled fas fa-pen"></i></button>
+                <td><button class="list-item-btn"><i 
+                    class="grey-text text-darken-1 fas fa-archive"></i></button>
                 </td>
-                <td><button class="list-item-btn">Delete disable<i 
-                    class="grey-text text-darken-1 disabled fas fa-hand-holding-usd"></i></button>
+                <td><button class="list-item-btn"><i 
+                    class="grey-text text-darken-1 fas fa-trash"></i></button>
                 </td>
                 
                 
