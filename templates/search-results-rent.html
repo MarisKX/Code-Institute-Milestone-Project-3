@@ -8,7 +8,7 @@
         {% if car.available == "yes" %}
             <div class="row random-car-listing">
                 <div class="col s12 m5 offset-m1">
-                    <a href="{{ url_for('carfs_details', car_id=car._id) }}">
+                    <a href="{{ url_for('carfr_details', car_id=car._id) }}">
                         <img src="{{ car.picture1 }}" alt="{{ car.make + car.model }}" width="268" height="200">
                     </a>
                 </div>

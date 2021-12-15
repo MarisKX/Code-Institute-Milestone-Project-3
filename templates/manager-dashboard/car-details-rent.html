@@ -81,7 +81,7 @@
                     <td><h6>{{ detail.created_by.capitalize() }}</h6></td>
                 </tr>
                 <tr>
-                    {% if detail.edited == None %}
+                    {% if detail.edited == "no" %}
                     <td>Last Edited</td>
                     <td><h6><i class="fas fa-minus"></i></h6></td>
                     <td>Edited By</td>
@@ -98,7 +98,7 @@
     </div>
     <div class="row">
         <div class="col s12 m6 offset-m4 close-btn">
-            <a href="{{ url_for('cars_for_sale') }}" class="waves-effect waves-light red darken-1 btn cancel-btn">
+            <a href="{{ url_for('cars_for_rent') }}" class="waves-effect waves-light red darken-1 btn cancel-btn">
                 <i class="far fa-window-close left"></i>Close
             </a>
             {% if detail.archived == "no" %}

@@ -310,6 +310,7 @@ def add_car_for_sale():
                 "notes": request.form.get("notes"),
                 "price": request.form.get("price"),
                 "sold": "no",
+                "edited": "no",
                 "active": "yes",
                 "created_by": session["user"]
             }
@@ -480,7 +481,7 @@ def delete_sales_car(car_id):
         make = str(deleted_car["make"])
         carid = str(deleted_car["car_id"])
         if request.method == "POST":
-            sales_car_count = mongo.db.car_makes.count_documents(
+            sales_car_count = mongo.db.cars_for_sale.count_documents(
                 {"make": make})
             if sales_car_count > 1:
                 pass
@@ -546,6 +547,7 @@ def add_car_for_rent():
                 "notes": request.form.get("notes"),
                 "price": request.form.get("price"),
                 "available": "no",
+                "edited": "no",
                 "archived": "no",
                 "created_by": session["user"],
             }
@@ -720,7 +722,7 @@ def delete_rental_car(rent_id):
         make = str(deleted_car["make"])
         carid = str(deleted_car["car_id"])
         if request.method == "POST":
-            rental_car_count = mongo.db.car_makes_rent.count_documents(
+            rental_car_count = mongo.db.cars_for_rent.count_documents(
                 {"make": make})
             if rental_car_count > 1:
                 pass

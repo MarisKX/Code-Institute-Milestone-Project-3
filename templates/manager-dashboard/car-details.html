@@ -81,16 +81,16 @@
                     <td><h6>{{ detail.created_by.capitalize() }}</h6></td>
                 </tr>
                 <tr>
-                    {% if detail.edited == None %}
+                    {% if detail.edited == "no" %}
                     <td>Last Edited</td>
                     <td><h6><i class="fas fa-minus"></i></h6></td>
                     <td>Edited By</td>
                     <td><h6><i class="fas fa-minus"></i></h6></td>
                     {% else %}
                     <td>Last Edited</td>
-                    <td><h6><i class="fas fa-minus"></i></h6></td>
+                    <td><h6>{{ detail.edited }}</h6></td>
                     <td>Edited By</td>
-                    <td><h6><i class="fas fa-minus"></i></h6></td>
+                    <td><h6>{{ detail.edited_by.capitalize() }}</h6></td>
                     {% endif %}
                 </tr>
                 <tr>
