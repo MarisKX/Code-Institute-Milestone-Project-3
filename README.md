@@ -1,108 +1,297 @@
-![CI logo](https://codeinstitute.s3.amazonaws.com/fullstack/ci_logo_small.png)
+<h2 align="center"><img src="https://raw.githubusercontent.com/MarisKX/Code-Institute-Milestone-Project-3/main/static/images/400PngdpiLogoCropped.png"></h2>
+<h1 align="center">Car4You BV (C4Y) online car showroom and content management application</h1>
 
-Welcome MarisKX,
 
-This is the Code Institute student template for Gitpod. We have preinstalled all of the tools you need to get started. It's perfectly ok to use this template as the basis for your project submissions.
+### Live project:
+### [Public side:](http://code-institute-milestone-p3.herokuapp.com/)
+### [Internal company side:](http://code-institute-milestone-p3.herokuapp.com/manager-dashboard)
 
-You can safely delete this README.md file, or change it for your own project. Please do read it at least once, though! It contains some important information about Gitpod and the extensions we use. Some of this information has been updated since the video content was created. The last update to this file was: **September 1, 2021**
+This project contains 2 parts. One is public part, it serves as an online car showroom and second is internal company side with limited access for car showroom management. While large part of documentation refers to both parts, there is seperate UX/UI sections for [public side](#public-side) and [internal side](#internal-side)
 
-## Gitpod Reminders
+# PUBLIC SIDE
 
-To run a frontend (HTML, CSS, Javascript only) application in Gitpod, in the terminal, type:
+## User Experience (UX)
 
-`python3 -m http.server`
+-   ### User stories
 
-A blue button should appear to click: _Make Public_,
+    -   #### First Time Visitor Goals
 
-Another blue button should appear to click: _Open Browser_.
+        1. As a First Time Visitor, I want to easily understand the main purpose of the site and learn more about the company.
+        2. As a First Time Visitor, I want to be able to easily navigate throughout the site to find content.
+        3. As a First Time Visitor, I want to easily find contact details, locations on map as well as details of cars they offer.
 
-To run a backend Python file, type `python3 app.py`, if your Python file is named `app.py` of course.
+    -   #### Returning Visitor Goals
 
-A blue button should appear to click: _Make Public_,
+        1. As a Returning Visitor, I want to find information about new offers.
+        2. As a Returning Visitor, I want to find the best way to get in contact with the company with any questions I may have.
+        3. As a Returning Visitor, I want to find community links and follow them.
 
-Another blue button should appear to click: _Open Browser_.
+    -   #### Frequent User Goals
+        1. As a Frequent User, I want to check to see if there are any newly added cars for rent and/or sell.
+        2. As a Frequent User, I want to check to see if there are any new regular customer discounts.
 
-In Gitpod you have superuser security privileges by default. Therefore you do not need to use the `sudo` (superuser do) command in the bash terminal in any of the lessons.
+-   ### Design
+    -   #### Colour Scheme
+        -   The two main colours used are C4Y main colors - green ![#128d32](https://via.placeholder.com/15/128d32/000000?text=+) `#128d32/rgb(46, 125, 50)` and grey ![#424242](https://via.placeholder.com/15/424242/000000?text=+) `#424242/rgb(66, 66, 66)`. These are main colors in C4Y showroom as well as website.
+    -   #### Typography
+        -   The Josefin Sans font is the main font used throughout the whole website with Sans Serif as the fallback font in case for any reason the font isn't being imported into the site correctly. Josefin Sans is a clean font with a small "twist" so it is both attractive and appropriate.
+    -   #### Imagery
+        -   Imagery is important. Mid-size car images are randomly generated on the main page, as well as sales page and rental page, layout is made attractive for all screen sizes.
 
-To log into the Heroku toolbelt CLI:
+*   ### Wireframes
 
-1. Log in to your Heroku account and go to *Account Settings* in the menu under your avatar.
-2. Scroll down to the *API Key* and click *Reveal*
-3. Copy the key
-4. In Gitpod, from the terminal, run `heroku_config`
-5. Paste in your API key when asked
+    -   Landing page wireframe - Desktop-[View](https://github.com/MarisKX/Code-Institute-Milestone-Project-2/blob/main/assets/other/Index%20page.pdf), 
+        Mobile-[View](https://github.com/MarisKX/Code-Institute-Milestone-Project-2/blob/main/assets/other/Index%20page%20mobile.pdf)
 
-You can now use the `heroku` CLI program - try running `heroku apps` to confirm it works. This API key is unique and private to you so do not share it. If you accidentally make it public then you can create a new one with _Regenerate API Key_.
+    -   Cars for sale/cars for rent (uses the same structure) - Desktop-[View](https://github.com/MarisKX/Code-Institute-Milestone-Project-2/blob/main/assets/other/Cars%20for%20sale%20and%20cars%20for%20rent.pdf), 
+        Mobile-[View](https://github.com/MarisKX/Code-Institute-Milestone-Project-2/blob/main/assets/other/Cars%20for%20sale%20and%20cars%20for%20rent%20mobile.pdf)
 
-------
+    -   Contact Us Page Wireframe - Desktop-[View](https://github.com/MarisKX/Code-Institute-Milestone-Project-2/blob/main/assets/other/Contact%20page.pdf), 
+        Mobile-[View](https://github.com/MarisKX/Code-Institute-Milestone-Project-2/blob/main/assets/other/Contact%20page%20mobile.pdf)
 
-## Release History
+## Features
 
-We continually tweak and adjust this template to help give you the best experience. Here is the version history:
+-   Responsive on all device sizes
 
-**September 1 2021:** Remove `PGHOSTADDR` environment variable.
+-   Interactive elements
 
-**July 19 2021:** Remove `font_fix` script now that the terminal font issue is fixed.
+    - Randomly seleceted cars to choose from for sale and for rent
+    - By clicking on car image (or description) opens window, where user can see 4 pictures of car in larger size (depends on the screen)
+    - By clicking on car image (or description) opens window, where user can see full description of car, main features are ilustrated with icons
+    - In both mainsections there is search bar, so user can easily search for car he/she's interested in (only car makes that are in database will show up, if the car was added, but later deleted, corresponding car make will not show up on search options)
+    - Footer sections contains contact details with links - phone number will promt call option on mobile devices, while adress will open google maps app on mobile devices.
+    - Company location adreses are linked with google maps too on main page under map as well as on contact page.
 
-**July 2 2021:** Remove extensions that are not available in Open VSX.
+- Navigation is made easier by double options - either from standart menu or in landing page itself by clicking on coresponding section names
 
-**June 30 2021:** Combined the P4 and P5 templates into one file, added the uptime script. See the FAQ at the end of this file.
+### Testing User Stories from User Experience (UX) Section
 
-**June 10 2021:** Added: `font_fix` script and alias to fix the Terminal font issue
+-   #### First Time Visitor Goals
 
-**May 10 2021:** Added `heroku_config` script to allow Heroku API key to be stored as an environment variable.
+    1. As a First Time Visitor, I want to easily understand the main purpose of the site and learn more about the company.
 
-**April 7 2021:** Upgraded the template for VS Code instead of Theia.
+        1. Upon entering the site, users are automatically greeted with a clean and easily readable navigation bar to go to the page of their choice. Underneath there is a selection of cars for sale, cars for rent and contact section with maps, providing all companies locations.
+        2. The main points are made immediately with two sections on main page - cars for sale and cars for rent both in the page itself as well as in navbar
+        3. The user has two options, either check one of the cars system randomly generates or go directly to section of their choice (to buy a car or to rent one)
 
-**October 21 2020:** Versions of the HTMLHint, Prettier, Bootstrap4 CDN and Auto Close extensions updated. The Python extension needs to stay the same version for now.
+    2. As a First Time Visitor, I want to be able to easily be able to navigate throughout the site to find content.
 
-**October 08 2020:** Additional large Gitpod files (`core.mongo*` and `core.python*`) are now hidden in the Explorer, and have been added to the `.gitignore` by default.
+        1. The site has been designed to be fluid and never to entrap the user. At the top of each page there is a clean navigation bar, each link describes what the page they will end up at clearly.
+        2. On the Contact Us Page, there is a large map, indicating locations, which user might be interested in
 
-**September 22 2020:** Gitpod occasionally creates large `core.Microsoft` files. These are now hidden in the Explorer. A `.gitignore` file has been created to make sure these files will not be committed, along with other common files.
 
-**April 16 2020:** The template now automatically installs MySQL instead of relying on the Gitpod MySQL image. The message about a Python linter not being installed has been dealt with, and the set-up files are now hidden in the Gitpod file explorer.
+-   #### Returning Visitor Goals
 
-**April 13 2020:** Added the _Prettier_ code beautifier extension instead of the code formatter built-in to Gitpod.
+    1. As a Returning Visitor, I want to find the new cars for rent and/or buy.
 
-**February 2020:** The initialisation files now _do not_ auto-delete. They will remain in your project. You can safely ignore them. They just make sure that your workspace is configured correctly each time you open it. It will also prevent the Gitpod configuration popup from appearing.
+        1. These are clearly shown in the front page.
+        2. They will be directed to a page to their interest.
 
-**December 2019:** Added Eventyret's Bootstrap 4 extension. Type `!bscdn` in a HTML file to add the Bootstrap boilerplate. Check out the <a href="https://github.com/Eventyret/vscode-bcdn" target="_blank">README.md file at the official repo</a> for more options.
+    2. As a Returning Visitor, I want to find the best way to get in contact with the company with any questions I may have.
 
-------
+        1. The navigation bar clearly highlights the "Contact Us" Page.
+        2. Here they can find a map with all contacts, below that is footer section with phone number, email and socail network links.
+        3. Whichever socail media link they click, it will be open up in a new tab to ensure the user can easily get back to the website.
 
-## FAQ about the uptime script
+    3. As a Returning Visitor, I want to find the Facebook Group link so that I can join and interact with others in the community.
+        1. The Facebook Page can be found at the footer of every page and will open a new tab for the user and more information can be found on the Facebook page.
 
-**Why have you added this script?**
+-   #### Frequent User Goals
 
-It will help us to calculate how many running workspaces there are at any one time, which greatly helps us with cost and capacity planning. It will help us decide on the future direction of our cloud-based IDE strategy.
+    1. As a Frequent User, I want to check to see if there are any newly added cars.
 
-**How will this affect me?**
+        1. The user would already be comfortable with the website layout and can easily click the navigation button of their choice.
 
-For everyday usage of Gitpod, it doesn’t have any effect at all. The script only captures the following data:
+# INTERNAL SIDE
 
-- An ID that is randomly generated each time the workspace is started.
-- The current date and time
-- The workspace status of “started” or “running”, which is sent every 5 minutes.
+## User Experience (UX)
 
-It is not possible for us or anyone else to trace the random ID back to an individual, and no personal data is being captured. It will not slow down the workspace or affect your work.
+-   ### User stories
 
-**So….?**
+    -   #### Internal site user goals
 
-We want to tell you this so that we are being completely transparent about the data we collect and what we do with it.
+        1. As an app user, I want to easily navigate management website, with more than just single way to get to option in need
+        2. As an app user, I want to be able to easily find manual, if I need to refer to it
+        3. As an app user, I want manage car showroom and rental side with as few clicks as possible
+        4. As an app user (company), I want to be able to follow all activities from other users (who created car, who edited, who sold etc)
+        5. As an app user (company), I want to restrict access to certain sections according to user main role within company
 
-**Can I opt out?**
+-   ### Design
+    -   #### Colour Scheme
+        -   Just like external side, internal side uses the same main colors - green ![#128d32](https://via.placeholder.com/15/128d32/000000?text=+) `#128d32/rgb(46, 125, 50)` and grey ![#424242](https://via.placeholder.com/15/424242/000000?text=+) `#424242/rgb(66, 66, 66)`.
+    -   #### Typography
+        -   The Josefin Sans font is the main font used throughout the whole website with Sans Serif as the fallback font in case for any reason the font isn't being imported into the site correctly. Josefin Sans is a clean font with a small "twist" so it is both attractive and appropriate.
+    -   #### Imagery
+        -   Management side doesn't contain pictures, as it purpose is to be internal managing website/app. Only exception - there is mid-size pictures in cars description.
 
-Yes, you can. Since no personally identifiable information is being captured, we'd appreciate it if you let the script run; however if you are unhappy with the idea, simply run the following commands from the terminal window after creating the workspace, and this will remove the uptime script:
+*   ### Wireframes
+
+    -   Landing page wireframe - Desktop-[View](https://github.com/MarisKX/Code-Institute-Milestone-Project-2/blob/main/assets/other/Index%20page.pdf), 
+        Mobile-[View](https://github.com/MarisKX/Code-Institute-Milestone-Project-2/blob/main/assets/other/Index%20page%20mobile.pdf)
+
+    -   Cars for sale/cars for rent (uses the same structure) - Desktop-[View](https://github.com/MarisKX/Code-Institute-Milestone-Project-2/blob/main/assets/other/Cars%20for%20sale%20and%20cars%20for%20rent.pdf), 
+        Mobile-[View](https://github.com/MarisKX/Code-Institute-Milestone-Project-2/blob/main/assets/other/Cars%20for%20sale%20and%20cars%20for%20rent%20mobile.pdf)
+
+    -   Contact Us Page Wireframe - Desktop-[View](https://github.com/MarisKX/Code-Institute-Milestone-Project-2/blob/main/assets/other/Contact%20page.pdf), 
+        Mobile-[View](https://github.com/MarisKX/Code-Institute-Milestone-Project-2/blob/main/assets/other/Contact%20page%20mobile.pdf)
+
+## Features
+
+-   Responsive on all device sizes, however it's recomended to use it on screens with horizontal width 750px or above.
+
+-   Ability to perform all steps that car showroom/rental company might need:
+    1. Add new cars
+    2. Edit current cars:
+        - Edit car details (description, price, etc)
+        - Mark car as sold (only cars for sale)
+        - Move cars from available to unavailable (only cars for rent)
+        - Move cars to archive
+        - Retrieve cars from archive
+    3. Delete cars permanently
+
+- Navigation is made as easy as possible with more than just single way to get to option in need
+- For more options and features - see [user manual](https://raw.githubusercontent.com/MarisKX/Code-Institute-Milestone-Project-3/main/static/documents/UserManual.pdf).
+
+## Testing User Stories from User Experience (UX) Section
+
+-   #### Internal site user goals
+
+    1. As an app user, I want to easily navigate management website, with more than just single way to get to option in need
+        - Sections are accessible from main menu as well as from dashboard, by clicking "more details" under corresponding section
+        - Edit car option is available from list view as well as from car details view
+    2. As an app user, I want to be able to easily find manual, if I need to refer to it
+        - User manual is available from main navbar (opens in new window, format - PDF)
+    3. As an app user, I want manage car showroom and rental side with as few clicks as possible
+        - To add new car, it requires only 2 clicks to get input window
+        - To mark car as available/unavailable or move car to/from archive, it requires just one click on icon from list view
+    4. As an app user (company), I want to be able to follow all activities from other users (who created car, who edited, who sold etc)
+        - In car details view, at the bottom of page is small section of stats - who and when created car, edited or sold.
+    5. As an app user (company), I want to restrict access to certain sections according to user main role within company
+        - This app requires login and password to use it
+        - Every user can have their specific rights, depending of their role in company (for example - employee working with car sales, cannot access or edit car rental section). Rights are divided in 3 categories - sales, rent and users.
+
+
+
+
+## Technologies Used
+
+-   Initial development was made using [Atom IDE](https://atom.io/). 
+-   Python-specific functions was tested and modeled in [PyCharm IDE](https://www.jetbrains.com/pycharm/)
+
+### Languages Used
+
+-   [HTML5](https://en.wikipedia.org/wiki/HTML5)
+-   [CSS3](https://en.wikipedia.org/wiki/Cascading_Style_Sheets)
+-   [javaScript](https://en.wikipedia.org/wiki/JavaScript)
+-   [Python](https://en.wikipedia.org/wiki/Python_(programming_language))
+
+### Frameworks, Libraries & Programs Used
+
+1. [Bootstrap 5.0:](https://getbootstrap.com/docs/5.0/getting-started/introduction/)
+    - Bootstrap was used to assist with the responsiveness and styling of the website.
+1. [Materialize 1.0.0](https://materializecss.com/)
+    - Materialize was used to assist with the responsiveness and styling of the website, where there was need for cleaner styling than Bottstrap offers.
+1. [Hover.css:](https://ianlunn.github.io/Hover/)
+    - Hover.css was used on the main menu items in header to add the float transition while being hovered over.
+1. [Font Awesome:](https://fontawesome.com/)
+    - Font Awesome was used on all pages throughout the website to add icons for aesthetic and UX purposes.
+1. [jQuery:](https://jquery.com/)
+    - jQuery came with Bootstrap to make the navbar responsive but was also used for the smooth scroll function in JavaScript.
+1. [Git](https://git-scm.com/)
+    - Git was used for version control by utilizing the Gitpod terminal to commit to Git and Push to GitHub.
+1. [GitHub:](https://github.com/)
+    - GitHub is used to store the projects code after being pushed from Git.
+1. [Balsamiq:](https://balsamiq.com/)
+    - Balsamiq was used to create the [wireframes](https://github.com/) during the design process.
+
+## Testing
+
+The W3C Markup Validator and W3C CSS Validator Services were used to validate every page of the project to ensure there were no syntax errors in the project.
+
+-   [W3C Markup Validator](https://validator.w3.org/) - [Results index page](https://raw.githubusercontent.com/MarisKX/Code-Institute-Milestone-Project-2/main/assets/other/Index%20page%20html.png), [Results cars for sale page](https://raw.githubusercontent.com/MarisKX/Code-Institute-Milestone-Project-2/main/assets/other/Cars%20for%20sale%20page.png), [Results cars for rent page](https://raw.githubusercontent.com/MarisKX/Code-Institute-Milestone-Project-2/main/assets/other/Cars%20for%20rent%20page.png), [Results contact us page](https://raw.githubusercontent.com/MarisKX/Code-Institute-Milestone-Project-2/main/assets/other/Contact%20us%20page.png)
+-   [W3C CSS Validator](https://jigsaw.w3.org/css-validator/#validate_by_input) - [Results](https://raw.githubusercontent.com/MarisKX/Code-Institute-Milestone-Project-2/main/assets/other/CSS.png)
+
+
+
+
+### Further Testing
+
+-   The Website was tested on Google Chrome, Internet Explorer, Microsoft Edge and Firefox browsers.
+-   The website was viewed on a variety of devices such as Desktop (32" and 24"), Laptop, iPhone7, Samsung S20 and Samsung S20+
+-   A large amount of testing was done to ensure that all pages were linking correctly.
+-   Friends and family members were asked to review the site and documentation to point out any bugs and/or user experience issues.
+
+### Known Bugs
+
+-   
+
+## Deployment
+
+### Heroku
+
+The project was deployed to Heroku pages using following steps:
+
+1. Log in to [Heroku](https://heroku.com/) 
+2.  and locate the [GitHub Repository](https://github.com/MarisKX)
+2. At the top of the Repository (not top of page), locate the "Settings" Button on the menu.
+    - Alternatively Click [Here](https://raw.githubusercontent.com/) for a GIF demonstrating the process starting from Step 2.
+3. Scroll down the Settings page until you locate the "GitHub Pages" Section.
+4. Under "Source", click the dropdown called "None" and select "Master Branch".
+5. The page will automatically refresh.
+6. Scroll back down through the page to locate the now published site [link](https://mariskx.github.io/Code-Institute-Milestone-Project-2/index.html) in the "GitHub Pages" section.
+
+### Forking the GitHub Repository
+
+By forking the GitHub Repository we make a copy of the original repository on our GitHub account to view and/or make changes without affecting the original repository by using the following steps...
+
+1. Log in to GitHub and locate the [GitHub Repository](https://github.com/MarisKX)
+2. At the top of the Repository (not top of page) just above the "Settings" Button on the menu, locate the "Fork" Button.
+3. You should now have a copy of the original repository in your GitHub account.
+
+### Making a Local Clone
+
+1. Log in to GitHub and locate the [GitHub Repository](https://github.com/MarisKX)
+2. Under the repository name, click "Clone or download".
+3. To clone the repository using HTTPS, under "Clone with HTTPS", copy the link.
+4. Open Git Bash
+5. Change the current working directory to the location where you want the cloned directory to be made.
+6. Type `git clone`, and then paste the URL you copied in Step 3.
 
 ```
-pkill uptime.sh
-rm .vscode/uptime.sh
+$ git clone https://github.com/YOUR-USERNAME/YOUR-REPOSITORY
 ```
 
-**Anything more?**
+7. Press Enter. Your local clone will be created.
 
-Yes! We'd strongly encourage you to look at the source code of the `uptime.sh` file so that you know what it's doing. As future software developers, it will be great practice to see how these shell scripts work.
+```
+$ git clone https://github.com/YOUR-USERNAME/YOUR-REPOSITORY
+> Cloning into `CI-Clone`...
+> remote: Counting objects: 10, done.
+> remote: Compressing objects: 100% (8/8), done.
+> remove: Total 10 (delta 1), reused 10 (delta 1)
+> Unpacking objects: 100% (10/10), done.
+```
 
----
+Click [Here](https://help.github.com/en/github/creating-cloning-and-archiving-repositories/cloning-a-repository#cloning-a-repository-to-github-desktop) to retrieve pictures for some of the buttons and more detailed explanations of the above process.
 
-Happy coding!
+## Credits
+
+### Code
+
+-   [Bootstrap4](https://getbootstrap.com/docs/5.0/getting-started/introduction/): Bootstrap Library used throughout the project mainly to make site responsive using the Bootstrap Grid System.
+
+-   [jQuery](https://jqueryui.com/): jQuery Library used throughout the project mainly to make javaScript functions easier with less code to write..
+
+### Content
+
+-   All content was written by the developer.
+
+### Media
+
+-    All pictures of cars was taken from Autoscout24.nl website
+
+### Acknowledgements
+
+-   My Mentor for continuous helpful feedback.
+
+-   Biggest thanks to my wife, without her moral support this project would not gonna be possible!!!
