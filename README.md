@@ -2,9 +2,11 @@
 <h1 align="center">Car4You BV (C4Y) online car showroom and content management application</h1>
 
 
+<h2 align="center"><img src="https://raw.githubusercontent.com/MarisKX/Code-Institute-Milestone-Project-3/main/static/images/Presentation.png" width=800></h2>
+
 ### Live project:
-### [Public side:](http://code-institute-milestone-p3.herokuapp.com/)
-### [Internal company side:](http://code-institute-milestone-p3.herokuapp.com/manager-dashboard)
+### [Public side](http://code-institute-milestone-p3.herokuapp.com/)
+### [Internal company side](http://code-institute-milestone-p3.herokuapp.com/manager-dashboard)
 
 This project contains 2 parts. One is public part, it serves as an online car showroom and second is internal company side with limited access for car showroom management. While large part of documentation refers to both parts, there is seperate UX/UI sections for [public side](#public-side) and [internal side](#internal-side)
 
@@ -232,13 +234,13 @@ The W3C Markup Validator and W3C CSS Validator Services were used to validate ev
 The project was deployed to Heroku pages using following steps:
 
 1. Log in to [Heroku](https://heroku.com/) 
-2.  and locate the [GitHub Repository](https://github.com/MarisKX)
-2. At the top of the Repository (not top of page), locate the "Settings" Button on the menu.
-    - Alternatively Click [Here](https://raw.githubusercontent.com/) for a GIF demonstrating the process starting from Step 2.
-3. Scroll down the Settings page until you locate the "GitHub Pages" Section.
-4. Under "Source", click the dropdown called "None" and select "Master Branch".
-5. The page will automatically refresh.
-6. Scroll back down through the page to locate the now published site [link](https://mariskx.github.io/Code-Institute-Milestone-Project-2/index.html) in the "GitHub Pages" section.
+2. From dashboard locate "New" > "Create new app"
+3. Giving app name and select region (Europe or USA)
+4. Before deployment, navigate to "Settings" > "Reveal Config Vars"
+5. Fill in key - value pairs as they are in env.py file
+6. Navigate to "Deploy" > "GitHub - Connect to Github"
+7. Select repository You want to deploy and press "Connect"
+8. After Heroku performs setup, Your page is available online.
 
 ### Forking the GitHub Repository
 
@@ -276,12 +278,6 @@ Click [Here](https://help.github.com/en/github/creating-cloning-and-archiving-re
 
 ## Credits
 
-### Code
-
--   [Bootstrap4](https://getbootstrap.com/docs/5.0/getting-started/introduction/): Bootstrap Library used throughout the project mainly to make site responsive using the Bootstrap Grid System.
-
--   [jQuery](https://jqueryui.com/): jQuery Library used throughout the project mainly to make javaScript functions easier with less code to write..
-
 ### Content
 
 -   All content was written by the developer.
@@ -292,6 +288,6 @@ Click [Here](https://help.github.com/en/github/creating-cloning-and-archiving-re
 
 ### Acknowledgements
 
--   My Mentor for continuous helpful feedback.
+-   My friends and family for testing this app and UX feedback
 
--   Biggest thanks to my wife, without her moral support this project would not gonna be possible!!!
+-   And, of course, biggest thanks to my wife, without her moral support this project would not gonna be possible!!!
