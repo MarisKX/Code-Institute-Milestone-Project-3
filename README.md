@@ -42,14 +42,17 @@ This project contains 2 parts. One is public part, it serves as an online car sh
 
 *   ### Wireframes
 
-    -   Landing page wireframe - Desktop-[View](https://github.com/MarisKX/Code-Institute-Milestone-Project-2/blob/main/assets/other/Index%20page.pdf), 
-        Mobile-[View](https://github.com/MarisKX/Code-Institute-Milestone-Project-2/blob/main/assets/other/Index%20page%20mobile.pdf)
+    -   Landing page wireframe - Desktop-[View](https://github.com/MarisKX/Code-Institute-Milestone-Project-3/blob/main/static/other/Home%20page.pdf), 
+        Mobile-[View](https://github.com/MarisKX/Code-Institute-Milestone-Project-3/blob/main/static/other/Home%20mobile.pdf)
 
-    -   Cars for sale/cars for rent (uses the same structure) - Desktop-[View](https://github.com/MarisKX/Code-Institute-Milestone-Project-2/blob/main/assets/other/Cars%20for%20sale%20and%20cars%20for%20rent.pdf), 
-        Mobile-[View](https://github.com/MarisKX/Code-Institute-Milestone-Project-2/blob/main/assets/other/Cars%20for%20sale%20and%20cars%20for%20rent%20mobile.pdf)
+    -   Cars for sale/cars for rent (uses the same structure) - Desktop-[View](https://github.com/MarisKX/Code-Institute-Milestone-Project-3/blob/main/static/other/Cars%20for%20sale%20%26%20rent.pdf), 
+        Mobile-[View](https://github.com/MarisKX/Code-Institute-Milestone-Project-3/blob/main/static/other/Cars%20for%20sale%20%26%20rent%20mobile.pdf)
 
-    -   Contact Us Page Wireframe - Desktop-[View](https://github.com/MarisKX/Code-Institute-Milestone-Project-2/blob/main/assets/other/Contact%20page.pdf), 
-        Mobile-[View](https://github.com/MarisKX/Code-Institute-Milestone-Project-2/blob/main/assets/other/Contact%20page%20mobile.pdf)
+    -   Contact Us Page Wireframe - Desktop-[View](https://github.com/MarisKX/Code-Institute-Milestone-Project-3/blob/main/static/other/Contact.pdf), 
+        Mobile-[View](https://github.com/MarisKX/Code-Institute-Milestone-Project-3/blob/main/static/other/Contact%20mobile.pdf)
+
+    -   Car detail view (sales and rent uses the same main structure) Wireframe - Desktop-[View](https://github.com/MarisKX/Code-Institute-Milestone-Project-3/blob/main/static/other/Car%20detail%20view.pdf), 
+        Mobile-[View](https://github.com/MarisKX/Code-Institute-Milestone-Project-3/blob/main/static/other/Car%20detail%20view%20mobile.pdf)
 
 ## Features
 
