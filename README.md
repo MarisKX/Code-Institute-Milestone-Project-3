@@ -228,7 +228,7 @@ The W3C Markup Validator and W3C CSS Validator Services were used to validate ev
 
 ## Known Bugs
 
--   
+-   On mobile devices, to select car make in dropdown searchbar, You have to hold a little bit on car make instead of just clicking. Partially solved by increasing Z-index for "ul" element - now this bug appears mostly on Android mobile devices and not allways. Complete fix is not know yet.
 
 ## Deployment
 
