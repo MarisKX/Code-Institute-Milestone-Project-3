@@ -131,7 +131,7 @@ This project contains 2 parts. One is public part, it serves as an online car sh
 
 *   ### Wireframes
 
-    -   Landing page wireframe - Desktop-[View](https://github.com/MarisKX/Code-Institute-Milestone-Project-2/blob/main/assets/other/Index%20page.pdf), 
+    -   Landing page (Login/Register) wireframe - Desktop-[View](https://github.com/MarisKX/Code-Institute-Milestone-Project-2/blob/main/assets/other/Index%20page.pdf), 
         Mobile-[View](https://github.com/MarisKX/Code-Institute-Milestone-Project-2/blob/main/assets/other/Index%20page%20mobile.pdf)
 
     -   Cars for sale/cars for rent (uses the same structure) - Desktop-[View](https://github.com/MarisKX/Code-Institute-Milestone-Project-2/blob/main/assets/other/Cars%20for%20sale%20and%20cars%20for%20rent.pdf), 
@@ -196,6 +196,8 @@ This project contains 2 parts. One is public part, it serves as an online car sh
     - Bootstrap was used to assist with the responsiveness and styling of the website.
 1. [Materialize 1.0.0](https://materializecss.com/)
     - Materialize was used to assist with the responsiveness and styling of the website, where there was need for cleaner styling than Bottstrap offers.
+1. [Material Design for Bootstrap v5 & v4:](https://mdbootstrap.com/)
+    - Material Design was used for some advanced features (like carousel) that has limited options in other used frameworks
 1. [Hover.css:](https://ianlunn.github.io/Hover/)
     - Hover.css was used on the main menu items in header to add the float transition while being hovered over.
 1. [Font Awesome:](https://fontawesome.com/)
@@ -208,6 +210,12 @@ This project contains 2 parts. One is public part, it serves as an online car sh
     - GitHub is used to store the projects code after being pushed from Git.
 1. [Balsamiq:](https://balsamiq.com/)
     - Balsamiq was used to create the [wireframes](https://github.com/) during the design process.
+1. [Heroku:](https://heroku.com/)
+    - Heroku pages was used to deploy project
+1. [MongoDB:](https://mongodb.com/)
+    - As a database system was used MongoDB
+1. [LogoMaker:](https://www.logomaker.com/)
+    - Logomaker was used to make company's Logo in different sizes
 
 ## Testing
 
