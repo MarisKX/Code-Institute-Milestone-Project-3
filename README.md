@@ -115,7 +115,7 @@ This project contains 2 parts. One is public part, it serves as an online car sh
 
     -   #### Internal site user goals
 
-        1. As an app user, I want to easily navigate management website, with more than just single way to get to option in need
+        1. As an app user, I want to easily navigate management website, with more than just single way to get to option I need
         2. As an app user, I want to be able to easily find manual, if I need to refer to it
         3. As an app user, I want manage car showroom and rental side with as few clicks as possible
         4. As an app user (company), I want to be able to follow all activities from other users (who created car, who edited, who sold etc)
@@ -178,19 +178,19 @@ This project contains 2 parts. One is public part, it serves as an online car sh
 
 
 
-## Technologies Used
+# Technologies Used
 
 -   Initial development was made using [Atom IDE](https://atom.io/). 
 -   Python-specific functions was tested and modeled in [PyCharm IDE](https://www.jetbrains.com/pycharm/)
 
-### Languages Used
+## Languages Used
 
 -   [HTML5](https://en.wikipedia.org/wiki/HTML5)
 -   [CSS3](https://en.wikipedia.org/wiki/Cascading_Style_Sheets)
 -   [javaScript](https://en.wikipedia.org/wiki/JavaScript)
 -   [Python](https://en.wikipedia.org/wiki/Python_(programming_language))
 
-### Frameworks, Libraries & Programs Used
+## Frameworks, Libraries & Programs Used
 
 1. [Bootstrap 5.0:](https://getbootstrap.com/docs/5.0/getting-started/introduction/)
     - Bootstrap was used to assist with the responsiveness and styling of the website.
@@ -219,14 +219,14 @@ The W3C Markup Validator and W3C CSS Validator Services were used to validate ev
 
 
 
-### Further Testing
+## Further Testing
 
 -   The Website was tested on Google Chrome, Internet Explorer, Microsoft Edge and Firefox browsers.
 -   The website was viewed on a variety of devices such as Desktop (32" and 24"), Laptop, iPhone7, Samsung S20 and Samsung S20+
 -   A large amount of testing was done to ensure that all pages were linking correctly.
 -   Friends and family members were asked to review the site and documentation to point out any bugs and/or user experience issues.
 
-### Known Bugs
+## Known Bugs
 
 -   
 

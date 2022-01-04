@@ -569,6 +569,20 @@ button:focus {
     height: 1px;
 }
 
+.not-available {
+    position: absolute;
+    color: red;
+    width: 400px;
+    margin-top: 10px;
+    margin-left: 25px;
+}
+
+.not-available > h2 {
+    transform: skewY(-12deg);
+    font-size: 2.5rem;
+    font-weight: bold;
+}
+
 @media only screen and (max-width: 745px) {
     .description > .car-for-x-make {
     font-size: 1.5em;;
