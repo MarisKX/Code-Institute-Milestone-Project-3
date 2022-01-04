@@ -569,6 +569,10 @@ button:focus {
     height: 1px;
 }
 
+.dropdown-content.select-dropdown {
+    z-index: 2;
+}
+
 .not-available {
     position: absolute;
     color: red;
