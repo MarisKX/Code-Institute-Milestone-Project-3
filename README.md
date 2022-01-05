@@ -234,7 +234,7 @@ The W3C Markup Validator and W3C CSS Validator Services were used to validate ev
         -  [Results cars for sale page](https://raw.githubusercontent.com/MarisKX/Code-Institute-Milestone-Project-3/main/static/other/testing/Internal%20-%20cars%20for%20sale.png)
         -  [Results cars for rent page](https://raw.githubusercontent.com/MarisKX/Code-Institute-Milestone-Project-3/main/static/other/testing/Internal%20-%20cars%20for%20rent.png)
         -  [Results settings page](https://raw.githubusercontent.com/MarisKX/Code-Institute-Milestone-Project-3/main/static/other/testing/Internal%20-%20settings.png)
--   [W3C CSS Validator](https://jigsaw.w3.org/css-validator/#validate_by_input) - [Results](https://raw.githubusercontent.com/MarisKX/Code-Institute-Milestone-Project-2/main/assets/other/CSS.png)
+-   [W3C CSS Validator](https://jigsaw.w3.org/css-validator/#validate_by_input) - [Results](https://raw.githubusercontent.com/MarisKX/Code-Institute-Milestone-Project-3/main/static/other/testing/CSS.png)
     <p>
         <a href="http://jigsaw.w3.org/css-validator/check/referer">
             <img style="border:0;width:88px;height:31px"
