@@ -10,7 +10,9 @@
         <div class="home-car-listing col s12 l4">
             <div class="row">
                 <div class="col s12 m8">
-                    <img class="home-page-list-image" src="{{ car.picture1 }}" alt="{{ car.make + car.model }}" width="240" height="180">
+                    <a class="home-page-list-image" href="{{ url_for('carfs_details', car_id=car._id) }}">
+                        <img class="home-page-list-image" src="{{ car.picture1 }}" alt="{{ car.make + car.model }}" width="240" height="180">
+                    </a>
                 </div>
                 <div class="hidden invisible2"></div>
                 <ul class="col s12 m4 description">
@@ -33,7 +35,9 @@
         <div class="home-car-listing col s12 l4">
             <div class="row">
                 <div class="col s12 m8">
-                    <img class="home-page-list-image" src="{{ car.picture1 }}" alt="{{ car.make + car.model }}" width="240" height="180">
+                    <a class="home-page-list-image" href="{{ url_for('carfr_details', car_id=car._id) }}">
+                        <img class="home-page-list-image" src="{{ car.picture1 }}" alt="{{ car.make + car.model }}" width="240" height="180">
+                    </a>
                 </div>
                 <div class="hidden invisible2"></div>
                 <ul class="col s12 m4 description">
