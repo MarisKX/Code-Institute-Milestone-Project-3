@@ -216,6 +216,11 @@ main.container {
     background: linear-gradient(to right, rgb(46, 125, 50) 10%, rgb(230, 230, 230) 70%);
 }
 
+.brand-logo {
+    width: 145px;
+    height: auto;
+}
+
 .col.s12.m6.l4 {
     height: 192px;
     margin: 2px;

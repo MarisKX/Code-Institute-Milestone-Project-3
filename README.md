@@ -8,7 +8,7 @@
 ### [Public side](http://code-institute-milestone-p3.herokuapp.com/)
 ### [Internal company side](http://code-institute-milestone-p3.herokuapp.com/manager-dashboard)
 
-This project contains 2 parts. One is public part, it serves as an online car showroom and second is internal company side with limited access for car showroom management. While large part of documentation refers to both parts, there is seperate UX/UI sections for [public side](#public-side) and [internal side](#internal-side)
+This project contains 2 parts. One is public part, it serves as an online car showroom and second is internal company side with limited access for car showroom management. While large part of documentation refers to both parts, there are seperate UX/UI sections for [public side](#public-side) and [internal side](#internal-side)
 
 # PUBLIC SIDE
 
