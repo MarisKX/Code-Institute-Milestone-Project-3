@@ -37,7 +37,7 @@
             <li><a href="{{ url_for('home') }}"><i class="fas fa-home"></i></a></li>
             <li class="nav-link-li"><a class="nav-link" href="{{ url_for('for_sale') }}">Cars for sale</a></li>
             <li class="nav-link-li"><a class="nav-link" href="{{ url_for('for_rent') }}">Cars for rent</a></li>
-            <li class="nav-link-li"><a class="nav-link" href="collapsible.html">Contact Us</a></li>
+            <li class="nav-link-li"><a class="nav-link" href="{{ url_for('contact') }}">Contact Us</a></li>
           </ul>
         </div>
         <div id="burger-icon">
@@ -49,7 +49,7 @@
     <ul class="sidenav right" id="mobile-demo">
       <li class="nav-link-mobile"><a href="{{ url_for('for_sale') }}">Cars for sale</a></li>
       <li class="nav-link-mobile"><a href="{{ url_for('for_rent') }}">Cars for rent</a></li>
-      <li class="nav-link-mobile"><a href="collapsible.html">Contact Us</a></li>
+      <li class="nav-link-mobile"><a href="{{ url_for('contact') }}">Contact Us</a></li>
     </ul>
   </header>
 

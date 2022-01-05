@@ -291,6 +291,13 @@ div.col-md-4.col-12 > h4, div.col-md-4.col-12 > h5 {
     min-height: 450px;
 }
 
+.map-frame-contact {
+    min-height: 600px;
+    margin: auto;
+    width: 90%;
+    padding-top: 50px;
+}
+
 /* Administration pages specific styles */
 
 table {

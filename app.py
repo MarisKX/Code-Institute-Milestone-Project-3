@@ -123,6 +123,11 @@ def carfr_details(car_id):
     return render_template("car-rent-details.html", carfr=carfr)
 
 
+@app.route("/contact/")
+def contact():
+    return render_template("contact.html")
+
+
 # MANAGER DASHBOARD FUNCTIONS! # MANAGER DASHBOARD FUNCTIONS!
 
 # INITIAL SCREEN # INITIAL SCREEN # INITIAL SCREEN # INITIAL SCREEN
