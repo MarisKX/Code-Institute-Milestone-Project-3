@@ -224,16 +224,16 @@ The W3C Markup Validator and W3C CSS Validator Services were used to validate ev
 
 -   [W3C Markup Validator](https://validator.w3.org/)
     1. Public side
-        -  [Results Index-home](https://raw.githubusercontent.com/MarisKX/Code-Institute-Milestone-Project-2/main/assets/other/Index%20page%20html.png) 
-        -  [Results cars for sale page](https://raw.githubusercontent.com/MarisKX/Code-Institute-Milestone-Project-2/main/assets/other/Cars%20for%20sale%20page.png)
-        -  [Results cars for rent page](https://raw.githubusercontent.com/MarisKX/Code-Institute-Milestone-Project-2/main/assets/other/Cars%20for%20rent%20page.png)
-        -  [Results contact us page](https://raw.githubusercontent.com/MarisKX/Code-Institute-Milestone-Project-2/main/assets/other/Contact%20us%20page.png)
+        -  [Results Index-home](https://raw.githubusercontent.com/MarisKX/Code-Institute-Milestone-Project-3/main/static/other/testing/Public%20-%20Index-home.png) 
+        -  [Results cars for sale page](https://raw.githubusercontent.com/MarisKX/Code-Institute-Milestone-Project-3/main/static/other/testing/Public%20-%20Cars%20for%20sale.png)
+        -  [Results cars for rent page](https://raw.githubusercontent.com/MarisKX/Code-Institute-Milestone-Project-3/main/static/other/testing/Public%20-%20Cars%20for%20rent.png)
+        -  [Results contact us page](https://raw.githubusercontent.com/MarisKX/Code-Institute-Milestone-Project-3/main/static/other/testing/Public%20-%20contact.png)
     2. Internal side
-        -  [Results login page](https://raw.githubusercontent.com/MarisKX/Code-Institute-Milestone-Project-2/main/assets/other/Index%20page%20html.png)
-        -  [Results dashboard](https://raw.githubusercontent.com/MarisKX/Code-Institute-Milestone-Project-2/main/assets/other/Index%20page%20html.png)
-        -  [Results cars for sale page](https://raw.githubusercontent.com/MarisKX/Code-Institute-Milestone-Project-2/main/assets/other/Cars%20for%20sale%20page.png)
-        -  [Results cars for rent page](https://raw.githubusercontent.com/MarisKX/Code-Institute-Milestone-Project-2/main/assets/other/Cars%20for%20rent%20page.png)
-        -  [Results settings page](https://raw.githubusercontent.com/MarisKX/Code-Institute-Milestone-Project-2/main/assets/other/Contact%20us%20page.png)
+        -  [Results login page](https://raw.githubusercontent.com/MarisKX/Code-Institute-Milestone-Project-3/main/static/other/testing/Internal%20-%20login.png)
+        -  [Results dashboard](https://raw.githubusercontent.com/MarisKX/Code-Institute-Milestone-Project-3/main/static/other/testing/Internal%20-%20dashoard.png)
+        -  [Results cars for sale page](https://raw.githubusercontent.com/MarisKX/Code-Institute-Milestone-Project-3/main/static/other/testing/Internal%20-%20cars%20for%20sale.png)
+        -  [Results cars for rent page](https://raw.githubusercontent.com/MarisKX/Code-Institute-Milestone-Project-3/main/static/other/testing/Internal%20-%20cars%20for%20rent.png)
+        -  [Results settings page](https://raw.githubusercontent.com/MarisKX/Code-Institute-Milestone-Project-3/main/static/other/testing/Internal%20-%20settings.png)
 -   [W3C CSS Validator](https://jigsaw.w3.org/css-validator/#validate_by_input) - [Results](https://raw.githubusercontent.com/MarisKX/Code-Institute-Milestone-Project-2/main/assets/other/CSS.png)
     <p>
         <a href="http://jigsaw.w3.org/css-validator/check/referer">
