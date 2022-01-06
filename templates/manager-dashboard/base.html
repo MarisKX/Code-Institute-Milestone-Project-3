@@ -19,11 +19,11 @@
         <nav class="nav-extended text-shadow grey darken-1">
             <div class="nav-wrapper">
                 {% if session.user %}
-                    <a href="{{ url_for('manager_dashboard') }}" class="brand-logo not-mobile">Cars4You Web Manager</a>
-                    <a href="{{ url_for('manager_dashboard') }}" class="brand-logo mobile">Cars4You</a>
+                    <a href="{{ url_for('manager_dashboard') }}" class="brand-logo-internal not-mobile">Cars4You Web Manager</a>
+                    <a href="{{ url_for('manager_dashboard') }}" class="brand-logo-internal mobile">Cars4You</a>
                 {% else %}
-                    <a href="{{ url_for('dashboard') }}" class="brand-logo not-mobile">Cars4You Web Manager</a>
-                    <a href="{{ url_for('dashboard') }}" class="brand-logo mobile">Cars4You</a>
+                    <a href="{{ url_for('dashboard') }}" class="brand-logo-internal not-mobile">Cars4You Web Manager</a>
+                    <a href="{{ url_for('dashboard') }}" class="brand-logo-internal mobile">Cars4You</a>
                 {% endif %}
             <a href="#" data-target="mobile-demo" class="sidenav-trigger right"><i class="fas fa-bars"></i></a>
             <ul class="right hide-on-med-and-down">

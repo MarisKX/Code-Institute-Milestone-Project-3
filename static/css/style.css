@@ -101,6 +101,8 @@ header {
 .brand-logo {
     margin-left: 5%;
     margin-top: 10px;
+    width: 145px;
+    height: auto;
 }
 
 
@@ -151,7 +153,7 @@ header {
     padding-top: 75px;
   }
 
-.brand-logo.mobile {
+.brand-logo.mobile, .brand-logo-internal.mobile {
     display: none;
 }
 
@@ -214,11 +216,6 @@ main.container {
 
 .title-wrapper:hover {
     background: linear-gradient(to right, rgb(46, 125, 50) 10%, rgb(230, 230, 230) 70%);
-}
-
-.brand-logo {
-    width: 145px;
-    height: auto;
 }
 
 .col.s12.m6.l4 {
@@ -303,6 +300,12 @@ div.col-md-4.col-12 > h4, div.col-md-4.col-12 > h5 {
 table {
     margin-top: 10px;
     margin-bottom: 10px;
+}
+
+.brand-logo-internal {
+    margin-left: 5%;
+    height: auto;
+    font-size: 1.7em;
 }
 
 table.access-rights > tbody > tr > td, table.access-rights > tbody > tr > th {
@@ -472,10 +475,10 @@ img.manager-picture {
 }
 
 @media only screen and (max-width: 992px) {
-    .brand-logo.not-mobile {
+    .brand-logo.not-mobile, .brand-logo-internal.not-mobile {
         display: none;
     }
-    .brand-logo.mobile {
+    .brand-logo.mobile, .brand-logo-internal.mobile {
         display: inline-block;
     }
     table.list-table {
